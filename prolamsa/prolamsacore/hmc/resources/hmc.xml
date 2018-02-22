@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+<configuration xmlns="hybris.de/schemas/hmc/generic"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="hybris.de/schemas/hmc/generic hmc.xsd">
+
+	<type name="B2BUnit" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<essentials mode="append">
+					<columnlayout mode="append">
+						<row>
+                      		<attribute name="currencyForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+                      		<attribute name="language" />
+						</row>
+						<row>
+							<attribute name="shortName" />
+							<attribute name="TPagoForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+						</row>
+						<row>
+							<attribute name="salesRepForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+                      		<attribute name="salesAreaForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="70"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+						</row>
+						<row>
+							<attribute name="industryForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+                      		<attribute name="backOfficeAccountForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+						</row>
+						<row>
+							<attribute name="salesAreaWildCardVisibilityForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="70"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+						</row>
+					</columnlayout>
+				</essentials>
+
+				<tab name="addresses" mode="append">
+					<section name="addresses" mode="replace">
+						<listlayout mode="replace">
+							<attribute name="addresses" mode="replace">
+								<referencecollectioneditor >
+									<itemlayout>
+										<attribute name="code"/>
+										<attribute name="shortName"/>
+										<attribute name="name"/>
+										<attribute name="postalcode"/>
+										<attribute name="town"/>
+										<attribute name="streetname"/>
+										<attribute name="typeQualifier"/>
+										<attribute name="baseStores"/>
+									</itemlayout>
+								</referencecollectioneditor>
+							</attribute>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+	<type name="AbstractOrder" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<essentials mode="replace">
+	               <columnlayout>
+	                  <row>
+	                     <attribute name="user"/>
+	                     <attribute name="code" />
+	                  </row>
+	                  <row>
+	                  	<attribute name="sapOrderId"/>
+	                  	<attribute name="unit"/>
+	                  </row>
+	                  <row>
+	                  	<attribute name="unitWhenPlaced" />
+	                  	<attribute name="transportationMode" />
+	                  </row>
+	                  <row>
+	                  	<attribute name="attachmentsPO">
+							<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+								<itemlayout>
+									<attribute name="realFileName" />
+									<attribute name="mime" />
+								</itemlayout>
+							</referencecollectioneditor>
+	                  	</attribute>
+	                  </row>
+	                  <row>
+						<attribute name="shippingInstructions">
+							<textareaeditor />
+						</attribute>
+					  </row>
+	               </columnlayout>
+	            </essentials>
+				<tab name="positions_and_prices" id="tab_order_positions_and_prices" position="0" mode="append">
+					<section name="positions" mode="append">
+						<listlayout mode="append">
+							<attribute name="entries" mode="replace">
+								<referencecollectioneditor editable="true" externalcreate="false" presetattribute="order" remove="true" create="true" autosave="true">
+
+                              <itemeditorlayout>
+	                                 <attribute name="product" width="250"/>
+	                                 <attribute name="quantity" width="50"/>
+
+										<attribute name="apiProductConfiguration" width="90"/>
+										<attribute name="rollingScheduleWeek" width="90"/>
+
+	                                 <attribute name="unit" width="90"/>
+	                                 <attribute name="basePrice" width="77">
+										<editor classname="de.hybris.platform.hmc.attribute.DoubleEditorChip">
+											<parameter key="align" value="right"/>
+										</editor>
+									</attribute>
+			                  		<attribute name="totalPrice" width="80">
+										<editor classname="de.hybris.platform.hmc.attribute.DoubleEditorChip">
+											<parameter key="align" value="right"/>
+										</editor>
+									</attribute>
+									<attribute name="deliveryPointOfService" width="250"/>
+
+                              </itemeditorlayout>
+                           </referencecollectioneditor>
+							</attribute>
+						</listlayout>
+					</section>
+				</tab>
+				<tab name="sap" id="sap" position="21">
+					<section name="totals">
+						<columnlayout>
+							<row>
+								<attribute name="sapTotalPrice" />
+								<attribute name="totalWeight" />
+							</row>
+							<row>
+								<attribute name="galvanizedPrice" />
+								<attribute name="galvanizedWeight" />
+							</row>
+							<row>
+								<attribute name="hotRolledPrice" />
+								<attribute name="hotRolledWeight" />
+							</row>
+							<row>
+								<attribute name="billingAddress" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+	<type name="AbstractOrderEntry" mode="append">
+		<organizer mode="append">
+			<result>
+            <listview mode="append">
+				<itemlayout mode="append">
+					<attribute name="apiProductConfiguration" width="70"/>
+					<attribute name="rollingScheduleWeek" width="70"/>
+				</itemlayout>
+			</listview>
+			<editview mode="append">
+               <itemlayout mode="append">
+                  <attribute name="apiProductConfiguration" width="80"/>
+                  <attribute name="rollingScheduleWeek" width="80"/>
+               </itemlayout>
+            </editview>
+         </result>
+         <editor mode="append">
+            <tab name="common" position="0" mode="append">
+               <section name="orderentries" mode="append">
+                  <columnlayout>
+                     <row>
+                        <attribute name="apiProductConfiguration"/>
+                        <attribute name="rollingScheduleWeek" />
+                     </row>
+                  </columnlayout>
+               </section>
+              </tab>
+         </editor>
+      </organizer>
+   </type>
+
+	<type name="Order" mode="append">
+		<organizer>
+			<search mode="append">
+				<condition attribute="versionID" operator="is null" />
+			</search>
+		</organizer>
+	</type>
+	
+	<type name="Address" mode="append">
+		<organizer>
+			<result>
+	            <listview mode="append">
+	               <itemlayout>
+	               		<attribute name="code" width="150"/>
+	               		<attribute name="name" width="150"/>
+	                  	<attribute name="transportationMode" width="150"/>
+	               </itemlayout>
+	            </listview>
+	            <editview mode="append">
+	               <itemlayout>
+	               <attribute name="code" width="150"/>
+	                  <attribute name="transportationMode" width="150"/>
+	                   </itemlayout>
+	            </editview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.common" position="0" mode="append">
+					<section name="section.address.general" position="0">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+							</row>
+							<row>
+								<attribute name="name"/>
+								<attribute name="shortName"/>
+							</row>
+							<row>
+								<attribute name="incoterm"/>
+								<attribute name="defaultPlant"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.address.address" mode="append">
+						<columnlayout mode="append">
+							<row>
+							<attribute name="code" width="150"/>
+								<attribute name="transportationMode"/>
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+  
+	<type name="ProlamsaProduct" mode="append">
+		<organizer>
+			<editor mode="append">
+				<essentials mode="append">
+					<columnlayout mode="append">
+						<row>
+                      		<attribute name="baseCode" />
+                      		<attribute name="location" />
+						</row>
+					</columnlayout>
+				</essentials>
+
+				<customtab name="test" classname="test">
+                </customtab>
+
+                <tab name="attributes" mode="append">
+                	<section name="Extended">
+                		<columnlayout>
+                			<row>
+                				<attribute name="family"/>
+                				<attribute name="subFamily"/>
+							</row>
+							<row>
+								<attribute name="section"/>
+							</row>
+                			<row>
+	                			<attribute name="steel"/>
+	                			<attribute name="quality"/>
+                			</row>
+                			<row>
+                				<attribute name="dimA"/>
+								<attribute name="dimB"/>
+							</row>
+                			<row>
+								<attribute name="piecesPerBundle"/>
+							</row>
+							<row>
+								<attribute name="length"/>
+								<attribute name="lengthmm"/>
+							</row>
+                			<row>
+								<attribute name="bundleKgEquiv"/>
+								<attribute name="bundleLbEquiv"/>
+							</row>
+                			<row>
+								<attribute name="pcKgEquiv"/>
+								<attribute name="pcLbEquiv"/>
+							</row>
+                			<row>
+								<attribute name="kgEquiv"/>
+								<attribute name="lbEquiv"/>
+							</row>
+                			<row>
+								<attribute name="mtEquiv"/>
+								<attribute name="tnEquiv"/>
+							</row>
+                			<row>
+								<attribute name="covering"/>
+								<attribute name="wallThickness"/>
+							</row>
+                			<row>
+								<attribute name="grade"/>
+								<attribute name="thread"/>
+							</row>
+							<row>
+								<attribute name="ftEquiv"/>
+								<attribute name="ftLbEquiv"/>
+							</row>
+							<row>
+								<attribute name="ftKgEquiv"/>
+								<attribute name="ftTnEquiv"/>
+							</row>
+							<row>
+								<attribute name="manufacturingDescription">
+									<textareaeditor />
+								</attribute>
+							</row>
+                			<row>
+                				<attribute name="lengthCode"/>
+								<attribute name="materialType"/>
+							</row>
+                			<row>
+                				<attribute name="endFinish"/>
+								<attribute name="finish"/>
+							</row>
+                			<row>
+                				<attribute name="coating"/>
+								<attribute name="idScarf"/>
+							</row>
+                			<row>
+                				<attribute name="deburr"/>
+								<attribute name="drift"/>
+							</row>
+                			<row>
+                				<attribute name="endFacer"/>
+								<attribute name="norm"/>
+							</row>
+							
+							<row>
+								<attribute name="standard"/>
+							</row>
+
+							<row>
+								<attribute name="relatedProductCodes"/>
+							</row>
+                		</columnlayout>
+                	</section>
+                </tab>
+			</editor>
+		</organizer>
+	</type>
+	
+   <type name="CustomerProductReference" icon="images/ext/catalog/productreference.gif" mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="code"/>
+            <condition attribute="customer"/>
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+                  <attribute name="code" width="100"/>
+                  <attribute name="description" width="250"/>
+                  <attribute name="productCode" width="150"/>
+                  <attribute name="customer" width="150"/>
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+                  <attribute name="code" />
+                  <attribute name="description"/>
+                  <attribute name="productCode" />
+                  <attribute name="customer"/>
+               </itemlayout>
+            </editview>
+         </result>
+         <editor mode="replace">
+         	<tab name="attributes">
+         		<section name="attributes">
+         			<listlayout>
+						<attribute name="code" />
+						<attribute name="description">
+							<textareaeditor />
+						</attribute>
+						<attribute name="productCode" />
+						<attribute name="customer"/>
+						<attribute name="catalogId"/>
+						<attribute name="location"/>
+         			</listlayout>
+         		</section>
+         	</tab>
+
+            <tabref idref="tab_administration"/>
+         </editor>
+      </organizer>
+	</type>
+
+	<type name="BaseStore" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<essentials mode="append">
+					<columnlayout mode="append">
+						<row>
+							<attribute name="unit" />
+							<attribute name="maxBundlesInventory" />											
+						</row>
+						<row>							
+							<attribute name="daysAddedDeliveryDate" />	
+							<attribute name="defaultMeasurementSystem" />					
+						</row>
+						<row>							
+							<attribute name="creditScoreCardLowLimit" />	
+							<attribute name="creditScoreCardHighLimit" />					
+						</row>
+						<row>
+							<attribute name="genericNotificationEmail" />
+							<attribute name="salesDepartmentEmail" />	
+						</row>
+						<row>
+							<attribute name="productSpecsEmail" />
+							<attribute name="techinicalSupportEmail" />	
+						</row>
+						<row>
+							<attribute name="maxOrderLimit" />
+						</row>
+					</columnlayout>
+					<listlayout>
+						<attribute name="transportationModes" />
+						<attribute name="incindentTypes"></attribute>
+						<attribute name="units" />
+						<attribute name="salesAreaManagers">
+							 <referencecollectioneditor add="true" create="true" editable="true">
+							 	<itemlayout>
+									<attribute name="code"></attribute>
+									<attribute name="manager"></attribute>
+							 	</itemlayout>
+							 </referencecollectioneditor>
+						</attribute>
+					</listlayout>
+				</essentials>
+				<tab name="locations" mode="replace" position="0">
+					<section name="locations" mode="replace">
+						<listlayout mode="replace">
+							<attribute name="pointOfServices">
+								<referencecollectioneditor>
+									<itemlayout>
+										<attribute name="name" />
+										<attribute name="locDisplayName" width="200"/>
+										<attribute name="type" />
+										<attribute name="baseStores" width="250"/>
+									</itemlayout>
+								</referencecollectioneditor>
+							</attribute>
+							<attribute name="defaultDeliveryOrigin" />
+						</listlayout>
+					</section>
+				</tab>
+				<tab name="administration" mode="append" position="2">
+					<section name="section.basestore.notices" position="4" mode="replace">
+						<listlayout mode="append">
+							<attribute name="notices" mode="replace">
+								<referencecollectioneditor add="true" create="true" editable="true">
+									<itemlayout >
+										<attribute name="name"></attribute>
+									</itemlayout>
+								</referencecollectioneditor>
+							</attribute>
+						</listlayout>
+					</section>
+					<section name="section.basestore.alerts" position="5" mode="replace">
+						<listlayout mode="append">
+							<attribute name="alerts"/>
+						</listlayout>
+					</section>
+					<section name="section.basestore.quotenegotiation" position="6" mode="replace">
+						<listlayout mode="append">
+							<attribute name="quoteNegotiationDiscountMin"/>
+							<attribute name="quoteNegotiationDiscountMax"/>
+						</listlayout>
+					</section>
+					<section name="section.basestore.apiftqtycapture" position="7" mode="replace">
+						<listlayout mode="append">
+							<attribute name="inventoryQtyFtAPIMin"/>
+							<attribute name="inventoryQtyFtAPIMax"/>
+							<attribute name="rollingQtyFtAPIMin"/>
+							<attribute name="rollingQtyFtAPIMax"/>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+   <type name="TransportationMode" icon="images/icons/e_deliverymode.gif" mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="internalCode"/>
+            <condition attribute="name" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="internalCode" width="150"/>
+					<attribute name="code" width="150"/>
+					<attribute name="incotermCode" width="150"/>
+					<attribute name="incotermDescription" width="150"/>
+					<attribute name="name" width="150"/>
+					<attribute name="maxCapacity" width="150"/>
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="internalCode" />
+					<attribute name="code" />
+					<attribute name="incotermCode" />
+					<attribute name="incotermDescription" width="150"/>
+					<attribute name="name" />
+					<attribute name="maxCapacity"/>
+               </itemlayout>
+            </editview>
+         </result>
+         <editor mode="replace">
+         	<tab name="attributes">
+         		<section name="attributes">
+         			<listlayout>
+         				<attribute name="internalCode" />
+         				<attribute name="code" />
+         				<attribute name="incotermCode" />
+         				<attribute name="incotermDescription" width="150"/>
+						<attribute name="name" />
+						<attribute name="maxCapacity" />
+         			</listlayout>
+         		</section>
+         	</tab>
+
+            <tabref idref="tab_administration"/>
+         </editor>
+      </organizer>
+      <defaultreference mode="replace">
+      	<itemlayout>
+      		<attribute name="internalCode"/>
+      	</itemlayout>
+      </defaultreference>
+	</type>
+	
+	<type name="B2BCustomer" mode="append">
+		<organizer>
+			<search mode="append">
+				<condition attribute="baseStores" operator="contains"/>
+			</search>
+
+			<result>
+            	<listview mode="append">
+            		<itemlayout>
+            			<attribute name="baseStores" width="250" />
+            		</itemlayout>
+            	</listview>
+            </result>
+			
+			<editor mode="append">
+				<essentials mode="append">
+					<columnlayout mode="append">
+						<row>
+                      		<attribute name="salesRepForStore">
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+                      		<attribute name="backofficeAccountForStore" >
+                      			<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false" add="true">
+									<itemlayout>
+										<attribute name="storeId" width="50"></attribute>
+										<attribute name="setting" width="50"></attribute>
+									</itemlayout>
+                      			</referencecollectioneditor>
+                      		</attribute>
+						</row>
+					</columnlayout>
+				</essentials>
+				
+				<tab name="tab.common" id="tab_user_properties" mode="append">
+					<section name="properties" mode="append">
+						<listlayout mode="append">
+							<attribute name="baseStores" />
+							<attribute name="TermsAndCoditionsByStore">
+								<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false">
+									<itemlayout>
+										<attribute name="baseStoreId" />
+										<attribute name="termsAndConditionsChecked" />
+									</itemlayout>
+								</referencecollectioneditor>
+							</attribute>
+							<attribute name="defaultSettings" />
+						</listlayout>
+					</section>
+					<section name="section.b2bcustomer.alertsconfiguration" mode="replace">
+						<listlayout mode="append">
+							<attribute name="alertsConfiguration">
+								<referencecollectioneditor editable="true"
+									externalcreate="true" resortable="false"
+									remove="true" create="true" autosave="false">
+								</referencecollectioneditor>
+							</attribute>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="Unit" mode="append">
+		<organizer>
+			<editor>
+				<essentials mode="append">
+					<columnlayout mode="append">
+						<row>
+							<attribute name="defaultMeasurementSystem" />																	
+						</row>						
+					</columnlayout>					
+				</essentials>
+			</editor>
+		</organizer>
+	</type>
+	
+		<!-- NEORIS_CHANGE # PROLAMSA PRODUCT VISIBILITY  -->
+	<type name="ProductVisibility" icon="images/icons/e_hmc_configuration.gif" mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="code"/>
+            <condition attribute="category" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="code" width="150"/>
+					<attribute name="category" width="150" />
+					<attribute name="location" width="150"/>
+					<attribute name="materialType" width="150"/>
+					<attribute name="active"  width="50"/>					
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="code"/>
+					<attribute name="category"/>
+					<attribute name="active" width="50"/>
+					<attribute name="location"/>
+					<attribute name="materialType"/>		
+               </itemlayout>
+            </editview>
+         </result>
+         <editor mode="replace">
+         	<tab name="section.address.general">
+         		<section name="common">
+         			<listlayout>
+         				<attribute name="code"/>
+						<attribute name="category">	
+							<referencecollectioneditor showsearcheditor="true">
+		                     		<itemlayout>
+		                     			<attribute name="code" width="200"/>
+		                     			<attribute name="name" width="344"/>
+		                     		</itemlayout>
+		                     </referencecollectioneditor>
+	                     </attribute>	                     	                     	                   
+	                           
+	                    <!--  <attribute name="catalog" />	 -->	 				
+         			</listlayout>
+         			
+         			<listlayout>
+	                     <attribute name="active">
+	                        <advancedbooleaneditor truename="true" falsename="false"/>
+	                     </attribute>
+	                </listlayout>
+        		         		
+         		    <table>
+	                  <tr>
+	                     <td>	                        
+							<attribute name="catalog" />
+	                     </td>
+	                     <td>
+	                        <action
+	                           type="item"
+	                           classname="mx.neoris.core.hmc.NeorisUpdateProductVisibility"
+	                           name="action.productvisibility.neorisupdateproductvisibility" />
+	                     </td>
+	                  </tr>
+	                </table>                    	         		
+               
+            </section>
+         		
+         		<section name="section.cmscomponent.visibility">
+         			<listlayout>
+         				<attribute name="industry"/>
+						<attribute name="salesArea"/>
+						<attribute name="salesRep"/>
+						<attribute name="salesAreaWildCardVisibility"/>						
+         			</listlayout>
+         		</section>         		
+         		
+         		<section name="attributes">
+         			<listlayout>       																				
+						<attribute name="location">
+	                     	<referencecollectioneditor showsearcheditor="true">
+	                     		<itemlayout>
+	                     			<attribute name="code" width="200"/>
+	                     			<attribute name="name" width="344"/>
+	                     		</itemlayout>
+	                     	</referencecollectioneditor>
+                        </attribute>
+                        
+                        <attribute name="family"/>  
+                        <attribute name="section"/>  
+						<attribute name="materialType"/>	
+						<attribute name="steel"/>
+						<attribute name="quality"/>
+						<attribute name="finish"/>
+						<attribute name="covering"/>
+						       		
+         			</listlayout>
+         		</section>
+         	</tab>
+
+            <tabref idref="tab_administration"/>
+         </editor>
+      </organizer>
+	</type>
+	
+	
+	<type name="IncidentType"  mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="code"/>
+            <condition attribute="name" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="code" width="150"/>
+					<attribute name="name" width="350" />
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="code"/>
+					<attribute name="name"/>
+               </itemlayout>
+            </editview>
+         </result>
+    	</organizer>
+    	<defaultreference mode="replace">
+      		<itemlayout>
+      			<attribute name="name"/>
+      		</itemlayout>
+      </defaultreference>
+	</type>
+	<type name="IncidentState"  mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="code"/>
+            <condition attribute="name" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="code" width="150"/>
+					<attribute name="name" width="350" />
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="code"/>
+					<attribute name="name"/>
+               </itemlayout>
+            </editview>
+         </result>
+		</organizer>
+		<defaultreference mode="replace">
+      		<itemlayout>
+      			<attribute name="name"/>
+      		</itemlayout>
+      	</defaultreference>
+	</type>
+	<type name="Incident"  mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="code"/>
+            <condition attribute="name" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="code" width="150"/>
+					<attribute name="invoiceNumber" width="350" />
+					<attribute name="account" width="350" />
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="code" width="150"/>
+					<attribute name="invoiceNumber" width="350" />
+					<attribute name="account" width="350" />
+               </itemlayout>
+            </editview>
+         </result>
+             </organizer>
+	</type>
+	<type name="IncidentLine"  mode="append">
+      <organizer>
+         <search mode="replace">
+            <condition attribute="quantityToClaim"/>
+            <condition attribute="product" />
+         </search>
+         <result>
+            <listview mode="replace">
+               <itemlayout>
+					<attribute name="quantityToClaim" width="150"/>
+					<attribute name="product" width="350" />
+               </itemlayout>
+            </listview>
+            <editview mode="replace">
+               <itemlayout>
+					<attribute name="quantityToClaim" width="150"/>
+					<attribute name="product" width="350" />
+               </itemlayout>
+            </editview>
+         </result>
+             </organizer>
+	</type>
+	
+	<type name="PointOfService" mode="append">
+		<organizer>
+			<editor mode="append">
+				<essentials mode="replace">
+					<listlayout>
+						<attribute name="name" />
+						<attribute name="displayName" />
+                    	<attribute name="locDisplayName" />
+                    	<attribute name="baseStores" />                    		
+					</listlayout>
+				</essentials>
+			</editor>
+		</organizer>
+		<defaultreference mode="replace">
+			<itemlayout>
+				<attribute name="locDisplayName" />
+			</itemlayout>
+		</defaultreference>
+	</type>
+	
+	<type name="NeorisB2BUnitSettingByStore" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="storeId" />
+				<condition attribute="setting" />
+				<condition attribute="b2bUnitOwner" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="storeId" width="150"/>
+						<attribute name="setting" width="350" />
+						<attribute name="b2bUnitOwner" width="350" />
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+	               <itemlayout>
+						<attribute name="storeId" width="150"/>
+						<attribute name="setting" width="350" />
+						<attribute name="b2bUnitOwner" width="350" />
+	               </itemlayout>
+            	</editview>
+			</result>
+		</organizer>
+	</type>
+	
+	<type name="NeorisB2BCustomerSettingByStore" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="storeId" />
+				<condition attribute="setting" />
+				<condition attribute="b2bCustomerOwner" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="storeId" width="150"/>
+						<attribute name="setting" width="350" />
+						<attribute name="b2bCustomerOwner" width="350" />
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+	               <itemlayout>
+						<attribute name="storeId" width="150"/>
+						<attribute name="setting" width="350" />
+						<attribute name="b2bCustomerOwner" width="350" />
+	               </itemlayout>
+            	</editview>
+			</result>
+		</organizer>
+	</type>
+
+	<type name="NeorisB2BCustomerDefaultSetting" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="b2bunit" />
+				<condition attribute="baseStore" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="b2bunit"></attribute>
+						<attribute name="baseStore"></attribute>
+						<attribute name="uom"></attribute>
+						<attribute name="shippingAddress" width="200"></attribute>
+						<attribute name="location"></attribute>
+						<attribute name="transportationMode" width="150"></attribute>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="b2bunit"></attribute>
+						<attribute name="baseStore"></attribute>
+						<attribute name="uom"></attribute>
+						<attribute name="shippingAddress"></attribute>
+						<attribute name="location"></attribute>
+						<attribute name="transportationMode"></attribute>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor>
+				<essentials mode="replace">
+					<listlayout>
+						<attribute name="b2bunit"></attribute>
+						<attribute name="baseStore"></attribute>
+						<attribute name="uom"></attribute>
+						<attribute name="shippingAddress"></attribute>
+						<attribute name="location"></attribute>
+						<attribute name="transportationMode"></attribute>
+					</listlayout>
+				</essentials>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="Alert" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code"/>
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="75"/>
+						<attribute name="description" width="200"/>
+						<attribute name="hasDailyOption" width="100"/>
+						<attribute name="hasWeeklyOption" width="100"/>
+						<attribute name="hasMonthlyOption" width="100"/>
+						<attribute name="hasTimeOptions" width="100"/>
+						<attribute name="hasDayOptions" width="100"/>
+						<attribute name="hasProductOptions" width="100"/>
+						<attribute name="hasMTROption" width="100"/>
+						<attribute name="hasCCEmailOptions" width="100"/>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="75"/>
+						<attribute name="description" width="200"/>
+						<attribute name="hasDailyOption" width="100"/>
+						<attribute name="hasWeeklyOption" width="100"/>
+						<attribute name="hasMonthlyOption" width="100"/>
+						<attribute name="hasTimeOptions" width="100"/>
+						<attribute name="hasDayOptions" width="100"/>
+						<attribute name="hasProductOptions" width="100"/>
+						<attribute name="hasMTROption" width="100"/>
+						<attribute name="hasCCEmailOptions" width="100"/>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor mode="replace">
+				<tab name="section.address.general">
+					<section name="common">
+						<listlayout>
+							<attribute name="code"/>
+							<attribute name="description"/>
+							<attribute name="hasDailyOption"/>
+							<attribute name="hasWeeklyOption"/>
+							<attribute name="hasMonthlyOption"/>
+							<attribute name="hasTimeOptions"/>
+							<attribute name="hasDayOptions"/>
+							<attribute name="hasProductOptions"/>
+							<attribute name="hasMTROption"/>
+							<attribute name="timeOptions">
+								<referencecollectioneditor showsearcheditor="false">
+		                     		<itemlayout>
+		                     			<attribute name="code"/>
+		                     			<attribute name="description"/>
+		                     		</itemlayout>
+		                     	</referencecollectioneditor>
+							</attribute>
+							<attribute name="productOptions">
+								<referencecollectioneditor showsearcheditor="false">
+		                     		<itemlayout>
+		                     			<attribute name="code"/>
+		                     			<attribute name="description"/>
+		                     		</itemlayout>
+		                     	</referencecollectioneditor>
+							</attribute>
+							<attribute name="hasCCEmailOptions"/>
+						</listlayout>
+					</section>
+				</tab>
+				<tabref idref="tab_administration"/>
+			</editor>
+		</organizer>
+		<defaultreference mode="replace">
+	      	<itemlayout>
+	      		<attribute name="code"/>
+	      	</itemlayout>
+      	</defaultreference>
+	</type>
+	
+	<type name="AlertConfiguration" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="b2bunit"/>
+				<condition attribute="baseStore"/>
+				<condition attribute="b2bcustomer"/>
+				<condition attribute="alert"/>
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="alert"/>
+						<attribute name="baseStore"/>
+						<attribute name="b2bunit"/>
+						<attribute name="b2bcustomer"/>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="alert"/>
+						<attribute name="baseStore"/>
+						<attribute name="b2bunit"/>
+						<attribute name="b2bcustomer"/>
+						<attribute name="notify"/>
+						<attribute name="periodicity"/>
+						<attribute name="time"/>
+						<attribute name="daysOfWeek"/>
+						<attribute name="dayOfMonth"/>
+						<attribute name="productOptions"/>
+						<attribute name="includeMTR"/>
+						<attribute name="ccEmail"/>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor mode="replace">
+				<tab name="section.address.general">
+					<section name="common">
+						<listlayout>
+							<attribute name="alert"/>
+							<attribute name="baseStore"/>
+							<attribute name="b2bunit"/>
+							<attribute name="b2bcustomer"/>
+							<attribute name="notify"/>
+							<attribute name="periodicity"/>
+							<attribute name="time"/>
+							<attribute name="daysOfWeek"/>
+							<attribute name="dayOfMonth"/>
+							<attribute name="productOptions"/>
+							<attribute name="includeMTR"/>
+							<attribute name="ccEmail"/>
+						</listlayout>
+					</section>
+				</tab>
+				<tabref idref="tab_administration"/>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="AlertTimeOption" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code"/>
+				<condition attribute="description"/>
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="100"/>
+						<attribute name="description" width="100"/>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="100"/>
+						<attribute name="description" width="100"/>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor mode="replace">
+				<tab name="section.address.general">
+					<section name="common">
+						<listlayout>
+							<attribute name="code"/>
+							<attribute name="description"/>
+						</listlayout>
+					</section>
+				</tab>
+				<tabref idref="tab_administration"/>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="AlertProductOption" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code"/>
+				<condition attribute="description"/>
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="100"/>
+						<attribute name="description" width="200"/>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="100"/>
+						<attribute name="description" width="200"/>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor mode="replace">
+				<tab name="section.address.general">
+					<section name="common">
+						<listlayout>
+							<attribute name="code"/>
+							<attribute name="description"/>
+						</listlayout>
+					</section>
+				</tab>
+				<tabref idref="tab_administration"/>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="AlertConfigurationChange" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="attribute"/>
+				<condition attribute="changedDate"/>
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="attribute"/>
+						<attribute name="previuosValue"/>
+						<attribute name="newValue"/>
+						<attribute name="changedDate"/>
+					</itemlayout>
+				</listview>
+				<editview mode="replace">
+					<itemlayout>
+						<attribute name="attribute"/>
+						<attribute name="previuosValue"/>
+						<attribute name="newValue"/>
+						<attribute name="changedDate"/>
+					</itemlayout>
+				</editview>
+			</result>
+			<editor mode="replace">
+				<tab name="section.address.general">
+					<section name="common">
+						<listlayout>
+							<attribute name="attribute"/>
+							<attribute name="previuosValue"/>
+							<attribute name="newValue"/>
+							<attribute name="changedDate"/>
+						</listlayout>
+					</section>
+				</tab>
+				<tabref idref="tab_administration"/>
+			</editor>
+		</organizer>
+	</type>
+   
+	<explorertree>
+		<group name="catalog" expand="false" mode="append">
+			<typeref type="CustomerProductReference" description="type.CustomerProductReference.name"/>
+			<typeref type="TransportationMode" description="type.TransportationMode.name"/>
+			<typeref type="ProductVisibility" description="type.ProductVisibility.name"/>
+			<group name="incidentgroup" description="group.incident.description" expand="false" mode="replace">
+				<typeref type="IncidentType" description="type.IncidentType.name"/>
+				<typeref type="IncidentState" description="type.IncidentState.name"/>
+				<typeref type="Incident" description="type.Incident.name"/>
+				<typeref type="IncidentLine" description="type.IncidentLine.name"/>
+			</group>
+		</group>
+		<group name="group.basecommerce" expand="false" mode="append">
+			<group name="alertsgroup" description="group.alert.description" expand="false" mode="replace">
+				<typeref type="Alert" description="type.Alert.name"/>
+				<typeref type="AlertTimeOption" description="type.AlertTimeOption.name"/>
+				<typeref type="AlertProductOption" description="type.AlertProductOption.name"/>
+			</group>
+		</group>
+   </explorertree>
+
+</configuration>

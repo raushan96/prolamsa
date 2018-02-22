@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <prolamsastorefront>
+    <testclass>mx.neoris.storefront.controllers.cms.CategoryFeatureComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.ProductCarouselComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.NavigationBarComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.filters.AcceleratorAddOnFilterTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.ProductReferencesComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.filters.TagResourcesAddOnFilterTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.DefaultCMSComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.pages.SearchPageControllerUnitTest</testclass>
+    <testclass>mx.neoris.storefront.filters.CommonResourcesAddOnFilterTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.ProductFeatureComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.security.cookie.EnhancedCookieGeneratorTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.MiniCartComponentControllerTest</testclass>
+    <testclass>mx.neoris.storefront.filters.AbstractAddOnFilterTest</testclass>
+    <testclass>mx.neoris.storefront.interceptors.i18n.SetLanguageBeforeControllerHandlerTest</testclass>
+    <testclass>mx.neoris.storefront.controllers.cms.PurchasedCategorySuggestionComponentControllerTest</testclass>
+  </prolamsastorefront>
+</testclasses>

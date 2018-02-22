@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2000-2013 hybris AG All rights reserved. 
+	This software is the confidential and proprietary information of hybris ("Confidential 
+	Information"). You shall not disclose such Confidential Information and shall 
+	use it only in accordance with the terms of the license agreement you entered 
+	into with hybris. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="beans.xsd">
+
+
+	<bean class="mx.neoris.facades.invoice.data.InvoiceData">
+	    <property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" />
+        <property name="invoiceDate" type="java.util.Date" />
+		<property name="number" type="String" />
+		<property name="documentNumber" type="String" />
+		<property name="documentDescription" type="String" />
+		<property name="currency" type="String" />
+	    <property name="dueDate" type="java.util.Date" />
+		<property name="originalAmount" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="credits" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="debits" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="balanceAmount" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+		<property name="order" type="de.hybris.platform.commercefacades.order.data.OrderData" />
+		<property name="daysExpire" type="java.lang.Long" />
+	</bean>
+	
+	<bean class="mx.neoris.facades.backorder.data.BackorderData">
+		<!-- <property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" /> -->
+		<property name="customer" type="de.hybris.platform.core.model.user.AddressModel" />
+	    <property name="description" type="String" />
+		<property name="pcsOrder" type="String" />
+		<property name="kgsOrder" type="java.lang.Double" />
+		<property name="pendingKilos" type="java.lang.Double" />
+		<property name="readyKilos" type="java.lang.Double" />
+		<property name="loadingKilos" type="java.lang.Double" />
+		<property name="balanceKilos" type="java.lang.Double" />
+		<property name="orderQty2" type="java.lang.Double" />
+		<property name="pendingQty2" type="java.lang.Double" />
+		<property name="readyQty2" type="java.lang.Double" />
+		<property name="loadingQty2" type="java.lang.Double" />
+		<property name="balance2" type="java.lang.Double" />
+		<property name="uom2" type="String" />
+		<property name="orderQty3" type="java.lang.Double" />
+		<property name="pendingQty3" type="java.lang.Double" />
+		<property name="readyQty3" type="java.lang.Double" />
+		<property name="loadingQty3" type="java.lang.Double" />
+		<property name="balance3" type="java.lang.Double" />
+		<property name="uom3" type="String" />
+	</bean>
+	
+	<!-- Address -->
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+		<property name="shortName" type="String"/>
+		
+	<!--NEORIS_CHANGE #74 Added to show in the traportatoin mode combo on checkout page  -->
+		<property name="transportationMode" type="de.hybris.platform.commercefacades.user.data.TransportationModeData" />
+		<property name="ownerUid" type="String"/>
+		
+		<property name="formattedAddress2" type="String"/>
+	</bean>
+
+	<!-- B2BUnit -->
+	<bean class="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData">	    
+		<property name="shortName" type="String"/>
+	</bean>
+	
+	<!-- NEORIS_CHANGE #Show Place Order Button -->
+	<bean class="de.hybris.platformcommercefacades.user.data.BaseStoreData">
+		<property name="placeOrderButtonEnabled" type="java.lang.Boolean"/>
+		<property name="measurementSystemType" type="mx.neoris.core.enums.MeasurementSystemType"></property>	
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.TransportationModeData">
+		<property name="internalCode" type="java.lang.String"></property>
+		<property name="code" type="java.lang.String"></property>
+		<property name="incotermCode" type="java.lang.String"></property>
+		<property name="incotermDescription" type="java.lang.String"></property>
+		<property name="name" type="java.lang.String"></property>
+		<property name="maxCapacity" type="java.lang.Double"></property>
+	</bean>
+
+	<!-- Product -->
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<!-- Visible code for the user, is the simple code replaced by the customer code when available -->
+		<property name="visibleCode" type="String" />
+
+		<!-- baseCode contains the original product code without product location -->
+		<!-- code contains the base code with the location code concatenated -->
+		<property name="baseCode" type="String" />
+
+		<!-- Customer customized product attributes -->
+		<property name="customerCode" type="String"/>
+		<property name="customerDescription" type="String"/>
+		
+		<!-- Inventory Info -->
+		<property name="location" type="mx.neoris.core.enums.ProductLocation"/>
+		<property name="inventoryEntry" type="mx.neoris.core.product.ProductInventoryEntry"/>
+
+		<!-- UoM Info -->
+		<property name="piecesPerBundle" type="java.lang.Double" />
+		<property name="bundleKgEquiv" type="java.lang.Double" />
+		<property name="bundleLbEquiv" type="java.lang.Double" />
+		<property name="pcKgEquiv" type="java.lang.Double" />
+		<property name="pcLbEquiv" type="java.lang.Double" />
+		<property name="kgEquiv" type="java.lang.Double" />
+		<property name="lbEquiv" type="java.lang.Double" />
+		<property name="tnEquiv" type="java.lang.Double" />
+		<property name="mtEquiv" type="java.lang.Double" />
+		<property name="ftEquiv" type="java.lang.Double" />
+		<property name="length" type="java.lang.Double" />
+		<property name="lengthmm" type="java.lang.Double" />
+		
+		<!-- Attributes added for Axis support -->
+		<property name="ftLbEquiv" type="java.lang.Double" />
+		<property name="ftKgEquiv" type="java.lang.Double" />
+		<property name="ftTnEquiv" type="java.lang.Double" />
+		
+		
+		<property name="convertedQuantity" type="java.lang.Double" />
+
+		<!-- Commercial description keeps the default prolamsa product description -->
+		<property name="commercialDescription" type="String"/>
+		
+		<!-- NEORIS_CHANGE #78 -->
+		<property name="manufacturingDescription" type="java.lang.String" />
+		
+		<!-- UploadExcel -->
+		<property name="quantityExcel" type="java.lang.Double" />
+		
+		<property name="strategy" type="java.lang.Double" />
+		
+		<!-- Favorite product -->
+		<property name="isFavoriteProduct" type="java.lang.Boolean"></property>
+		<property name="codeForFavorites" type="String" />
+		<property name="isAPI" type="Boolean" />
+		<property name="isHSS" type="Boolean" />
+		
+		<property name="approvalVisibility" type="String" />
+	</bean>
+	
+	<!--NEORIS_CHANGE #61  -->
+	<bean class="mx.neoris.facades.balancestatement.data.BalanceStatementData">	    
+		<property name="pastDue" type="java.lang.Double" />
+	    <property name="balance" type="java.lang.Double" />
+		<property name="creditLimit" type="java.lang.Double" />
+		<property name="currentAmount" type="java.lang.Double" />
+		<property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" />		
+	</bean>
+	
+	<bean class="mx.neoris.facades.backorder.data.BackorderDetailData">
+		<property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" />
+		<property name="address" type="java.lang.String" />
+		<property name="partNumber" type="java.lang.String" />
+		<property name="plant" type="java.lang.String" />
+		<property name="deliveryDate" type="java.util.Date"/>
+		<property name="pieces" type="java.lang.Integer" />
+		<property name="orderDate" type="java.util.Date"/>
+		<property name="order" type="java.lang.String" />
+		<property name="customerPO" type="java.lang.String" />	
+		<!-- Add from backorderDetailData 30072014-->
+		<property name="description" type="String" />
+		<property name="pendingKilos" type="java.lang.Double" />
+		<property name="readyKilos" type="java.lang.Double" />
+		<property name="loadingKilos" type="java.lang.Double" />
+		<property name="balanceKilos" type="java.lang.Double" />
+		<!-- Add from backorderDetailData 16082014-->
+		<property name="estatusEng" type="java.lang.String" />
+		<property name="estatusEsp" type="java.lang.String" />
+		<property name="partida" type="java.lang.String" />
+		<property name="orderQty" type="java.lang.Double" />
+		<property name="uomOrderQty" type="String" />
+		<property name="balance" type="java.lang.Double" />
+		<property name="uomBalance" type="String" />
+		<property name="orderQty2" type="java.lang.Double" />
+		<property name="pendingQty2" type="java.lang.Double" />
+		<property name="readyQty2" type="java.lang.Double" />
+		<property name="loadingQty2" type="java.lang.Double" />
+		<property name="balance2" type="java.lang.Double" />
+		<property name="uom2" type="String" />
+		<property name="orderQty3" type="java.lang.Double" />
+		<property name="pendingQty3" type="java.lang.Double" />
+		<property name="readyQty3" type="java.lang.Double" />
+		<property name="loadingQty3" type="java.lang.Double" />
+		<property name="balance3" type="java.lang.Double" />
+		<property name="uom3" type="String" />
+		<property name="logistic" type="String" />
+		<property name="location" type="java.lang.String" />
+		<property name="rowToExcel" type="java.lang.Integer" />
+	</bean>
+	
+	<!--NEORIS_CHANGE #62  -->
+	<bean class="mx.neoris.facades.balancestatement.data.BalanceStatementDetailData">	    
+		<property name="pastDue" type="java.lang.Double" />
+		<property name="pastDue1_30" type="java.lang.Double" />
+		<property name="pastDue31_60" type="java.lang.Double" />
+		<property name="pastDue61_90" type="java.lang.Double" />
+		<property name="pastDueMore90" type="java.lang.Double" />		
+	    <property name="balance" type="java.lang.Double" />
+		<property name="creditLimit" type="java.lang.Double" />
+		<property name="creditAvailable" type="java.lang.Double" />		
+		<property name="overdueCharge" type="java.lang.Double" />
+		<property name="overdueCredit" type="java.lang.Double" />
+		<property name="overdueInvoice" type="java.lang.Double" />
+		<property name="overduePayment" type="java.lang.Double" />
+		<property name="overdueAmount" type="java.lang.Double" />		
+		<property name="currentCharge" type="java.lang.Double" />
+		<property name="currentCredit" type="java.lang.Double" />
+		<property name="currentInvoice" type="java.lang.Double" />
+		<property name="currentPayment" type="java.lang.Double" />
+		<property name="currentBalance" type="java.lang.Double" />	
+		<property name="current" type="java.lang.Double" />	
+		<property name="salVal" type="java.lang.Double" />
+		<property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" />		
+	</bean>
+	
+	<!--NEORIS_CHANGE QUOTE_REPORT
+	<bean class="mx.neoris.facades.quote.data.QuoteData">
+		<property name="customer" type="de.hybris.platform.b2b.model.B2BUnitModel" />
+		<property name="quoteNumber" type="java.lang.String" />
+		<property name="orderStatus" type="java.lang.String" />
+		<property name="datePlaced" type="java.util.Date"/>
+		<property name="numberPO" type="java.lang.String" />	    
+	</bean> 
+	   -->
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="rollingScheduleWeek" type="java.util.Date" />
+<!-- No longer needed -->		
+<!-- 		<property name="location" type="mx.neoris.core.enums.ProductLocation" /> -->
+		<property name="productInventoryEntry" type="mx.neoris.core.product.ProductInventoryEntry"></property>
+		<!-- NEORIS_CHANGE #74 -->	
+		<property name="pricePerFeet" type="java.lang.Double"></property>
+		<property name="pricePerTon" type="java.lang.Double"></property>
+		<property name="netPriceWOTaxes" type="java.lang.Double"></property>
+		<property name="formattedPricePerFeet" type="java.lang.String"></property>
+		<property name="formattedPricePerTon" type="java.lang.String"></property>
+		<property name="formattedPricePerFeetWOCurrency" type="java.lang.String"></property>
+		<property name="formattedNetPriceWOTaxes" type="java.lang.String"></property>
+		<property name="readyToShip" type="java.util.Date"></property>	
+		<property name="formattedLocation" type="java.lang.String"></property>	
+		<property name="formattedReadyToShip" type="java.lang.String"></property>
+		<property name="formattedWeight" type="java.lang.String"></property>		
+		<!-- NEORIS_CHANGE #74 Properties to group cart entries into transportation-->
+		<property name="isTransportationGroupFull" type="java.lang.Boolean"/>
+		<property name="groupNumber" type="java.lang.Integer"/>	    
+		<property name="sapEntryNumber" type="java.lang.Integer"/>
+		<property name="isLastOnTraspotation" type="java.lang.Boolean" />
+		<property name="convertedQuantity" type="java.lang.Double"></property>
+		<property name="productDescription" type="java.lang.String"></property>
+		<property name="weight" type="java.lang.Double"></property>	
+		<property name="apiProductConfiguration" type="de.hybris.platform.commercefacades.order.data.ProlamsaAPIProductConfigurationData" />	
+		<property name="status" type="java.lang.String"></property>
+		<property name="negotiablePrice" type="java.lang.Double"></property>
+		<property name="isAvailableToNegotiatePrice" type="java.lang.Boolean" />
+		<property name="isQuantityInPieces" type="java.lang.Boolean" />
+		<property name="maxNegPrice" type="java.lang.Double" />
+		<property name="minNegPrice" type="java.lang.Double" />
+		<property name="formattedConvertedQuantity" type="java.lang.String"></property>
+		<property name="pricePerPc" type="java.lang.Double"></property>
+		<property name="formattedPricePerPc" type="java.lang.String"></property>
+		<property name="totalTaxas" type="java.lang.Double"></property>
+		<property name="totalAssurance" type="java.lang.Double"></property>
+		<property name="totalDeliveryCost" type="java.lang.Double"></property>
+		<property name="steelCategory" type="java.lang.String"></property>
+	</bean>
+	
+	<!--NEORIS_CHANGE #72  -->
+	<bean class="mx.neoris.facades.document.data.DocumentSearchData">
+		<property name="code" type="java.lang.String" />
+		<property name="name" type="java.lang.String" />
+		<property name="invoice" type="java.lang.String" />
+		<property name="mtr" type="java.lang.String"/>
+		<property name="remission" type="java.lang.String" />
+		<property name="debitNote" type="java.lang.String" />
+		<property name="creditNote" type="java.lang.String" />
+		<property name="tolly" type="java.lang.String" />
+		<property name="boL" type="java.lang.String"/>
+		<property name="po" type="java.lang.String" />
+		<property name="so" type="java.lang.String"/>
+		<property name="quote" type="java.lang.String" />
+		<property name="dateInvoice" type="java.lang.String" />
+		<property name="soAttachments" type="java.util.List&lt;mx.neoris.facades.media.data.NeorisMediaData>" />
+	</bean> 
+	
+	<!-- NEORIS_CHANGE #74 -->
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="coldRolledWeight" type="java.lang.Double"></property>
+		<property name="hotRolledWeight" type="java.lang.Double"></property>
+		<property name="aluminizedWeight" type="java.lang.Double"></property>
+		<property name="galvanizedWeight" type="java.lang.Double"></property>
+		<property name="galvametalWeight" type="java.lang.Double"></property>
+		<property name="totalWeight" type="java.lang.Double"></property>
+		<property name="coldRolledPrice" type="java.lang.Double"></property>
+		<property name="hotRolledPrice" type="java.lang.Double"></property>
+		<property name="galvanizedPrice" type="java.lang.Double"></property>
+		<property name="aluminizedPrice" type="java.lang.Double"></property>
+		<property name="galvametalPrice" type="java.lang.Double"></property>
+		<property name="sapTotalPrice" type="java.lang.Double"></property>
+		<property name="totalAssurance" type="java.lang.Double"></property>
+		<property name="totalTaxas" type="java.lang.Double"></property>
+		<property name="totalDeliveryCost" type="java.lang.Double"></property>
+		<property name="billingAddress" type="AddressData" />
+		<property name="attachmentName" type="java.lang.String"></property>
+		<property name="sapOrderId" type="java.lang.String"></property>
+		<property name="sapWeightUnit" type="java.lang.String"></property>
+		<property name="sapLabelWeightUnit" type="java.lang.String"></property>
+		<property name="sapCurrency" type="java.lang.String"></property>
+		<!-- properties to store formatted data -->
+		<property name="formattedColdRolledWeight" type="java.lang.String"></property>
+		<property name="formattedHotRolledWeight" type="java.lang.String"></property>
+		<property name="formattedAluminizedWeight" type="java.lang.String"></property>
+		<property name="formattedGalvanizedWeight" type="java.lang.String"></property>
+		<property name="formattedGalvametalWeight" type="java.lang.String"></property>
+		<property name="formattedTotalWeight" type="java.lang.String"></property>
+		<property name="formattedColdRolledPrice" type="java.lang.String"></property>
+		<property name="formattedHotRolledPrice" type="java.lang.String"></property>
+		<property name="formattedGalvanizedPrice" type="java.lang.String"></property>
+		<property name="formattedGalvametalPrice" type="java.lang.String"></property>
+		<property name="formattedAluminizedPrice" type="java.lang.String"></property>
+		<property name="formattedSapSubtotalPrice" type="java.lang.String"></property>
+		<property name="formattedSapTotalPrice" type="java.lang.String"></property>
+		<property name="formattedTotalAssurance" type="java.lang.String"></property>
+		<property name="formattedTotalTaxas" type="java.lang.String"></property>
+		<property name="formattedTotalDelvieryCost" type="java.lang.String"></property>
+		<property name="transportationMode" type="de.hybris.platform.commercefacades.user.data.TransportationModeData" />
+		<!-- NEORIS_CHANGE #74  When creating email templates, we dont have access to base store info, so 
+		we are goint to store here the default unit of measure on base store and
+		the unit of measure used when the order was placed -->
+		<property name="unitWhenPlaced" type="de.hybris.platform.core.model.product.UnitModel" />
+		<property name="baseStoreUnit" type="de.hybris.platform.core.model.product.UnitModel" />
+		<property name="unit" type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData" />
+		<property name="TPago" type="mx.neoris.core.enums.PaymentTermsType"></property>		
+		<property name="requestedDeliveryDate" type="java.util.Date"></property>	
+		<property name="creditScoreCard" type="java.lang.Double"></property>
+		<property name="unidadPrecio" type="java.lang.String"></property>	
+		<property name="shippingInstructions" type="java.lang.String"></property>
+		<property name="semaphoreCredit" type="java.lang.String"></property>
+		<property name="sapSubtotalPrice" type="java.lang.Double"></property>
+		<property name="attachmentsPO" type="java.util.List&lt;mx.neoris.facades.media.data.NeorisMediaData>"/>
+		<property name="hasAPIProducts" type="Boolean"></property>
+		<property name="isAPIOrder" type="Boolean"></property>
+		<property name="isInternalCartOrder" type="Boolean"></property>
+		<property name="hasNegPrices" type="Boolean"></property>
+		<property name="hasHSSProducts" type="Boolean"></property>
+		<property name="isHSSOrder" type="Boolean"></property>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.ProlamsaAPIProductConfigurationData">
+		<property name="pressure" type="java.lang.Integer"></property>
+		<property name="duration" type="java.lang.Integer"></property>
+		<property name="specificStencil" type="java.lang.String"></property>
+		<property name="specialDrifter" type="java.lang.Double"></property>
+		<property name="specificLength" type="java.lang.Double"></property>
+		<property name="locationOfTest" type="java.lang.String"></property>
+		<property name="sampleDirection" type="java.lang.String"></property>
+		<property name="testTemp" type="java.lang.Integer"></property>
+		<property name="sampleSize" type="java.lang.String"></property>
+	</bean>
+	
+	<!-- NEORIS-CHANAGE #83 -->
+	<bean class="mx.neoris.facades.wishlist2entry.data.Wishlist2EntryData">	   
+	    <property name="wishlist" type="de.hybris.platform.wishlist2.model.Wishlist2Model" />
+		<property name="priority" type="de.hybris.platform.wishlist2.enums.Wishlist2EntryPriority" />
+		<property name="product" type="de.hybris.platform.commercefacades.product.data.ProductData" />
+		<property name="addedDate" type="java.util.Date" />
+<!-- no longer needed -->
+<!-- 		<property name="location" type="mx.neoris.core.enums.ProductLocation" /> -->
+		<property name="rollingScheduleWeek" type="java.util.Date" />	
+		<property name="received" type="java.lang.Integer"/>	   
+		<property name="comment" type="java.lang.String"/>
+		<property name="desired" type="java.lang.Integer"/>
+		<property name="convertedQuantity" type="java.lang.Double"/>
+		<property name="productDescription" type="java.lang.String"/>			  
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">	   
+	    <property name="b2bUnits" type="java.util.List&lt;de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData>"/>
+	</bean>
+
+	<!-- NEORIS_CHANAGE -->	
+	<!-- Add neoris specific product options -->
+	<enum class="de.hybris.platform.commercefacades.product.ProductOption">
+		<value>PROLAMSA_ATTRIBUTES</value>
+	</enum>
+	
+	<!--NEORIS_CHANGE #108  -->
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
+		<property name="unit" type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData"/>		
+	</bean>
+	
+	<!-- NEORIS_CHANGE #Product Visibility -->
+	<bean class="de.hybris.platform.commercefacades.user.data.ProductVisibilityData">
+		<property name="code" type="java.lang.String"></property>
+		<property name="category" type="java.lang.String"></property>
+		<property name="location" type="mx.neoris.core.enums.ProductLocation"></property>
+		<property name="materialType" type="java.lang.String"></property>		
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderDataHomePage">
+		<property name="orderNumber" type="java.lang.String"></property>
+		<property name="unitName" type="java.lang.String"></property>
+		<property name="shortB2BUnitName" type="java.lang.String"></property>
+		<property name="statusDisplay" type="java.lang.String"></property>
+	</bean>
+	
+	<bean class="mx.neoris.facades.media.data.NeorisMediaData">
+		<property name="name" type="java.lang.String" />
+		<property name="url" type="java.lang.String" />
+		<property name="code" type="java.lang.String" />
+	</bean> 
+	
+	<bean class="mx.neoris.facades.document.data.NoticeData">
+		<property name="code" type="java.lang.String" />
+		<property name="name" type="java.lang.String" />
+		<property name="publishedDate" type="java.util.Date"/>
+		<property name="type" type="java.lang.String" />
+	</bean> 
+	
+	<bean class="mx.neoris.facades.document.data.BatchSearchData">
+		<property name="code" type="java.lang.String" />
+		<property name="name" type="java.lang.String" />
+		<property name="invoice" type="java.lang.String" />
+		<property name="mtr" type="java.lang.String"/>
+		<property name="remission" type="java.lang.String" />
+		<property name="debitNote" type="java.lang.String" />
+		<property name="creditNote" type="java.lang.String" />
+		<property name="tolly" type="java.lang.String" />
+		<property name="boL" type="java.lang.String"/>
+		<property name="po" type="java.lang.String" />
+		<property name="so" type="java.lang.String"/>
+		<property name="quote" type="java.lang.String" />
+		<property name="dateInvoice" type="java.lang.String" />
+		<property name="soAttachments" type="java.util.List&lt;mx.neoris.facades.media.data.NeorisMediaData>" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+		<property name="isFullyHSS" type="Boolean"></property>
+		<property name="noPriceEntries" type="java.util.List&lt;de.hybris.platform.commercefacades.order.data.OrderEntryData>"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.AlertConfigurationData">
+		<property name="alertCode" type="java.lang.String"></property>
+		<property name="periodicity" type="java.lang.String"></property>
+		<property name="time" type="java.lang.String"></property>
+		<property name="dayOfMonth" type="java.lang.String"></property>
+		<property name="daysOfWeek" type="java.lang.String"></property>
+		<property name="productOptions" type="java.lang.String"></property>
+		<property name="notify" type="java.lang.Boolean"></property>
+		<property name="includeMTR" type="java.lang.Boolean"></property>	
+		<property name="ccEmail" type="java.lang.String"></property>		
+	</bean>
+	
+</beans>

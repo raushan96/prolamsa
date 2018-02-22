@@ -1,0 +1,530 @@
+# Store parameters
+$baseProlamsa=prolamsa
+$baseAxis=axis
+$storePackageName=mx.neoris
+$storeExtensionName=prolamsa
+
+$theme=$baseAxis
+
+$net=true
+
+$defaultLanguage=en
+$storeUid=6000
+$siteUid=6000
+$siteName=axis
+$defaultUnit=lb
+
+$defaultCurrency=USD
+$defaultDeliveryCountry=US,MX
+$defaultZoneDeliveryModeValue=usa
+
+$languages=en,es
+$currencies=USD,MXN
+
+$storeName=Axis
+$cmsSiteName=Axis
+#$warehouse=$storeUidWarehouse
+$warehouse=default
+
+#
+# Product catalog parameters
+#
+$productCatalog=$storeUidProductCatalog
+$productCatalogName=$storeName Product Catalog
+
+#
+# Content catalog parameters
+#
+#$contentCatalog=$storeUidContentCatalog
+#$contentCatalogName=$storeName Content Catalog
+$contentCatalog=$baseAxisContentCatalog
+$contentCatalogName=$baseAxis Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+#
+# Solr parameters
+#
+$prefix=$storeUid
+$facetSearchConfigDescription=$cmsSiteName Solr Index
+
+# 
+# Import Product Catalog
+#
+INSERT_UPDATE Catalog;id[unique=true];name;
+;$productCatalog;$productCatalogName;
+
+#
+# Product versions for product catalogs
+#
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);readPrincipals(uid)
+#;$productCatalog;Staged;false;$languages;employeegroup
+;$productCatalog;Online;true;$languages;employeegroup
+
+#
+# Base Store
+#
+INSERT_UPDATE BaseStore;uid[unique=true];name[lang=en];name[lang=es];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);transportationModes(internalCode);unit(code);maxBundlesInventory;favoriteCustomersMaxLimit
+;$storeUid;$storeName;$storeName;$productCatalog;$currencies;$net;us-taxes;miles;$defaultCurrency;en,es;$defaultLanguage;$defaultDeliveryCountry;0108-FOB,0210-FOB,0210-EXW;$baseProlamsa_$defaultUnit;20;100
+
+INSERT_UPDATE BaseStore;uid[unique=true];units(code)
+;$storeUid;$baseProlamsa_bun_kg,$baseProlamsa_bun_lb,$baseProlamsa_pc_kg,$baseProlamsa_pc_lb,$baseProlamsa_kg,$baseProlamsa_lb,$baseProlamsa_ton,$baseProlamsa_ft,$baseProlamsa_mt
+
+INSERT_UPDATE BaseStore;uid[unique=true];salesDepartmentEmail;productSpecsEmail;techinicalSupportEmail;genericNotificationEmail
+;$storeUid;AxisSales@axispipeandtube.com;AxisSales@axispipeandtube.com;HelpDesk-CRM@axispipeandtube.com;Notificaciones-CRM@axispipeandtube.com
+
+#
+# Create DeliveryMode
+#
+INSERT_UPDATE ZoneDeliveryMode;code[unique=true];name;description;active;net
+;$storeUidZoneDeliveryMode;$storeName Delivery Mode;$storeName Delivery Mode;true;$net
+
+#
+# Create Delivery ZoneDeliveryMode
+#
+INSERT_UPDATE ZoneDeliveryModeValue;zone(code)[unique=true];minimum;value;currency(isocode);deliveryMode(code)[unique=true]
+#$defaultZoneDeliveryModeValue
+;usa;0;0;$defaultCurrency;$storeUidZoneDeliveryMode
+;mexico;0;0;$defaultCurrency;$storeUidZoneDeliveryMode
+
+#
+# Assign DeliveryMode to BaseStore
+#
+INSERT_UPDATE BaseStore;uid[unique=true];deliveryModes(code)
+;$storeUid;$storeUidZoneDeliveryMode
+
+#
+# Insert warehouse
+#
+#INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code);default;baseStores(uid)
+#;$warehouse;$storeName Warehouse;VENDOR_HERE;true;$storeUid
+
+#
+# Update BaseStore to use the defined warehouse
+#
+INSERT_UPDATE BaseStore;uid[unique=true];warehouses(code)
+;$storeUid;$warehouse
+
+#
+# Import Content Catalog
+#
+INSERT_UPDATE ContentCatalog;id[unique=true];name;
+;$contentCatalog;$contentCatalogName;
+
+#
+# Catalog versions for content catalogs
+#
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode)
+#;$contentCatalog;Staged;false;$languages
+;$contentCatalog;Online;true;$languages
+
+#
+# Load the storefront context root config param
+#
+$storefrontContextRoot=$config-b2bStorefrontContextRoot
+
+#
+# CMS Site
+#
+INSERT_UPDATE CMSSite;uid[unique=true];name[lang=en];name[lang=es];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV)
+;$siteUid;$cmsSiteName;$cmsSiteName;$theme;B2B;$storeUid;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://(.*)axispipeandtube\.[^/]+(|/.*|\?.*)$,(?i)^https?://(.*)axispipeandtube.com[^/]+(|/.*|\?.*)$,(?i)^https?://(.*)axispipeandtube.com(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUid;;
+
+#
+# Import the Solr configuration 
+#
+
+$productCatalog=$prefixProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=$prefixSolrServerConfig
+$indexConfigName=$prefixSolrIndexConfig
+$searchConfigName=$prefixPageSize
+$facetSearchConfigName=$prefixIndex
+$solrIndexedType=$prefixProductType
+$searchIndexNamePrefix=$prefix
+$solrServerMode=embedded
+$solrEmbeddedMaster=true
+
+$facetSearchConfig=facetSearchConfigs(name[default=$facetSearchConfigName])
+  
+$indexLanguages=en,es
+$indexCurrencies=USD,MXN
+
+# Setup the Solr server, indexer, and search configs
+#
+
+# Create the solr server configuration
+INSERT_UPDATE SolrServerConfig;name[unique=true];mode(code);embeddedMaster
+;$serverConfigName;$solrServerMode;$solrEmbeddedMaster
+
+# Create the solr indexer configuration
+INSERT_UPDATE SolrIndexConfig;name[unique=true];batchSize;numberOfThreads;indexMode(code);
+;$indexConfigName;200;1;DIRECT;
+
+# Create the faceted search configuration
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+;$searchConfigName;20
+
+#
+# Setup the indexed types, their properties, and the update queries
+#
+
+# Define the available sorts
+INSERT_UPDATE SolrSort;&sortRefID;indexedType(identifier)[unique=true];code[unique=true]
+;sortRef1;$solrIndexedType;description-asc
+;sortRef2;$solrIndexedType;description-desc
+;sortRef3;$solrIndexedType;name-asc
+;sortRef4;$solrIndexedType;name-desc
+
+# Declare the indexed type Product
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);variant;sorts(&sortRefID)
+;$solrIndexedType;ProlamsaProduct;false;sortRef1,sortRef2,sortRef3,sortRef4
+
+# Define the available sorts
+UPDATE SolrSort;indexedType(identifier)[unique=true];code[unique=true];name[lang=en];name[lang=es]
+;$solrIndexedType;description-asc;Description (ascending);Descripci�n (ascendente)
+;$solrIndexedType;description-desc;Description (descending);Descripci�n (descendente)
+;$solrIndexedType;name-asc;Part # (ascending);Parte # (ascendente)
+;$solrIndexedType;name-desc;Part # (descending);Parte # (descendente)
+
+# Define the sort fields
+INSERT_UPDATE SolrSortField;sort(indexedType(identifier),code)[unique=true];fieldName[unique=true];ascending[unique=true]
+;$solrIndexedType:description-asc;name;true
+;$solrIndexedType:description-desc;name;false
+;$solrIndexedType:name-asc;code;true
+;$solrIndexedType:name-desc;code;false
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];description;indexNamePrefix;languages(isocode);currencies(isocode);solrServerConfig(name);solrSearchConfig(description);solrIndexConfig(name);solrIndexedTypes(identifier);$catalogVersions
+;$facetSearchConfigName;$facetSearchConfigDescription;$searchIndexNamePrefix;$indexLanguages;$indexCurrencies;$serverConfigName;$searchConfigName;$indexConfigName;$solrIndexedType;$productCatalog:Online
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];useForSpellchecking[default=false];useForAutocomplete[default=false];fieldValueProvider;valueProviderParameter
+;$solrIndexedType; code                   	;string 		;			 ;    ;    ;    ;true;true;springELValueProvider;code
+;$solrIndexedType; name                   	;text_prolamsa	;sortabletext;    ;true;    ;false;false;springELValueProvider;getName(#lang)
+;$solrIndexedType; manufacturingDescription	;text_prolamsa	;sortabletext;    ;true;    ;false;false;springELValueProvider;getManufacturingDescription(#lang)
+;$solrIndexedType; url                    	;string 		;            ;    ;true;    ;    ;    ;productUrlValueProvider;
+;$solrIndexedType; fullDescription			;text_prolamsa	;sortabletext;    ;true;    ;true;true;springELValueProvider;getFullDescription(#lang)
+
+# Category fields
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);localized[default=false];multiValue[default=true];facet[default=true];categoryField[default=true];fieldValueProvider
+;$solrIndexedType;categoryName;text;false;true;true;true;powertoolsCategoryNameValueProvider
+
+# Category facets
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet[default=true];facetType(code);facetSort(code);priority;categoryField[default=true];fieldValueProvider;facetDisplayNameProvider
+;$solrIndexedType;allCategories;string;;false;Refine;Alpha;-9999;;categoryCodeValueProvider;
+;$solrIndexedType;categoryPath;string;;false;Refine;Alpha;-9999;;categoryPathValueProvider;
+;$solrIndexedType;category;string;;false;Refine;Alpha;10000;;powertoolsCategoryCodeValueProvider;categoryFacetDisplayNameProvider
+  
+#  facet properties
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];priority;type(code);sortableType(code);localized[default=false];multiValue[default=false];facet[default=true];facetType(code);displayName[lang=en];displayName[lang=es];facetDisplayNameProvider;topValuesProvider;customFacetSortProvider
+;$solrIndexedType;family;20;string;;;false;true;MultiSelectOr;Family;Familia;neorisAppenderAttributeFacetDisplayNameProvider;
+;$solrIndexedType;section;18;string;;;false;true;MultiSelectOr;Section;Sección;neorisAppenderAttributeFacetDisplayNameProvider;
+;$solrIndexedType;materialType;16;string;;;false;true;MultiSelectOr;Type;Tipo de Fabricación;neorisAppenderAttributeFacetDisplayNameProvider;
+;$solrIndexedType;dimA;14;double;double;true;false;true;MultiSelectOr;Size;Dimensión;;defaultTopValuesProvider5;
+;$solrIndexedType;wallThickness;12;double;double;false;false;true;MultiSelectOr;Wall Thickness;Espesor;;defaultTopValuesProvider5
+;$solrIndexedType;length;10;double;double;false;false;true;MultiSelectOr;Length;Longitud;;defaultTopValuesProvider5
+;$solrIndexedType;covering;8;string;;;false;true;MultiSelectOr;Covering;Recubrimiento;neorisAppenderAttributeFacetDisplayNameProvider;
+;$solrIndexedType;grade;6;string;;;false;true;MultiSelectOr;Grade;Grado;neorisAppenderAttributeFacetDisplayNameProvider;
+;$solrIndexedType;endFinish;4;string;;;false;true;MultiSelectOr;End Finish;Acabado Final;neorisAppenderAttributeFacetDisplayNameProvider;
+
+#  facet properties not visible for product category visibility
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);facetType(code);displayName[lang=en];displayName[lang=es];fieldValueProvider;facet[default=true];visible[default=false];multiValue[default=true];
+;$solrIndexedType;allCategoriesSet;string;MultiSelectOr;allCategoriesSet;allCategoriesSet;fullCategoryCodeValueProvider
+;$solrIndexedType;baseCode;string;MultiSelectOr;baseCode;baseCode;
+;$solrIndexedType;codeForFavorites;string;MultiSelectOr;codeForFavorites;codeForFavorites;
+
+# lengthRange ranges
+INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
+;rangeRef1$siteUid;lengthRange$siteUid; 00.00 - 09.99; 00.00;09.99
+;rangeRef2$siteUid;lengthRange$siteUid; 10.00 - 19.99; 10.00;19.99
+;rangeRef3$siteUid;lengthRange$siteUid; 20.00 - 29.99; 20.00;29.99
+;rangeRef4$siteUid;lengthRange$siteUid; 30.00 - 39.99; 30.00;39.99
+;rangeRef5$siteUid;lengthRange$siteUid; 40.00 - 49.99; 40.00;49.99
+;rangeRef6$siteUid;lengthRange$siteUid; 50.00 - 60.00; 50.00;60.00
+
+;rangedimARef1$siteUid;dimARange$siteUid; 0.0 - 1.0; 0.000;1.000
+;rangedimARef2$siteUid;dimARange$siteUid; 1.050 - 2.0; 1.001;2.000
+;rangedimARef3$siteUid;dimARange$siteUid; 2.001 - 3.0; 2.001;3.000
+;rangedimARef4$siteUid;dimARange$siteUid; 3.500 - 6.0; 3.001;6.000
+;rangedimARef5$siteUid;dimARange$siteUid; 6.001 - 16.0; 6.001;16.000
+
+;rangewallRef1$siteUid;wallRange$siteUid; 0.0280 - 0.0747; 0.0280;0.0747
+;rangewallRef2$siteUid;wallRange$siteUid; 0.0750 - 0.1340; 0.0750;0.1340
+;rangewallRef3$siteUid;wallRange$siteUid; 0.1345 - 0.2540; 0.1345;0.2540
+;rangewallRef4$siteUid;wallRange$siteUid; 0.2600 - 0.3620; 0.2600;0.3620
+;rangewallRef5$siteUid;wallRange$siteUid; 0.3650 - 0.6250; 0.3650;0.6250
+
+# Define lengthRange range set
+INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID);$facetSearchConfig;
+;lengthRange$siteUid;;double;rangeRef1$siteUid,rangeRef2$siteUid,rangeRef3$siteUid,rangeRef4$siteUid,rangeRef5$siteUid,rangeRef6$siteUid;;
+;dimARange$siteUid;;double;rangedimARef1$siteUid,rangedimARef2$siteUid,rangedimARef3$siteUid,rangedimARef4$siteUid,rangedimARef5$siteUid;;
+;wallRange$siteUid;;double;rangewallRef1$siteUid,rangewallRef2$siteUid,rangewallRef3$siteUid,rangewallRef4$siteUid,rangewallRef5$siteUid;;
+
+# facet ranges
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];rangeSet(name)
+;$solrIndexedType;length;lengthRange$siteUid
+;$solrIndexedType;dimA;dimARange$siteUid
+;$solrIndexedType;wallThickness;wallRange$siteUid
+
+# Create the queries that will be used to extract data for Solr
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);injectCurrentDate[default=true];injectCurrentTime[default=true];injectLastIndexTime[default=true];query;user(uid)
+;$solrIndexedType;$solrIndexedType-fullQuery;full;;;;"SELECT {PK} FROM {ProlamsaProduct} WHERE {code} NOT IN(   {{ SELECT {code} FROM {GenericVariantProduct} }})";anonymous
+;$solrIndexedType;$solrIndexedType-updateQuery;update;;;;"SELECT DISTINCT tbl.pk, tbl.code FROM (	{{		SELECT DISTINCT {p:PK} AS pk, {p:code} AS code		FROM {ProlamsaProduct AS p LEFT JOIN CustomerReview AS cr ON {cr:product}={p:PK} }		WHERE {p:varianttype} IS NULL AND ({p:modifiedtime} >= ?lastIndexTime OR {cr:modifiedtime} >= ?lastIndexTime)	}}	UNION	{{		SELECT {p:PK}  AS pk, {p:code} AS code FROM {ProlamsaProduct AS p} WHERE {p:code} IN (			{{				SELECT DISTINCT {sl:productCode} FROM {StockLevel AS sl} WHERE {sl:modifiedtime} >= ?lastIndexTime			}}		)	}}) tbl ORDER BY tbl.code";anonymous
+ 
+#
+# Import the Solr configuration 
+#
+# Index Type
+
+$solrIndexedType=$prefixProductType
+# Language
+$lang=en
+
+# Solr Indexed Property
+UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];localized[default=false];displayName[lang=$lang]
+ ;$solrIndexedType;category;;"Category"
+ ;$solrIndexedType;code;;"Code"
+ ;$solrIndexedType;name;true;"Name"
+ ;$solrIndexedType;manufacturingDescription;true;"Manufacturing Description"
+  
+INSERT_UPDATE SolrIndexerCronJob;code[unique=true];facetSearchConfig(name);indexerOperation(code);job(code);sessionLanguage(isocode)
+;full-$prefixIndex-cronJob;$facetSearchConfigName;full;solrIndexerJob;en
+;update-$prefixIndex-cronJob;$facetSearchConfigName;update;solrIndexerJob;en 
+
+#
+# Import the Solr CronJob Trigger configuration for the Advogear Product Catalog
+#
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+
+# Run the full-advogearIndex-cronJob at 3:05 AM every day
+;full-$prefixIndex-cronJob;0;5;3;-1;-1;-1;false;false;-1
+
+# Run the update-advogearIndex-cronJob every 1 minutes
+;update-$prefixIndex-cronJob;0;1;-1;-1;-1;-1;true;false;-1
+
+
+#
+# Add additional sample solr index configuration
+#
+$facetSearchConfigName=$prefixIndex
+
+
+# Synonyms
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true];language(isocode)[unique=true];synonymFrom[unique=true];synonymTo
+;$facetSearchConfigName;en;"sneaker,sneakers,trainer";"shoe"
+;$facetSearchConfigName;en;"shades,glasses";"sunglasses"
+;$facetSearchConfigName;en;"hats";"caps"
+;$facetSearchConfigName;en;"shoes";"shoe"
+
+
+INSERT_UPDATE SolrStopWord;facetSearchConfig(name)[unique=true];language(isocode)[unique=true];stopWord[unique=true];
+;$facetSearchConfigName;en;"a"
+;$facetSearchConfigName;en;"about"
+;$facetSearchConfigName;en;"above"
+;$facetSearchConfigName;en;"after"
+;$facetSearchConfigName;en;"again"
+;$facetSearchConfigName;en;"against"
+;$facetSearchConfigName;en;"all"
+;$facetSearchConfigName;en;"am"
+;$facetSearchConfigName;en;"an"
+;$facetSearchConfigName;en;"and"
+;$facetSearchConfigName;en;"any"
+;$facetSearchConfigName;en;"are"
+;$facetSearchConfigName;en;"aren't"
+;$facetSearchConfigName;en;"as"
+;$facetSearchConfigName;en;"at"
+;$facetSearchConfigName;en;"be"
+;$facetSearchConfigName;en;"because"
+;$facetSearchConfigName;en;"been"
+;$facetSearchConfigName;en;"before"
+;$facetSearchConfigName;en;"being"
+;$facetSearchConfigName;en;"below"
+;$facetSearchConfigName;en;"between"
+;$facetSearchConfigName;en;"both"
+;$facetSearchConfigName;en;"but"
+;$facetSearchConfigName;en;"by"
+;$facetSearchConfigName;en;"can't"
+;$facetSearchConfigName;en;"cannot"
+;$facetSearchConfigName;en;"could"
+;$facetSearchConfigName;en;"couldn't"
+;$facetSearchConfigName;en;"did"
+;$facetSearchConfigName;en;"didn't"
+;$facetSearchConfigName;en;"do"
+;$facetSearchConfigName;en;"does"
+;$facetSearchConfigName;en;"doesn't"
+;$facetSearchConfigName;en;"doing"
+;$facetSearchConfigName;en;"don't"
+;$facetSearchConfigName;en;"down"
+;$facetSearchConfigName;en;"during"
+;$facetSearchConfigName;en;"each"
+;$facetSearchConfigName;en;"few"
+;$facetSearchConfigName;en;"for"
+;$facetSearchConfigName;en;"from"
+;$facetSearchConfigName;en;"further"
+;$facetSearchConfigName;en;"had"
+;$facetSearchConfigName;en;"hadn't"
+;$facetSearchConfigName;en;"has"
+;$facetSearchConfigName;en;"hasn't"
+;$facetSearchConfigName;en;"have"
+;$facetSearchConfigName;en;"haven't"
+;$facetSearchConfigName;en;"having"
+;$facetSearchConfigName;en;"he"
+;$facetSearchConfigName;en;"he'd"
+;$facetSearchConfigName;en;"he'll"
+;$facetSearchConfigName;en;"he's"
+;$facetSearchConfigName;en;"her"
+;$facetSearchConfigName;en;"here"
+;$facetSearchConfigName;en;"here's"
+;$facetSearchConfigName;en;"hers"
+;$facetSearchConfigName;en;"herself"
+;$facetSearchConfigName;en;"him"
+;$facetSearchConfigName;en;"himself"
+;$facetSearchConfigName;en;"his"
+;$facetSearchConfigName;en;"how"
+;$facetSearchConfigName;en;"how's"
+;$facetSearchConfigName;en;"i"
+;$facetSearchConfigName;en;"i'd"
+;$facetSearchConfigName;en;"i'll"
+;$facetSearchConfigName;en;"i'm"
+;$facetSearchConfigName;en;"i've"
+;$facetSearchConfigName;en;"if"
+;$facetSearchConfigName;en;"in"
+;$facetSearchConfigName;en;"into"
+;$facetSearchConfigName;en;"is"
+;$facetSearchConfigName;en;"isn't"
+;$facetSearchConfigName;en;"it"
+;$facetSearchConfigName;en;"it's"
+;$facetSearchConfigName;en;"its"
+;$facetSearchConfigName;en;"itself"
+;$facetSearchConfigName;en;"let's"
+;$facetSearchConfigName;en;"me"
+;$facetSearchConfigName;en;"more"
+;$facetSearchConfigName;en;"most"
+;$facetSearchConfigName;en;"mustn't"
+;$facetSearchConfigName;en;"my"
+;$facetSearchConfigName;en;"myself"
+;$facetSearchConfigName;en;"no"
+;$facetSearchConfigName;en;"nor"
+;$facetSearchConfigName;en;"not"
+;$facetSearchConfigName;en;"of"
+;$facetSearchConfigName;en;"off"
+;$facetSearchConfigName;en;"on"
+;$facetSearchConfigName;en;"once"
+;$facetSearchConfigName;en;"only"
+;$facetSearchConfigName;en;"or"
+;$facetSearchConfigName;en;"other"
+;$facetSearchConfigName;en;"ought"
+;$facetSearchConfigName;en;"our"
+;$facetSearchConfigName;en;"ours"
+;$facetSearchConfigName;en;"ourselves"
+;$facetSearchConfigName;en;"out"
+;$facetSearchConfigName;en;"over"
+;$facetSearchConfigName;en;"own"
+;$facetSearchConfigName;en;"same"
+;$facetSearchConfigName;en;"shan't"
+;$facetSearchConfigName;en;"she"
+;$facetSearchConfigName;en;"she'd"
+;$facetSearchConfigName;en;"she'll"
+;$facetSearchConfigName;en;"she's"
+;$facetSearchConfigName;en;"should"
+;$facetSearchConfigName;en;"shouldn't"
+;$facetSearchConfigName;en;"so"
+;$facetSearchConfigName;en;"some"
+;$facetSearchConfigName;en;"such"
+;$facetSearchConfigName;en;"than"
+;$facetSearchConfigName;en;"that"
+;$facetSearchConfigName;en;"that's"
+;$facetSearchConfigName;en;"the"
+;$facetSearchConfigName;en;"their"
+;$facetSearchConfigName;en;"theirs"
+;$facetSearchConfigName;en;"them"
+;$facetSearchConfigName;en;"themselves"
+;$facetSearchConfigName;en;"then"
+;$facetSearchConfigName;en;"there"
+;$facetSearchConfigName;en;"there's"
+;$facetSearchConfigName;en;"these"
+;$facetSearchConfigName;en;"they"
+;$facetSearchConfigName;en;"they'd"
+;$facetSearchConfigName;en;"they'll"
+;$facetSearchConfigName;en;"they're"
+;$facetSearchConfigName;en;"they've"
+;$facetSearchConfigName;en;"this"
+;$facetSearchConfigName;en;"those"
+;$facetSearchConfigName;en;"through"
+;$facetSearchConfigName;en;"to"
+;$facetSearchConfigName;en;"too"
+;$facetSearchConfigName;en;"under"
+;$facetSearchConfigName;en;"until"
+;$facetSearchConfigName;en;"up"
+;$facetSearchConfigName;en;"very"
+;$facetSearchConfigName;en;"was"
+;$facetSearchConfigName;en;"wasn't"
+;$facetSearchConfigName;en;"we"
+;$facetSearchConfigName;en;"we'd"
+;$facetSearchConfigName;en;"we'll"
+;$facetSearchConfigName;en;"we're"
+;$facetSearchConfigName;en;"we've"
+;$facetSearchConfigName;en;"were"
+;$facetSearchConfigName;en;"weren't"
+;$facetSearchConfigName;en;"what"
+;$facetSearchConfigName;en;"what's"
+;$facetSearchConfigName;en;"when"
+;$facetSearchConfigName;en;"when's"
+;$facetSearchConfigName;en;"where"
+;$facetSearchConfigName;en;"where's"
+;$facetSearchConfigName;en;"which"
+;$facetSearchConfigName;en;"while"
+;$facetSearchConfigName;en;"who"
+;$facetSearchConfigName;en;"who's"
+;$facetSearchConfigName;en;"whom"
+;$facetSearchConfigName;en;"why"
+;$facetSearchConfigName;en;"why's"
+;$facetSearchConfigName;en;"with"
+;$facetSearchConfigName;en;"won't"
+;$facetSearchConfigName;en;"would"
+;$facetSearchConfigName;en;"wouldn't"
+;$facetSearchConfigName;en;"you"
+;$facetSearchConfigName;en;"you'd"
+;$facetSearchConfigName;en;"you'll"
+;$facetSearchConfigName;en;"you're"
+;$facetSearchConfigName;en;"you've"
+;$facetSearchConfigName;en;"your"
+;$facetSearchConfigName;en;"yours"
+;$facetSearchConfigName;en;"yourself"
+;$facetSearchConfigName;en;"yourselves"
+
+#Basestore,update solr search config
+INSERT_UPDATE BaseStore;uid[unique=true];solrFacetSearchConfiguration(name)
+;$storeUid;$siteUidIndex
+
+# CMS Site update solr search config
+INSERT_UPDATE CMSSite;uid[unique=true];solrFacetSearchConfiguration(name)
+;$siteUid;$siteUidIndex
+
+#
+# Sync Jobs for product and content catalog
+#
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];sourceVersion(catalog(id),version);targetVersion(catalog(id),version);syncLanguages(isocode);removeMissingItems;rootTypes(code[unique=true]);
+#;$productCatalogSyncJob;$productCatalog:Staged;$productCatalog:Online;$languages;false;
+#;$contentCatalogSyncJob;$contentCatalog:Staged;$contentCatalog:Online;$languages;true;Media,MediaContainer,CMSItem,CMSRelation,BTGItem
+
+#
+# Catalog permisions for managers
+#
+UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid);
+;$productCatalog;Online;productmanagergroup,productmanager;
+#;$productCatalog;Staged;productmanagergroup,productmanager;
+
+#
+# Catalog permisions for managers
+#
+UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid);
+;$contentCatalog;Online;cmsmanagergroup,cmsmanager;
+#;$contentCatalog;Staged;cmsmanagergroup,cmsmanager;
+
+INSERT_UPDATE BaseStore;uid[unique=true];incindentTypes(code)
+;$storeUid;1,2,3,4
+
+#
+# Relation Point of service - base store
+#
+UPDATE PointOfService;name[unique=true];baseStores(uid)[mode=append]

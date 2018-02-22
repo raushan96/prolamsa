@@ -1,0 +1,463 @@
+$storeUid=a4c
+
+$catalogVersion=Online
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=$catalogVersion])[default=$contentCatalog:$catalogVersion]
+$picture=media(code, $contentCV);
+
+# Language
+$lang=es
+
+# Site Logo Component
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;/images/company-logo.png
+
+# CMS Image Components
+UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+ ;;AboutAcceleratorLink;"Acerca del Commerce Accelerator"
+ ;;AboutHybrisLink;"Acerca de Hybris"
+ ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+ 
+ #New Footer Links
+ ;;AboutProlamsaLink;"Acerca de A4C"
+ ;;QualityPolicyLink;"Normas de Calidad"
+ ;;PrivatePolicyLink;"Aviso de Privacidad"
+ ;;ContactUsLink;"Contacto"
+  ;;NoticesLink;"Descargas"
+ 
+ ;;StructuralTubingCategoryLink;"Tub. Estructural"
+ ;;MechanicalTubingCategoryLink;"Tub. Mecánica"
+ ;;IndustrialTubingCategoryLink;"Tub. Industrial"
+ ;;ContactUsLink;"Contáctanos"
+ ;;DocumentationLink;"Documentación"
+ ;;FacebookLink;"Facebook"
+ ;;HomepageNavLink;"Inicio"
+ ;;LinkedInLink;"Linked In"
+ 
+ ;;ManageBudgetsLink;"Administrar Presupuestos"
+ ;;ManageBusinessUnitsLink;"Manage Business Units"
+ ;;ManageCostCentersLink;"Manage Cost Centers"
+ ;;ManagePermissionsLink;"Manage Permissions"
+ ;;ManageUsergroupsLink;"Manage Usergroups"
+ ;;ManageUsersLink;"Administrar Usuarios"
+ ;;MyCompanyLink;"Mi Empresa"
+ ;;TwitterLink;"Twitter"
+ ;;TermsAndConditionsLink;"Términos y Condiciones"
+ ;;QuickAccessCategoryLink;"Comprar"
+ ;;MyStuffCategoryLink;"Mi Cuenta"
+ 
+#SubMenu Links
+#TUBEST
+#TUBEST
+;;TUBEST_CUADCategoryLink;"Cuadrado"
+;;TUBEST_RECTCategoryLink;"Rectangular"
+#TUBMEC
+;;TUBMEC_REDC30CategoryLink;"Cédula 30"
+;;TUBMEC_REDC40CategoryLink;"Cédula 40"
+;;TUBMEC_REDCXCategoryLink;"Cédula X"
+#TUBIND
+;;TUBIND_CUADCategoryLink;"Cuadrado"
+;;TUBIND_REDCategoryLink;"Redondo"
+;;TUBIND_RECTCategoryLink;"Rectangular"
+;;TUBIND_OVALCategoryLink;"Ovalado"
+;;TUBIND_ELIPCategoryLink;"Elíptico"
+#QUICK_ACCESS
+ ;;QUICK_ACCESS_CustomerFavoriteProductsManageLink;"Adm Prod Favoritos"
+ ;;QUICK_ACCESS_CustomerFavoriteProductsListLink;"Consulta Favoritos"
+ ;;QUICK_ACCESS_DraftTemplateCategoryLink;"Borradores y Plantillas"
+ ;;QUICK_ACCESS_ExcelCategoryLink;"Subir Excel"
+ ;;QUICK_ACCESS_OrderFormCategoryLink;"Carga Rapida"
+ ;;QUICK_ACCESS_UseQuoteFromCategoryLink;"Cotizaciones"
+#MY_STUFF
+ ;;MY_STUFF_PendingOrdersCategoryLink;"Backorder"
+ ;;MY_STUFF_OrderHistoryCategoryLink;"Mis ordenes de compra"
+ ;;MY_STUFF_AccountBalanceCategoryLink;"Estado de Cuenta"
+ ;;MY_STUFF_RelatedDocumentsCategoryLink;"Consulta de Documentos"
+ ;;MY_STUFF_BatchCategoryLink;"Consulta de Lotes"
+  
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=$lang];url;&componentRef;target(code)[default='sameWindow']
+;;QuickAccessCategoryLink;Quick Access Category Link;Acceso Rápido;/;QuickAccessCategoryLink
+;;MyStuffCategoryLink;My Stuff Category Link;Tu Cuenta;/;MyStuffCategoryLink
+
+# Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+# CMS Mini Cart Component
+UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;MiniCart;"TU CARRITO"
+
+# CMS tabs components
+UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang];content[lang=$lang]
+;;deliveryTab;Logística y Embarque;"<table border=""0"" cellspacing=""0"" cellpadding=""10"" style=""border-collapse: collapse empty-cells: show font-size: 12px padding: 0px margin: 0px border: 0px initial initial""><tbody><tr style=""padding: 0px margin: 0px""><td colspan=""4"" style=""vertical-align: top text-align: left font-weight: normal padding: 0px margin: 0px""><div style=""padding-top: 10px padding-right: 0px padding-bottom: 0px padding-left: 0px border-bottom-width: 1px border-bottom-style: solid border-bottom-color: #8edf75 height: 30px border-top-width: 1px border-top-style: solid border-top-color: #8edf75 margin: 0px""><strong style=""font-weight: bold padding: 0px margin: 0px""><span style=""color: #285190 font-size: 14px padding: 0px margin: 0px""></span></strong></div></td></tr><tr style=""padding: 0px margin: 0px""><td colspan=""4"" style=""vertical-align: top text-align: left font-weight: normal padding: 0px margin: 0px""><strong style=""font-weight: bold padding: 0px margin: 0px"">Servicio de envío por camión o ferrocarril<br /></strong>Cualquier tipo de medio de transporte<br />Respuesta a solicitudes de información y atención las 24 horas del día<br />Planeación de cargas por medio de programa de citas<br />Seguimiento al envío mediante rastreo satelital<br /><br /><strong style=""font-weight: bold padding: 0px margin: 0px"">Servicio de embarques/ Cuidado de la mercancía<br /></strong>Cubicaje óptimo<br />Documentación de embarque en sistema con registro fotográfico<br />Atención a urgencias<br />Embarques seguros (en A4C nos aseguramos de que todos los transportistas cuenten con su equipo de seguridad de carga, como estacas, bandas y lonas, además de que las unidades se encuentren en perfecto estado)<br />Certificación C-TPAT #15536760 (Customs-Trade Partnership Against Terrorism)<br /><br /><strong style=""font-weight: bold padding: 0px margin: 0px"">Transporte a cargo de A4C (CIP)</strong><br />Contratación de unidades con tarifas competitivas<br />Entregas puerta-puerta y con repartos<br />Seguro A4C<br /><strong style=""font-weight: bold padding: 0px margin: 0px>";
+
+# CMS Footer Component
+UPDATE FooterComponent;$contentCV[unique=true];uid[unique=true];notice[lang=$lang]
+ ;;FooterComponent;"© 2013 hybris software"
+
+# CMS Paragraph Component (Contact information)
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;ContactInfo;"Llámanos: 01 (55) 5576 1864"
+ ;;NewCustomerContactCenterParagraphComponent;"Interested in becoming a new customer? Call our customer service team on INFORMACION_PENDIENTE to register!"
+
+# CMS ProductReferences Components
+UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;AccessoriesProductReferencesComponent;"Accessories"
+
+# Category Pages
+UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+
+# CMS Navigation Nodes
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;ProlamsaNavNode;"Quiénes Somos"
+ ;;CustomerNavNode;"Servicio al Cliente"
+ 
+ ;;MyCompanyLinksNavNode;"Mi Empresa"
+ ;;SiteRootNode;"SiteRoot"
+ ;;StructuralTubingNavNode;"Structural Tubing"
+ ;;MechanicalTubingNavNode;"Mechanical Tubing"
+ ;;MechanicalTubingNavNode;"Indusrtial Tubing"
+ ;;QuickAccessNavNode;"Acceso Rápido"
+ ;;MyStuffNavNode;"Mis Ordenes"
+
+
+# CMS Paragraph Component
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang];
+;;termsAndConditionsTextParagraph;"
+	<div class=""grid-container"">		
+	<div class=""span-4 aside-left"">
+	<div class=""span-4 nav_column myAccount"">
+	<div class=""title_holder"">
+	<div class=""title"">
+	<h2>Terminos y Condiciones</h2>
+	</div>
+	<div class=""item"">
+	<ul class=""facet_block indent"">	
+	<li><a href=""#a00"">TERMINOS Y CONDICIONES PARA LA ACEPTACION DE PEDIDOS</a></li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	</div>
+	<a name=""00""></a>
+	<div class=""span-20 last main-right"">
+	<div class=""title_holder"">
+	<h2><a name=""a00""></a>TERMINOS Y CONDICIONES PARA LA ACEPTACION DE PEDIDOS</h2>
+	</div>
+	<div class=""item_container"">
+	<p>I. A4C se reserva el derecho de aceptar o rechazar un pedido si la operación compromete el nivel de servicio ofrecido al cliente o a otros clientes de A4C</p>
+	<p>II. El Comprador reconoce que ha leído, entiende y acepta estos T & C's, y que asume la responsabilidad de confirmar dentro de 24 horas este aviso. En caso de no recibir respuesta, se asume que los datos capturados en el pedido son los correctos.</p>
+	<p>III. Los tiempos de entrega son sugeridos y pueden variar de la fecha que presenta el aviso debido a saturación de capacidades de producción, embarque y/o disponibilidad de equipos o materia prima.</p>
+	<p>IV. Precios sujetos a cambio.</p>
+	<p>V. En caso de presentar saldos vencidos en la cartera, A4C se reserva el derecho de cancelar pedidos o cambiar las condiciones pactadas de venta.</p>
+	<p>VI. El comprador deberá inspeccionar todos los productos dentro de los quince (15) días posteriores a la facturación. Toda reclamación de producto o servicio deberá seguir el procedimiento establecido en la Política de Reclamos y Devoluciones de A4C. Para mayor detalle de la Política, por favor visitar el Portal de Clientes o preguntar a su ejecutivo.</p>
+	<p>VII. A4C se reserva el derecho de exigir anticipos y mínimos de fabricación en los materiales especiales (no stock). De no contar con este anticipo, A4C no asume ningún compromiso para la gestión de la fabricación o embarque de los materiales.</p>
+	<p>VIII. El comprador podrá solicitar cambios en los productos o en las entregas sólo por escrito. El comprador deberá esperar la confirmación de un agente autorizado por A4C para hacer validos los cambios. Los precios y extras podrán variar en virtud de estos cambios.</p>
+	<p>IX. Las compras de contado deberán ser liquidadas 100% antes del embarque.</p>
+	<p>X. Las devoluciones de materiales de stock (de línea) por causas imputables al cliente deberán de solicitarse en los primeros 15 días de recibidos los materiales. A4C hará un cargo de 5% sobre el valor de la mercancía devuelta por concepto de Gastos de Administración. Los gastos de fletes y otras maniobras correrán a cargo del cliente. No se aceptarán devoluciones de materiales que presenten maltrato o deterioro.</p>
+		
+	<a class=""pagetop-link"" href=""#00"">Regresar al principio</a>
+	</div>
+	</div>
+	</div>";
+##################term cond FIN##################
+	
+#FAQ
+;;FAQTextParagraph;"    
+			<div class=""grid-container"">		
+			<div class=""span-4 aside-left"">
+			<div class=""span-4 nav_column myAccount"">
+			<div class=""title_holder"">
+			<div class=""title"">
+			<h2>Frequently Asked Questions</h2>
+			</div>
+			<div class=""item"">
+			<br>
+			<h2>YOUR ACCOUNT</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a00"">Reviewing Your Order Status</a></li>	
+			<li><a href=""#b00"">Reviewing or Changing Your Email Address, Password, and Security Question and Answer</a></li>	
+			<li><a href=""#c00"">Reviewing or Changing Your Address Book</a></li>				
+			</ul>
+            </div>			
+									
+			<div class=""item"">
+			<br>
+			<h2>PLACING AN ORDER</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a01"">Your Shopping Card</a></li>	
+			<li><a href=""#b01"">How to Buy</a></li>	
+			<li><a href=""#c01"">Delivery Times, Shipping Rates, and Tax Information</a></li>				
+			<li><a href=""#d01"">General Tax Info</a></li>				
+			<li><a href=""#e01"">Canceling or Modifying an Order</a></li>				
+			<li><a href=""#f01"">Refund and Returns Policies</a></li>									
+			</ul>	
+			</div>
+			
+			<div class=""item"">
+			<br>
+			<h2>GENERAL TOPICS</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a02"">New Customers</a></li>	
+			<li><a href=""#b02"">Downloadable PDFs</a></li>	
+			<li><a href=""#c02"">How long is a Price Quote valid?</a></li>												
+			</ul>	
+			</div>
+			</div>
+			</div>
+			</div>						
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-right"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>Reviewing Your Order Status</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"" style=""height: 100px"">	
+				<h2><a name=""b00""></a>Reviewing or Changing Your Email Address, Password, and Security Question and Answer</h2>					
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c00""></a>Reviewing or Changing Your Address Book</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>
+				
+				
+				<div class=""title_holder"">
+				<h2><a name=""a01""></a>Your Shopping Card</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""b01""></a>How to Buy</h2>	
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c01""></a>Delivery Times, Shipping Rates, and Tax Information</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">
+				<h2><a name=""d01""></a>General Tax Info</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">
+				<h2><a name=""e01""></a>Canceling or Modifying an Order</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""f01""></a>Refund and Returns Policies</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+
+
+				<div class=""title_holder"">
+				<h2><a name=""a02""></a>New Customers</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">		
+				<h2><a name=""b02""></a>Downloadable PDFs</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c02""></a>How long is a Price Quote valid?</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>				
+                </div>";
+	
+	
+	
+#Static Pages
+		########################INICIO########################################################
+#qualityPolicyTextParagraph
+;;qualityPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+			
+			;;privacyPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+
+			;;siteMapTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;feedbackTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;returnPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;valuesAndBenefitsTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;buyerGuidesTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;takeTheTourTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+			
+			;;orderConditionsTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-right"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>Condiciones de la orden</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>1.- LOS PRECIOS EN ESTA ORDEN SON EN DESTINO FOB.<br>
+					2.- EL PESO TEÃƒâ€œRICO PUEDE VARIAR +-5%.<br>
+					3.- PARA PRODUCTOS NO EXISTENTES EN STOCK LA CANTIDAD FINAL PUEDE VARIAR +- 10%<br>
+					4.- NO SE ACEPTAN CANCELACIONES DE PRODUCTOS FUERA DE INVENTARIO UNA VEZ QUE LA ORDEN HAYA SIDO CONFIRMADA.<br><br>
+					Al crear la orden, usted reconoce y acepta las condiciones anteriormente mencionadas.
+				</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
+
+UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ 
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;NoSearchResultsParagraphComponent;"<h2>Sorry, we couldn't find any results for your search</h2><p>Suggestions:</p><ul><li>You may have typed your keywords incorrectly - please check for misspellings.</li><li>You may have been too specific - please broaden your search by using fewer keywords.</li><li>Browse our products by selecting a category above.</li></ul>";
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;EmptyCartParagraphComponent;"<h2>Your shopping cart is empty</h2><p>Suggestions</p><ul><li>Browse our products by selecting a category above</li></ul>";
+
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;HelpParagraphComponent;"<div class=""helpBanner""><span class=""icon-alert""></span><br><span class=""bannerHeadline"">¿NECESITA AYUDA?</span><br><span class=""bannerText"">Click aquí para ayuda</span><br><a href=""#"" class=""button"">Ayuda!</a></div>";
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 

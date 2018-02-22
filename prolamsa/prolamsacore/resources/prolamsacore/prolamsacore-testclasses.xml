@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <prolamsacore>
+    <testclass>mx.neoris.core.suggestion.impl.DefaultSimpleSuggestionServiceTest</testclass>
+    <testclass>mx.neoris.core.suggestion.DefaultSimpleSuggestionServiceIntegrationTest</testclass>
+    <testclass>mx.neoris.core.setup.MultipleCatalogsSyncJobPerformableTest</testclass>
+    <testclass>mx.neoris.core.order.impl.B2BAcceleratorCartToOrderJobTest</testclass>
+    <testclass>mx.neoris.core.actions.replenishment.ReplenishmentOrderProcessActionIntegrationTest</testclass>
+    <testclass>mx.neoris.core.search.solrfacetsearch.provider.impl.VariantCategorySourceTest</testclass>
+    <testclass>mx.neoris.core.btg.OrganizationOrdersReportingJobTest</testclass>
+    <testclass>mx.neoris.core.search.solrfacetsearch.provider.impl.VariantProductSourceTest</testclass>
+  </prolamsacore>
+</testclasses>

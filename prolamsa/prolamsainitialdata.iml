@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsainitialdata\resources" />
+    <src_description expected_position="5">
+      <src_folder value="file://$MODULE_DIR$/prolamsainitialdata/src" expected_position="6" />
+      <src_folder value="file://$MODULE_DIR$/prolamsainitialdata/gensrc" expected_position="7" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsainitialdata/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsainitialdata">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsainitialdata/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsainitialdata/gensrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="b2bacceleratorsampledata" exported="" />
+    <orderEntry type="module" module-name="prolamsacore" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsainitialdata/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

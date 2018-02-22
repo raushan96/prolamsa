@@ -1,0 +1,66 @@
+$baseProlamsa=a4c
+$storeUid=a4c
+
+#
+# Import the CMS content for emails
+#
+# Localization es
+#
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$emailResource=jar:mx.neoris.core.setup.CoreSystemSetup&/prolamsacore/import/contentCatalogs/$baseProlamsa/emails
+
+# Language
+$lang=es
+
+$email=Soporte.portal@a4c.mx
+$emailName=A4C Customer Service
+
+# CMS components velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;$baseProlamsa-BannerComponent-template;CMSBannerComponent Template;$emailResource/email-bannerComponentTemplate.vm;
+ ;$baseProlamsa-CMSImageComponent-template;CMSImageComponent Template;$emailResource/email-cmsImageComponentTemplate.vm;
+ ;$baseProlamsa-CMSLinkComponent-template;CMSLinkComponent Template;$emailResource/email-cmsLinkComponentTemplate.vm;
+ ;$baseProlamsa-CMSParagraphComponent-template;CMSParagraphComponent Template;$emailResource/email-cmsParagraphComponentTemplate.vm;
+ ;$baseProlamsa-SimpleBannerComponent-template;CMSSimpleBannerComponent Template;$emailResource/email-bannerComponentTemplate.vm;
+ ;5000-SimpleBannerComponent-template;CMSSimpleBannerComponent Template;$emailResource/email-bannerComponentTemplate.vm;
+
+# Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;$baseProlamsa_Email_Customer_Registration_Body;Customer Registration Email Body;$emailResource/email-customerRegistrationBody.vm;
+ ;$baseProlamsa_Email_Customer_Registration_Subject;Customer Registration Email Subject;$emailResource/email-customerRegistrationSubject.vm;
+ ;$baseProlamsa_Email_Forgotten_Password_Body;Forgotten Password Email Body;$emailResource/email-forgottenPasswordBody.vm;
+ ;$baseProlamsa_Email_Forgotten_Password_Subject;Forgotten Password Email Subject;$emailResource/email-forgottenPasswordSubject.vm;
+ ;$baseProlamsa_Email_Hot_Folder_Import_Failed_Body;Hot Folder Import Failed Email Body;$emailResource/email-hotFolderImportFailedBody.vm;
+ ;$baseProlamsa_Email_Hot_Folder_Import_Failed_Subject;Hot Folder Import Failed Email Subject;$emailResource/email-hotFolderImportFailedSubject.vm;
+ ;$baseProlamsa_Email_Added_Incident_Body;Added Incident Email Body;$emailResource/email-addedIncidentBody.vm;
+ ;$baseProlamsa_Email_Added_Incident_Subject;Added Incident Email Subject;$emailResource/email-addedIncidentSubject.vm;
+ ;$baseProlamsa_Email_Order_ApprovalRejection_Body;Order Approval Rejection Email Body;$emailResource/email-orderApprovalRejectionBody.vm;
+ ;$baseProlamsa_Email_Order_ApprovalRejection_Subject;Order Approval Rejection Email Subject;$emailResource/email-orderApprovalRejectionSubject.vm;
+ ;$baseProlamsa_Email_Order_Confirmation_Body;Order Confirmation Email Body;$emailResource/email-orderConfirmationBody.vm;
+ ;$baseProlamsa_Email_Order_Confirmation_Subject;Order Confirmation Email Subject;$emailResource/email-orderConfirmationSubject.vm;
+ ;$baseProlamsa_Email_Order_PendingApproval_Body;Order Pending Approval Email Body;$emailResource/email-orderPendingApprovalBody.vm;
+ ;$baseProlamsa_Email_Order_PendingApproval_Subject;Order Pending Approval Email Subject;$emailResource/email-orderPendingApprovalSubject.vm;
+ ;$baseProlamsa_Email_Quote_Order_Approve_Body;Quote Order Approval Email Body;$emailResource/email-quoteOrderApprovalBody.vm;
+ ;$baseProlamsa_Email_Quote_Order_Approve_Subject;Quote Order Approval Email Subject;$emailResource/email-quoteOrderApprovalSubject.vm;
+ ;$baseProlamsa_Email_Quote_Order_Reject_Body;Quote Order Reject Email Body;$emailResource/email-quoteOrderRejectionBody.vm;
+ ;$baseProlamsa_Email_Quote_Order_Reject_Subject;Quote Order Reject Email Subject;$emailResource/email-quoteOrderRejectionSubject.vm;
+ ;$baseProlamsa_Email_Replenishment_Order_Confirmation_Body;Order Confirmation Email Body;$emailResource/email-replenishmentOrderConfirmationBody.vm;
+ ;$baseProlamsa_Email_Replenishment_Order_Confirmation_Subject;Order Confirmation Email Subject;$emailResource/email-replenishmentOrderConfirmationSubject.vm;
+ ;$baseProlamsa_Email_Replenishment_Order_Placed_Body;Order Confirmation Email Subject;$emailResource/email-replenishmentOrderPlacedBody.vm;
+ ;$baseProlamsa_Email_Replenishment_Order_Placed_Subject;Order Confirmation Email Subject;$emailResource/email-replenishmentOrderPlacedSubject.vm;
+ ;$baseProlamsa_Email_Quote_Requested_Subject;Quote Request Email Subject;$emailResource/email-quoteRequestSubject.vm;
+ ;$baseProlamsa_Email_Quote_Requested_Body;Quote Request Email Body;$emailResource/email-quoteRequestBody.vm;
+
+# Email Pages
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang][default=$email];fromName[lang=$lang][default=$emailName]
+ ;;CustomerRegistrationEmail;
+ ;;ForgottenPasswordEmail;
+ ;;HotFolderImportFailedEmail;
+ ;;AddedIncidentEmail;
+ ;;OrderApprovalRejectionEmail;
+ ;;OrderConfirmationEmail;
+ ;;OrderPendingApprovalEmail;
+ ;;ReplenishmentOrderConfirmationEmail;
+ ;;ReplenishmentOrderPlacedEmail;
+ ;;QuoteRequestedEmail;

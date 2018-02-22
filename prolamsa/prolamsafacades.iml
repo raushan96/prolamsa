@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsafacades\resources" />
+    <libelement value="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+    <src_description expected_position="5">
+      <src_folder value="file://$MODULE_DIR$/prolamsafacades/src" expected_position="5" />
+      <src_folder value="file://$MODULE_DIR$/prolamsafacades/testsrc" expected_position="6" />
+      <src_folder value="file://$MODULE_DIR$/prolamsafacades/gensrc" expected_position="7" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsafacades/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsafacades">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafacades/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafacades/testsrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafacades/gensrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="b2bacceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="prolamsacore" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsafacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="commercefacades" />
+    <orderEntry type="module-library">
+      <library name="sapjco3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <prolamsacockpits>
+    <testclass>mx.neoris.cockpits.cmscockpit.sitewizard.CMSSiteUtilsTest</testclass>
+    <testclass>mx.neoris.cockpits.jalo.YAcceleratorcockpitsTest</testclass>
+  </prolamsacockpits>
+</testclasses>

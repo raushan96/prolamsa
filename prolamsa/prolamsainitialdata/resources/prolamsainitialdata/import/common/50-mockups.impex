@@ -1,0 +1,108 @@
+###################################
+#Populate invoices with test data
+###################################
+
+#INSERT_UPDATE Invoice;number[unique=true];customer(uid);documentNumber;documentDescription;currency;invoiceDate[dateformat=dd.MM.yyyy HH:mm];dueDate[dateformat=dd.MM.yyyy HH:mm];credits;debits;originalAmount;balanceAmount;
+#####;0111;20001;0111;INVOICE;USD;03.01.2014 16:00;03.02.2014 16:00;1000;2000;15420;3000
+#####;0255;20001;0255;INVOICE;USD;06.02.2014 16:00;06.03.2014 16:00;1001;20001;28373;2000
+#####;0256;20001;0256;INVOICE;USD;07.03.2014 16:00;07.04.2014 16:00;1002;20002;98370;5500
+#####;0300;20001;0300;INVOICE;USD;06.03.2014 16:00;06.04.2014 16:00;1003;20003;78733;9000
+#####;0315;20001;0315;INVOICE;USD;08.07.2014 16:00;08.08.2014 16:00;1004;20004;12400;9000
+#####;0317;20001;0317;INVOICE;USD;18.07.2014 16:00;18.08.2014 16:00;1005;20005;50500;6800
+#####;0318;20001;0318;INVOICE;USD;06.06.2014 16:00;06.07.2014 16:00;1006;20006;20400;8600
+#####;0321;20003;0321;INVOICE;USD;11.09.2014 16:00;11.10.2014 16:00;1007;20007;90420;7900
+#####;0323;20003;0323;INVOICE;USD;13.10.2014 16:00;13.11.2014 16:00;1008;20008;44500;9210
+#####;0327;20003;0327;INVOICE;USD;21.10.2014 16:00;21.11.2014 16:00;1009;20009;76530;7000
+#####;0329;20003;0329;INVOICE;USD;12.10.2014 16:00;12.11.2014 16:00;1001;20001;65200;7500
+#####;0331;20003;0331;INVOICE;USD;24.11.2014 16:00;24.12.2014 16:00;1002;20002;67800;8760
+#####;0333;20003;0333;INVOICE;USD;29.11.2014 16:00;29.12.2014 16:00;1003;20003;89200;8760
+#####;0335;20003;0335;INVOICE;USD;30.11.2014 16:00;30.12.2014 16:00;1004;20004;80200;8000
+
+###################################
+#Populate BalanceStatement with test data
+###################################
+
+#INSERT_UPDATE BalanceStatement;customer(uid)[unique=true];pastDue[unique=true];currentAmount;balance;creditLimit
+#####;20001;599481.55;256554.30;743445.70;1000000
+#####;20003;699482.55;356554.30;843445.70;2000000
+#####;20001;599483.55;256554.30;743445.70;1000000
+#####;20003;699484.55;356554.30;843445.70;2000000
+#####;20001;599485.55;256554.30;743445.70;1000000
+#####;20003;699486.55;356554.30;843445.70;2000000
+#####;20001;599487.55;256554.30;743445.70;1000000
+#####;20003;699488.55;356554.30;843445.70;2000000
+#####;20001;599489.55;256554.30;743445.70;1000000
+#####;20003;699410.55;356554.30;843445.70;2000000
+
+#INSERT_UPDATE BalanceStatementDetail;customer(uid)[unique=true];pastDue[unique=true];current;balance;creditLimit;overdueCharge;overdueCredit;overdueInvoice;overduePayment;overdueAmount;currentCharge;currentCredit;currentInvoice;currentPayment;currentBalance;pastDue1_30;pastDue31_60;pastDue61_90;pastDueMore90
+#####;20001;599481.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699482.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+#####;20001;599483.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699484.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+#####;20001;599485.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699486.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+#####;20001;599487.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699488.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+#####;20001;599489.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699410.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+#####;20001;599411.55;256554.30;743445.70;1000000;0.00;0.00;599483.55;0.00;599483.55;0.00;0.00;144655.01;0.00;144655.01;250400.16;349083.39;0.00;0.00
+#####;20003;699412.55;356554.30;843445.70;2000000;0.00;0.00;699483.55;0.00;699483.55;0.00;0.00;244655.01;0.00;244655.01;350400.16;449083.39;0.00;0.00
+
+
+###################################
+#Populate Backorder with test data
+###################################
+
+#INSERT_UPDATE Backorder;customer(uid)[unique=true];description[unique=true];pcsOrder;kgsOrder;pendingKilos;readyKilos;loadingKilos;balanceKilos
+#####;20001;Description 1;aa;400;500;600;20000;54
+#####;20001;Description 2;aa2;400;500;600;20000;54
+#####;20003;Other Description;bb;450;550;650;25000;79
+#####;20003;More Descriptions;bb2;450;550;650;25000;79
+#####;20001;Description 3;aa;400;500;600;20000;54
+#####;20001;Description 4;aa2;400;500;600;20000;54
+###;20001;Description 5;aa;400;500;600;20000;54
+###;20001;Description 6;aa2;400;500;600;20000;54
+###;20003;Other Description ;bb;450;550;650;25000;79
+###;20003;More Descriptions 1;bb2;450;550;650;25000;79
+###;20003;Other Description 2;bb;450;550;650;25000;79
+###;20003;More Descriptions 2;bb2;450;550;650;25000;79
+
+
+#INSERT_UPDATE BackorderDetail;customer(uid)[unique=true];partNumber[unique=true];customerPO;deliveryDate[dateformat=dd.MM.yyyy HH:mm];orderDate[dateformat=dd.MM.yyyy HH:mm];address;order;pieces
+###;20001;partNum1;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;191
+###;20001;partNum2;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;192
+###;20001;partNum3;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;193
+###;20001;partNum4;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;194
+###;20001;partNum5;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;195
+###;20001;partNum6;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;196
+###;20001;partNum7;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;197
+###;20003;partNum1;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;198
+###;20003;partNum2;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;199
+###;20003;partNum2;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1910
+###;20003;partNum3;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1911
+###;20003;partNum4;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1912
+###;20003;partNum5;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1913
+###;20003;partNum6;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1914
+###;20003;partNum7;custPO;03.02.2014 16:00;03.02.2014 16:00;addr;ord;1915
+
+###################################
+#Document Search
+###################################
+
+#INSERT_UPDATE DocumentSearch;code[unique=true];name;tolly;debitNote;creditNote;remission;po;invoice;quote;boL;so;mtr
+###;ID_20001;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20001;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20002;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20003;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20004;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20005;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20006;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20007;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20008;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20009;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20010;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20011;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20012;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20013;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+###;ID_20014;Name_xyz;TolO;debit_rfe;credit_5yhj;remi_addr;Po_rd;inv_19;quo_fsdf;bO_hrgh;so_yrty;mt_re
+

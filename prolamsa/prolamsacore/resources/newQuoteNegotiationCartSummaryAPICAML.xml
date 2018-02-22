@@ -1,0 +1,15 @@
+<Item>
+	<Unit>Cart Total</Unit>
+	<Ft>%s</Ft>
+	<Ton>%s</Ton>
+</Item>
+<Item>
+	<Unit>Avail/Stock</Unit>
+	<Ft>%s</Ft>
+	<Ton>%s</Ton>
+</Item>
+<Item>
+	<Unit>Rolling Schedule</Unit>
+	<Ft>%s</Ft>
+	<Ton>%s</Ton>
+</Item>

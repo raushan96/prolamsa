@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!-- Spring Integration -->
+<!--     <import resource="classpath:/prolamsacore/integration/hot-folder-store-powertools-spring.xml"/> -->
+
+    <!-- SystemSetup for the prolamsacore -->
+    <bean id="b2bAcceleratorCoreSystemSetup" class="mx.neoris.core.setup.CoreSystemSetup"  parent="abstractCoreSystemSetup">
+        <property name="setupSyncJobService" ref="b2bSetupSyncJobService"/>
+    </bean>
+
+    <!-- Solr field value providers -->
+
+    <bean id="volumeAwareProductPriceValueProvider" class="mx.neoris.core.solr.provider.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="userService" ref="userService"/>
+        <property name="priceComparator" ref="volumePriceComparator"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+    </bean>
+
+    <bean id="volumePriceComparator" class="mx.neoris.core.VolumeAwarePriceInformationComparator" scope="singleton"/>
+
+    <bean id="productVolumePricesProvider" class="mx.neoris.core.solr.provider.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+    </bean>
+
+    <bean id="powertoolsCategorySource" parent="variantCategorySource">
+        <property name="rootCategory" value="CATALOG"/> <!-- '1' is the root icecat category -->
+    </bean>
+    <bean id="powertoolsVariantCategorySource" parent="variantCategorySource"/>
+
+    <bean id="powertoolsBrandCategorySource" parent="defaultCategorySource">
+        <property name="rootCategory" value="brands"/> <!-- 'brands' is the root of the brands hierarchy -->
+    </bean>
+
+    <bean id="abstractCategoryCodeValueProvider" abstract="true" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider" parent="abstractPropertyFieldValueProvider" >
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+    <bean id="abstractCategoryNameValueProvider" abstract="true" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider" parent="abstractPropertyFieldValueProvider" >
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="powertoolsCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="powertoolsCategorySource"/>
+    </bean>
+    <bean id="powertoolsBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="powertoolsBrandCategorySource"/>
+    </bean>
+    <bean id="powertoolsVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+        <property name="categorySource" ref="powertoolsVariantCategorySource"/>
+    </bean>
+
+
+    <bean id="powertoolsCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="powertoolsCategorySource"/>
+    </bean>
+    <bean id="powertoolsBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+        <property name="categorySource" ref="powertoolsBrandCategorySource"/>
+    </bean>
+
+    <bean id="image515ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="515Wx515H"/>
+    </bean>
+    <bean id="image300ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="300Wx300H"/>
+    </bean>
+    <bean id="image96ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="96Wx96H"/>
+    </bean>
+    <bean id="image65ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="65Wx65H"/>
+    </bean>
+    <bean id="image30ValueProvider" parent="abstractImageValueProvider">
+        <property name="mediaFormat" value="30Wx30H"/>
+    </bean>
+
+    <bean id="productUrlValueProvider" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider" parent="abstractPropertyFieldValueProvider" >
+        <property name="urlResolver" ref="productModelUrlResolver"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="i18nService" ref="i18nService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <bean id="promotionCodeValueProvider" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider" parent="abstractPropertyFieldValueProvider" >
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <bean id="promotionImageValueProvider" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider" parent="abstractPropertyFieldValueProvider" >
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+    <!--
+        Event listeners are singletons, therefore the dependency for a bean in tenant-scope
+        must be configured with a lookup method.
+    -->
+    <bean id="b2b-customerRegistrationEventListener" class="mx.neoris.core.event.RegistrationEventListener" parent="abstractSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+
+    </bean>
+    <bean id="b2b-forgottenPasswordEventListener" class="mx.neoris.core.event.ForgottenPasswordEventListener" parent="abstractSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+
+    </bean>
+    <bean id="b2b-submitOrderEventListener" class="mx.neoris.core.event.SubmitOrderEventListener" parent="abstractSiteEventListener">
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+    </bean>
+    <bean id="b2b-orderConfirmationEventListener" class="mx.neoris.core.event.OrderConfirmationEventListener" parent="abstractSiteEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <!-- Process resourcess definition -->
+
+    <bean id="b2bCustomerRegistrationEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/customerRegistrationEmailProcess.xml"/>
+    </bean>
+    <bean id="b2bForgottenPasswordEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/forgottenPasswordEmailProcess.xml"/>
+    </bean>
+    <bean id="b2bOrderConfirmationEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/orderConfirmationEmailProcess.xml"/>
+    </bean>
+    <bean id="replenishmentOrderConfirmationEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/replenishmentOrderConfirmationEmailProcess.xml"/>
+    </bean>
+    <bean id="replenishmentOrderProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/replenishmentOrderProcess.xml"/>
+    </bean>
+
+    <bean id="replenishmentOrderPlacedProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/replenishmentOrderPlacedEmailProcess.xml"/>
+    </bean>
+
+    <bean id="quoteOrderApproveProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/quoteOrderApproveEmailProcess.xml"/>
+    </bean>
+    <!-- NEORIS_CHANGE #74 quote request process definition -->
+    <bean id="quoteOrderRejectProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/quoteOrderRejectEmailProcess.xml"/>
+    </bean>
+
+    <!-- Actions -->
+    <bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"  abstract="true">
+        <property name="modelService" ref="modelService"/>
+        <property name="processParameterHelper" ref="processParameterHelper"/>
+    </bean>
+
+    <bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"  parent="abstractAction">
+        <property name="emailService" ref="emailService"/>
+    </bean>
+
+    <bean id="generateB2BCustomerRegistrationEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="frontendTemplateName" value="CustomerRegistrationEmailTemplate"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BForgottenPasswordEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="ForgottenPasswordEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BOrderConfirmationEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="OrderConfirmationEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BReplenishmentOrderConfirmationEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="ReplenishmentOrderConfirmationEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BReplenishmentOrderPlacedEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="ReplenishmentOrderPlacedEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BQuoteOrderApproveEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="QuoteOrderApproveEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="generateB2BQuoteOrderRejectEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="QuoteOrderRejectEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+    
+    
+
+    <bean id="removeSentEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <!-- Simple Suggestion Service -->
+    <alias alias="b2bSimpleSuggestionService" name="b2bDefaultSimpleSuggestionService"/>
+    <bean id="b2bDefaultSimpleSuggestionService"	class="mx.neoris.core.suggestion.impl.DefaultSimpleSuggestionService" >
+        <property name="simpleSuggestionDao" ref="b2bSimpleSuggestionDao"/>
+    </bean>
+    <alias alias="b2bSimpleSuggestionDao" name="b2bDefaultSimpleSuggestionDao"/>
+    <bean id="b2bDefaultSimpleSuggestionDao"	class="mx.neoris.core.suggestion.dao.impl.DefaultSimpleSuggestionDao" parent="abstractItemDao" >
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <alias name="neorisPagedB2BCustomerDao" alias="pagedB2BCustomerDao"/>
+	<bean name="neorisPagedB2BCustomerDao" class="mx.neoris.core.services.dao.NeorisPagedB2BCustomerDao">
+		<constructor-arg value="B2BCustomer" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService"/>
+	</bean>
+	
+	<alias name="neorisDefaultPagedB2BPermissionDao" alias="pagedB2BPermissionDao"/>
+	<bean name="neorisDefaultPagedB2BPermissionDao" class="mx.neoris.core.services.dao.DefaultNeorisPagedB2BPermissionDao">
+		<constructor-arg value="B2BPermission" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService"/>
+	</bean>
+
+    <bean id="b2bMccSiteUrlHelper" class="mx.neoris.core.util.MccSiteUrlHelper" >
+        <property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+        <property name="cmsSiteService" ref="cmsSiteService"/>
+    </bean>
+
+    <!-- SALES QUOTE ACC PROCESS -->
+    <bean id="salesQuoteProcess"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource"
+            >
+        <property name="resource" value="classpath:/prolamsacore/processes/b2bACCSalesquote.xml" />
+    </bean>
+
+    <alias alias="b2bQuoteBusinessProcessStrategy" name="acceleratorQuoteBusinessProcessStrategy"/>
+    <bean id="acceleratorQuoteBusinessProcessStrategy"
+          class="de.hybris.platform.b2b.strategies.impl.DefaultB2BQuoteBusinessProcessStrategy"
+          parent="defaultB2BQuoteBusinessProcessStrategy" >
+        <property name="processCode" value="accSalesQuote" />
+        <property name="processName" value="PENDING_QUOTE" />
+    </bean>
+
+    <!-- Process resourcess definition -->
+    <!-- APPROVAL PROCESS -->
+    <bean id="b2bAccApprovalProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource"
+            >
+        <property name="resource" value="classpath:/prolamsacore/processes/b2bAccOrderApproval.xml"/>
+    </bean>
+
+    <bean id="orderPendingApprovalEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource"
+                  value="classpath:/prolamsacore/processes/orderPendingApprovalEmailProcess.xml"/>
+    </bean>
+
+    <bean id="orderApprovalRejectionEmailProcessDefinitionResource"
+          class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/orderApprovalRejectionEmailProcess.xml"/>
+    </bean>
+
+    <bean id="startWorkflowForAdmin"
+          class="mx.neoris.core.actions.StartWorkFlowForAdmin"
+          parent="abstractProceduralB2BOrderApproveAction">
+        <property name="b2bWorkflowIntegrationService" ref="b2bWorkflowIntegrationService"/>
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="workflowProcessingService" ref="workflowProcessingService"/>
+        <property name="workflowService" ref="newestWorkflowService"/>
+        <property name="b2bUnitService" ref="b2bUnitService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="checkCreditCardOrderAction"
+          class="mx.neoris.core.actions.CheckCreditCardOrderAction"
+          parent="abstractSimpleB2BApproveOrderDecisionAction">
+    </bean>
+
+    <bean id="b2bSetupSyncJobService" class="mx.neoris.core.setup.impl.B2BDefaultSetupSyncJobService" parent="defaultSetupSyncJobService" >
+        <property name="cronJobService" ref="cronJobService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <bean id="powertoolsCatalogSyncJobPerformable" class="mx.neoris.core.setup.MultipleCatalogsSyncJobPerformable" parent="abstractJobPerformable"  >
+        <property name="setupSyncJobService" ref="setupSyncJobService"/>
+    </bean>
+
+    <bean id="organizationOrdersReportingJob"
+          class="mx.neoris.core.btg.OrganizationOrdersReportingJob"
+
+          parent="abstractJobPerformable">
+        <property name="b2BUnitService" ref="b2bUnitService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="currencies">
+            <list>
+                <value>USD</value>
+                <value>EUR</value>
+                <value>CAD</value>
+            </list>
+        </property>
+        <property name="catalog" value="2000ProductCatalog"/>
+    </bean>
+
+    <bean id="organizationCategoryPurchasedReportingJob"
+          class="mx.neoris.core.btg.OrganizationOrdersReportingJob"
+
+          parent="abstractJobPerformable">
+        <property name="b2BUnitService" ref="b2bUnitService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="currencies">
+            <list>
+                <value>USD</value>
+                <value>EUR</value>
+                <value>CAD</value>
+            </list>
+        </property>
+        <property name="categories">
+            <list>
+                <value>CATALOG</value>
+            </list>
+        </property>
+        <property name="catalog" value="2000ProductCatalog"/>
+
+    </bean>
+
+    <bean id="abstractTotalSpentByOrgOperandProvider" abstract="true"
+          class="mx.neoris.core.btg.condition.operand.valueproviders.AbstractTotalSpentByOrgOperandProvider"
+          parent="abstractOrderOperandValueProvider" />
+
+    <bean id="organizationTotalSpentInCurrencyLastYearOperandValueProvider"
+          class="mx.neoris.core.btg.condition.operand.valueproviders.OrganizationTotalSpentInCurrencyLastYearOperandValueProvider"
+          parent="abstractTotalSpentByOrgOperandProvider">
+        <property name="b2bUnitService" ref="b2bUnitService" />
+    </bean>
+
+    <bean
+            id="organizationTotalSpentInCurrencyRelativeDateOperandValueProvider"
+            class="mx.neoris.core.btg.condition.operand.valueproviders.OrganizationTotalSpentInCurrencyRelativeDateOperandValueProvider"
+            parent="abstractTotalSpentByOrgOperandProvider">
+        <property name="b2bUnitService" ref="b2bUnitService" />
+    </bean>
+
+    <bean id="b2b-orderCPendingApprovalEventListener"
+          class="mx.neoris.core.event.OrderPendingApprovalEventListener" parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+
+    </bean>
+
+    <bean id="b2b-replenishmentOrderConfirmationEventListener"
+          class="mx.neoris.core.event.ReplenishmentOrderConfirmationEventListener" parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="b2b-replenishmentOrderPlacedEventListener"
+          class="mx.neoris.core.event.ReplenishmentOrderPlacedEventListener" parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="b2b-orderApprovalRejectionEventListener"
+          class="mx.neoris.core.event.OrderApprovalRejectionEventListener" parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="abstractQuoteEventListener"
+          class="mx.neoris.core.event.QuoteEventListener"
+          abstract="true" parent="abstractOrderEventListener">
+        <property name="modelService" ref="modelService" />
+        <property name="orderHistoryService" ref="orderHistoryService" />
+    </bean>
+    
+
+    <bean id="b2b-quoteApprovedEventListener"
+          class="mx.neoris.core.event.QuoteApprovedEventListener"
+          parent="abstractQuoteEventListener">
+        <property name="i18NService" ref="i18NService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+    
+   <bean id="b2b-quoteRejectedEventListener"
+          class="mx.neoris.core.event.QuoteRejectedEventListener"
+          parent="abstractQuoteEventListener">
+        <property name="i18NService" ref="i18NService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="abstractMerchantEventListener" class="mx.neoris.core.event.AbstractMerchantEventListener" abstract="true" parent="abstractOrderEventListener"/>
+
+    <bean id="b2b-merchantApprovedEventListener"
+          class="mx.neoris.core.event.MerchantApprovedEventListener"
+          parent="abstractMerchantEventListener">
+        <property name="createSnapshot" value="true"/>
+    </bean>
+
+    <bean id="b2b-merchantRejectedEventListener"
+          class="mx.neoris.core.event.MerchantRejectedEventListener"
+          parent="abstractMerchantEventListener">
+        <property name="createSnapshot" value="true"/>
+    </bean>
+
+    <bean id="b2b-orderApprovedEventListener"
+          class="mx.neoris.core.event.OrderApprovedEventListener"
+          parent="abstractOrderEventListener">
+        <property name="createSnapshot" value="true"/>
+
+    </bean>
+
+    <bean id="b2b-orderRejectedEventListener"
+          class="mx.neoris.core.event.OrderRejectedEventListener"
+          parent="abstractOrderEventListener">
+        <property name="createSnapshot" value="true"/>
+    </bean>
+
+    <bean id="abstractOrderEventListener"
+          class="mx.neoris.core.event.AbstractOrderEventListener"
+          abstract="true" parent="abstractEventListener">
+        <property name="modelService" ref="modelService"/>
+        <property name="orderHistoryService" ref="orderHistoryService"/>
+        <property name="i18NService" ref="i18NService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <bean id="informOfOrderApproval"
+          class="mx.neoris.core.actions.B2BAcceleratorInformOfOrderApproval"
+            >
+        <property name="fromAddress" value="b2b@hybris.com"/>
+        <property name="b2bEmailService" ref="b2bEmailService"/>
+    </bean>
+
+    <bean id="setBookingLineEntries"
+          class="mx.neoris.core.actions.AcceleratorBookingLineEntries"
+          parent="abstractSimpleB2BApproveOrderDecisionAction" />
+
+    <bean id="generateB2BOrderPendingApprovalEmail"
+          class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+          parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="OrderPendingApprovalEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="sendOrderPendingApprovalNotification"
+          class="mx.neoris.core.actions.SendOrderPendingApprovalNotification"
+          parent="abstractAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <!-- actions -->
+    <bean name="cloneCartAction"
+          class="mx.neoris.core.actions.replenishment.CloneCartAction"
+          parent="abstractAction" >
+        <property name="typeService" ref="typeService"/>
+        <property name="cartService" ref="cartService"/>
+        <property name="userService" ref="userService"/>
+        <property name="guidKeyGenerator" ref="guidKeyGenerator"/>
+    </bean>
+
+    <bean name="calculateCartAction"
+          class="mx.neoris.core.actions.replenishment.CalculateCartAction"
+          parent="abstractAction" >
+        <property name="commerceCartService" ref="commerceCartService"/>
+        <property name="impersonationService" ref="impersonationService"/>
+    </bean>
+
+    <bean name="authorizePaymentAction"
+          class="mx.neoris.core.actions.replenishment.AuthorizePaymentAction"
+          parent="abstractAction" >
+        <property name="commerceCheckoutService" ref="b2bCommerceCheckoutService"/>
+        <property name="impersonationService" ref="impersonationService"/>
+    </bean>
+
+    <bean name="placeOrderAction"
+          class="mx.neoris.core.actions.replenishment.PlaceOrderAction"
+          parent="abstractAction" >
+        <property name="commerceCheckoutService" ref="b2bCommerceCheckoutService"/>
+        <property name="impersonationService" ref="impersonationService"/>
+    </bean>
+    <bean name="confirmationAction"
+          class="mx.neoris.core.actions.replenishment.ConfirmationAction"
+          parent="abstractAction" >
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <bean id="sendReplenishmentOrderPlacedNotification"
+          class="mx.neoris.core.actions.SendReplenishmentOrderPlacedNotification"
+            >
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <bean id="auditAutoApproval"
+          class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+          parent="abstractProceduralB2BOrderApproveAuditAction">
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="messageKey" value="approval.process.orderapprovedautomatically"/>
+    </bean>
+
+    <bean id="auditSubmittedToMerchantForApproval"
+          class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+          parent="abstractProceduralB2BOrderApproveAuditAction">
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="messageKey" value="approval.process.submittedtomerchant"/>
+    </bean>
+
+    <bean id="createQuoteOrderHistory"
+          class="mx.neoris.core.actions.CreateQuoteOrderHistory"
+          parent="abstractSimpleB2BApproveOrderDecisionAction" >
+        <property name="orderHistoryService" ref="orderHistoryService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="checkOrderEntryCostCentersActive"
+          class="mx.neoris.core.actions.CheckOrderEntryCostCentersActive"
+          parent="abstractSimpleB2BApproveOrderDecisionAction"  />
+
+    <bean id="startFulfilmentProcessAction" parent="abstractProceduralB2BOrderApproveAction"
+          class="mx.neoris.core.actions.StartFulfilmentProcessAction"
+            >
+        <property name="businessProcessService" ref="businessProcessService"/>
+    </bean>
+
+    <!-- Send rejection notification -->
+    <bean id="sendOrderApprovalRejectionNotification"
+          class="mx.neoris.core.actions.SendOrderApprovalRejectionNotification"
+          parent="abstractAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <bean id="generateB2BOrderApprovalRejectionEmail"
+          class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+          parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="OrderApprovalRejectionEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="auditStartOfApproval"
+          class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+          parent="abstractProceduralB2BOrderApproveAuditAction">
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="messageKey" value="approval.process.ordersubmitted"/>
+    </bean>
+
+    <bean id="auditOrderRejection"
+          class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+          parent="abstractProceduralB2BOrderApproveAuditAction">
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="messageKey" value="approval.process.orderrejected"/>
+    </bean>
+
+    <bean id="auditOrderApproval"
+          class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+          parent="abstractProceduralB2BOrderApproveAuditAction">
+        <property name="permissionResultHelper" ref="permissionResultHelper"/>
+        <property name="messageKey" value="approval.process.orderapproved"/>
+    </bean>
+
+    <!-- checkout flow configuration -->
+    <!-- We force the Single step checkout strategy. -->
+    <alias alias="b2bCheckoutFlowStrategy" name="b2bSingleStepCheckoutFlowStrategy"/>
+
+    <bean id="b2bSingleStepCheckoutFlowStrategy"
+          class="mx.neoris.core.checkout.flow.impl.FixedB2BCheckoutFlowStrategy" >
+        <property name="checkoutFlow" value="SINGLE"/>
+    </bean>
+
+    <bean id="b2bMultiStepCheckoutFlowStrategy"
+          class="mx.neoris.core.checkout.flow.impl.FixedB2BCheckoutFlowStrategy" >
+        <property name="checkoutFlow" value="MULTISTEP"/>
+    </bean>
+
+    <!--Checkout PCI Strategies -->
+    <alias alias="b2bCheckoutPciStrategy" name="configuredB2BCheckoutPciStrategy"/>
+    <bean id="configuredB2BCheckoutPciStrategy"
+          class="mx.neoris.core.checkout.pci.impl.ConfiguredB2BCheckoutPciStrategy" >
+        <!-- This strategy looks in the session to see if HOP is the chosen option.  HOP is only valid if configured in the application properties file. Defaults to wsCheckoutPciStrategy. -->
+        <property name="siteConfigService" ref="siteConfigService"/>
+
+        <!-- Default to the wsCheckoutPciStrategy -->
+        <property name="defaultCheckoutPciStrategy" ref="b2bWSCheckoutPciStrategy"/>
+    </bean>
+
+    <bean id="b2bWSCheckoutPciStrategy"
+          class="mx.neoris.core.checkout.pci.impl.FixedB2BCheckoutPciStrategy" >
+        <!-- Use the Payment extension web services to create credit card details -->
+        <property name="subscriptionPciOption" value="DEFAULT"/>
+    </bean>
+    <bean id="b2bHOPCheckoutPciStrategy"
+          class="mx.neoris.core.checkout.pci.impl.FixedB2BCheckoutPciStrategy" >
+        <!-- Use the Hosted Order Payment to create credit card details -->
+        <property name="subscriptionPciOption" value="HOP"/>
+    </bean>
+
+    <bean id="b2bSendOrderPlacedNotificationAction" class="mx.neoris.core.actions.SendOrderPlacedNotificationAction"  parent="abstractAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+    
+    <bean id="prepareApprovedOrderForPublishToSAPAction" class="mx.neoris.core.actions.PrepareApprovedOrderForPublishToSAPAction"  parent="abstractAction">
+	</bean>
+    <bean id="publishApprovedOrderToSAPAction" class="mx.neoris.core.actions.PublishApprovedOrderToSAPAction"  parent="abstractAction">
+	</bean>
+	
+	<bean id="preparePendingApprovalOrderForPublishToSAPAction" class="mx.neoris.core.actions.PreparePendingApprovalOrderForPublishToSAPAction"  parent="abstractAction">
+	</bean>
+	<bean id="publishPendingApprovalOrderToSAPAction" class="mx.neoris.core.actions.PublishPendingApprovalOrderToSAPAction"  parent="abstractAction">
+	</bean>
+
+    <alias name="defaultVariantCategorySource" alias="variantCategorySource"/>
+    <bean id="defaultVariantCategorySource"
+          class="mx.neoris.core.search.solrfacetsearch.provider.impl.VariantCategorySource"
+          parent="defaultCategorySource">
+        <property name="productSource" ref="variantProductSource"></property>
+    </bean>
+    
+    <bean id="variantProductSource"
+          class="mx.neoris.core.search.solrfacetsearch.provider.impl.VariantProductSource" />
+
+    <bean id="variantProductStockLevelStatusValueProvider"
+          class="mx.neoris.core.search.solrfacetsearch.provider.impl.VariantProductStockLevelStatusValueProvider"
+          parent="defaultProductStockLevelStatusValueProvider">
+        <property name="productSource" ref="variantProductSource"></property>
+    </bean>
+
+
+    <alias name="defaultMultidimentionalProductFlagValueProvider" alias="multidimentionalProductFlagValueProvider"/>
+    <bean id="defaultMultidimentionalProductFlagValueProvider"
+          class="mx.neoris.core.search.solrfacetsearch.provider.impl.MultidimentionalProductFlagValueProvider"
+          parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+
+
+	<!-- Neoris -->
+
+    <!-- Spring Integration -->
+    <import resource="classpath:/prolamsacore/integration/hot-folder-store-prolamsa-spring.xml"/>
+
+	<!-- daos -->
+	
+	<bean id="neorisOrderDao" class="mx.neoris.core.daos.impl.DefaultNeorisOrderDao" parent="orderDao">
+	</bean>
+
+	<!-- services -->
+	<bean id="neorisService" class="mx.neoris.core.services.impl.DefaultNeorisService" >
+	</bean>
+
+	<bean id="neorisCartService" class="mx.neoris.core.services.impl.DefaultNeorisCartService" parent="defaultCartServiceForAccelerator">
+	</bean>
+	      
+	<bean id="neorisWishlistService" class="mx.neoris.core.services.impl.DefaultNeorisWishlistService">
+	</bean>
+
+	<bean id="customerProductReferenceService"  class="mx.neoris.core.services.impl.DefaultCustomerProductReferenceService">
+	</bean>
+
+	<bean id="defaultNeorisB2BUnitService" class="mx.neoris.core.services.impl.DefaultNeorisB2BUnitService" parent="defaultB2BUnitService">
+	</bean>
+	<alias alias="b2bUnitService" name="defaultNeorisB2BUnitService"/>
+	
+	<bean id="neorisInvoiceService" class="mx.neoris.core.services.impl.DefaultNeorisInvoiceService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<!-- NEORIS_CHANGE #SAP Invoice Interface -->
+	<bean id="neorisSAPInvoiceService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisInvoiceService">
+		<property name="temporaryDirectory" value="#{configurationService.configuration.getProperty('sap.invoices.temporaryDirectory')}" />		
+	</bean>
+	
+	
+	<!-- NEORIS_CHANGE #SAP Document Interface -->
+	<bean id="defaultSAPNeorisDocumentDownloadUrlResolver" class="mx.neoris.core.sap.document.DefaultSAPNeorisDocumentDownloadUrlResolver">
+		<property name="temporaryDirectory" value="#{configurationService.configuration.getProperty('sap.invoices.temporaryDirectory')}" />		
+	</bean>
+
+	<bean id="neorisProductInventoryService_" class="mx.neoris.core.services.impl.MockupNeorisProductInventoryService">
+	</bean>
+	<bean id="neorisProductInventoryService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisProductInventoryService">
+	</bean>
+
+	<!--NEORIS_CHANGE #61  -->
+	<bean id="neorisBalanceStatementService" class="mx.neoris.core.services.impl.DefaultNeorisBalanceStatementService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<!-- NEORIS_CHANGE #SAP Interface -->
+	<bean id="neorisSAPBalanceStatementService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisBalanceStatementService">		
+	</bean>
+	
+	<!-- Date formatters -->
+	<bean id="dateFormatter_yyyy-MM-dd" class="java.text.SimpleDateFormat" scope="prototype">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+	<bean id="dateFormatter_MM-dd-yyyy" class="java.text.SimpleDateFormat" scope="prototype">
+		<constructor-arg value="MM-dd-yyyy" />
+	</bean>	
+	<bean id="dateFormatter_yyyyMMdd" class="java.text.SimpleDateFormat" scope="prototype">
+		<constructor-arg value="yyyyMMdd" />
+	</bean>
+	
+	<!-- Date formatters CILS_25May2016 -->
+	<bean id="dateFormatter_MMM-dd-yyyy" class="java.text.SimpleDateFormat" scope="prototype">
+		<constructor-arg value="MMM-dd-yyyy" />
+	</bean>	
+	<bean id="dateFormatter_dd-MMM-yyyy" class="java.text.SimpleDateFormat" scope="prototype">
+		<constructor-arg value="dd-MMM-yyyy" />
+	</bean>	
+	
+	<!-- NEORIS_CHANGE #60 -->
+	<bean id="neorisBackorderService" class="mx.neoris.core.services.impl.DefaultNeorisBackorderService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<!-- NEORIS_CHANGE #SAP Implementation -->
+	<bean id="neorisSAPBackorderService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisBackorderService">		
+	</bean>
+	
+	
+	
+	<!-- SOLR facet field providers -->
+	<bean id="neorisModelPropertyEnumFieldValueProvider" class="mx.neoris.core.solrfacetsearch.provider.impl.NeorisModelPropertyEnumeratorProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="neorisAppenderAttributeFacetDisplayNameProvider" class="mx.neoris.core.solrfacetsearch.provider.impl.NeorisAttributeAppenderFacetDisplayNameProvider">
+		<property name="separator" value="_"/>
+	</bean>
+	
+	<!-- NEORIS_CHANGE QUOTE_REPORT 
+	<bean id="neorisQuoteService" class="mx.neoris.core.services.impl.DefaultNeorisQuoteService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	-->
+	<!-- NEORIS_CHANGE #72 -->
+	<bean id="neorisDocumentSearchService" class="mx.neoris.core.services.impl.DefaultNeorisDocumentSearchService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<!-- NEORIS_CHANGE #SAP Implementation -->
+	<bean id="neorisSAPDocumentSearchService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisDocumentSearchService">		
+	</bean>
+	
+	<alias name="neorisPagedB2BProductDao" alias="pagedB2BProductDao"/>
+	<bean name="neorisPagedB2BProductDao" class="mx.neoris.core.daos.impl.DefaultNeorisPagedB2BProductDao">
+		<constructor-arg value="Product" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService"/>
+	</bean>
+	
+	<!-- NEORIS_CHANGE #82 -->
+	<bean id="neorisB2BUnitSearchService" class="mx.neoris.core.services.impl.DefaultNeorisB2BUnitSearchService" >
+	    <property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	</bean>
+	
+	<!-- NEORIS_CHANGE #74 -->	
+	<alias alias="commerceCheckoutService" name="neorisDefaultCommerceCheckoutService"/>
+	<bean id="neorisDefaultCommerceCheckoutService" class="mx.neoris.core.services.impl.DefaultNeorisCommerceCheckoutService" parent="defaultCommerceCheckoutService">
+		
+	</bean>
+	
+	<bean id="defaultTopValuesProvider5" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.DefaultTopValuesProvider">
+		<property name="topFacetCount" value="5" />
+	</bean>
+	<bean id="defaultTopValuesProvider6" class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.DefaultTopValuesProvider">
+		<property name="topFacetCount" value="6" />
+	</bean>
+	
+
+	<bean id="neorisAdminImportService" class="mx.neoris.core.services.impl.NeorisImportService" parent="importService">
+		<property name="useAdminUser" value="true" />
+	</bean>
+
+	<!-- Bean for download files via url -->
+	<bean id="neorisURLFileDownloader" class="mx.neoris.core.util.NeorisURLFileDownloader">
+	</bean>
+	
+	<bean id="neorisUrlDocumentDownloadResolver" class="mx.neoris.core.document.DefaultNeorisDocumentDownloadUrlResolver">
+	</bean>
+	
+	<!--NEORIS_CHANGE #SAP Integration  -->
+	<bean id="neorisSAPUrlDocumentDownloadResolver" class="mx.neoris.core.sap.document.DefaultSAPNeorisDocumentDownloadUrlResolver">
+	</bean>		
+
+	<!-- NEORIS_CHANGE mail for failed hotfolder import -->
+	<!-- https://wiki.hybris.com/display/release4/Email+WCMS+and+Process+Engine+Integration+in+the+hybris+Multichannel+Accelerator#EmailWCMSandProcessEngineIntegrationinthehybrisMultichannelAccelerator-GeneratinganEmail  -->
+    <bean id="generateHotFolderImportFailedEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="HotFolderImportFailedEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="hotFolderImportFailedEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/hotFolderImportFailedEmailProcess.xml"/>
+    </bean>
+
+	<bean id="hotFolderImportFailedEventListener" class="mx.neoris.core.event.HotFolderImportFailedEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<!-- NEORIS_CHANGE #74 Added bean for quote request notification -->
+	<bean id="quoteRequestedProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/quoteRequestedEmailProcess.xml"/>
+    </bean>
+    
+    <bean id="generateB2BQuoteRequestedEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="QuoteRequestedEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+    
+      <bean id="b2b-quoteRequestedEventListener" class="mx.neoris.core.event.QuoteRequestedEventListener">
+			<property name="modelService" ref="modelService"/>
+			<property name="businessProcessService" ref="businessProcessService"/>
+	  </bean>
+	 
+	 <bean id="neorisOrderHistoryService" class="mx.neoris.core.services.impl.DefaultNeorisOrderHistoryService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService" />
+	 </bean>  
+	    
+	<!-- NEORIS_CHANGE #103 -->    
+	<alias alias="workflowProcessingService" name="defaultNeorisWorkflowProcessingService"/>
+	<bean id="defaultNeorisWorkflowProcessingService" parent="defaultWorkflowProcessingService" class="mx.neoris.core.services.DefaultNeorisWorkflowProcessingService">
+	</bean>
+	
+	<alias name="neorisPagedB2BWorkflowActionDao" alias="pagedB2BWorkflowActionDao"/>
+	<bean name="neorisPagedB2BWorkflowActionDao"
+		class="mx.neoris.core.services.dao.impl.DefaultNeorisPagedB2BWorkflowActionDao"
+		parent="defaultPagedB2BWorkflowActionDao">
+	</bean>
+	
+	<bean id="neorisTransportationModeService" class="mx.neoris.core.services.impl.DefaultNeorisTransportationModeService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	 </bean> 
+	 
+	<bean id="neorisProductVisibilityService" class="mx.neoris.core.services.impl.DefaultNeorisProductVisibilityService">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />		
+	</bean>
+	
+	<import resource="product-configuration-collections.xml"/>
+	
+	<bean name="SAPConnectionManager" class="mx.neoris.core.sap.SAPConnectionManager" init-method="initialize">
+		<property name="properties">
+			<props>
+				<prop key="jco.client.ashost">#{configurationService.configuration.getProperty('jco.client.ashost')}</prop>
+				<prop key="jco.client.sysnr">#{configurationService.configuration.getProperty('jco.client.sysnr')}</prop>
+				<prop key="jco.client.client">#{configurationService.configuration.getProperty('jco.client.client')}</prop>
+				<prop key="jco.client.user">#{configurationService.configuration.getProperty('jco.client.user')}</prop>
+				<prop key="jco.client.passwd">#{configurationService.configuration.getProperty('jco.client.passwd')}</prop>
+				<prop key="jco.client.lang">#{configurationService.configuration.getProperty('jco.client.lang')}</prop>
+				<prop key="jco.destination.pool_capacity">#{configurationService.configuration.getProperty('jco.destination.pool_capacity')}</prop>
+				<prop key="jco.destination.peak_limit">#{configurationService.configuration.getProperty('jco.destination.peak_limit')}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<alias alias="dynamicAttributesOrderStatusDisplay" name ="neorisB2bacceleratorDynamicAttributesOrderStatusDisplayByMap"/>
+	<bean id="neorisB2bacceleratorDynamicAttributesOrderStatusDisplayByMap" parent="b2bacceleratorDynamicAttributesOrderStatusDisplayByMap">
+		<property name="statusDisplayMap">
+			<map merge="true">
+				<entry key="IN_PROCESS" value="inprocess"/>
+				<entry key="USED_QUOTE" value="used.quote"/>
+				<entry key="CANCELLED_QUOTE" value="cancelled.quote"/>
+				<entry key="EXPIRED_QUOTE" value="expired.quote"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="neorisAddressService" class="mx.neoris.core.services.impl.DefaultNeorisAddressService" parent="defaultAddressService">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<!-- SOLR Product Search -->
+	<alias name="defaultCommerceProductSearchService" alias="commerceProductSearchService"/>
+	<alias name="defaultNeorisSolrProductSearchService" alias="defaultCommerceProductSearchService"/>
+
+	<bean
+		id="defaultNeorisSolrProductSearchService"
+		class="mx.neoris.core.services.impl.DefaultNeorisSolrProductSearchService"
+		parent="defaultCommerceSolrProductSearchService"
+	>
+	</bean>
+
+	<bean id="fullCategoryCodeValueProvider" class="mx.neoris.core.search.solrfacetsearch.provider.impl.FullCategoryCodeValueProvider" parent="abstractPropertyFieldValueProvider">
+		<property name="categoriesQualifier" value="supercategories"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	
+	<bean id="neorisAllCategoriesFacetInjector" class="mx.neoris.core.search.solrfacetsearch.DefaultNeorisAllCategoriesSetFacetInjector">
+		<property name="categoryList">
+			<list>
+                <value>Prolamsa-Group</value>
+                <value>Axis-Group</value>
+         	</list>
+		</property>
+		<property name="categoryPatternName" value="-Group-ProlamsaProductVisibility" />
+	</bean>
+
+	<!-- Jobs -->
+	<bean id="neorisOrderStatusUpdaterJob" abstract="true" class="mx.neoris.core.jobs.NeorisOrderStatusUpdaterJob"  >
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="b2bOrderService" ref="b2bOrderService"/>
+	</bean>
+	
+	<bean id="neorisOrderStatusUpdaterJob_2000" parent="neorisOrderStatusUpdaterJob"  >
+		<property name="baseStoreCode" value="2000"/>
+	</bean>
+	
+	<bean id="neorisAddressDao" class="mx.neoris.core.services.dao.DefaultNeorisAddressDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+	
+	<!-- 
+	<bean id="neorisOrderStatusUpdaterJob_1000" parent="neorisOrderStatusUpdaterJob"  >
+		<property name="baseStoreCode" value="1000"/>
+	</bean>
+	
+	<bean id="neorisOrderStatusUpdaterJob_5000" parent="neorisOrderStatusUpdaterJob"  >
+		<property name="baseStoreCode" value="5000"/>
+	</bean>
+	
+	<bean id="neorisOrderStatusUpdaterJob_6000" parent="neorisOrderStatusUpdaterJob"  >
+		<property name="baseStoreCode" value="6000"/>
+	</bean>
+	 -->
+
+	<bean id="defaultCommerceSearchTextPopulator"
+			class="de.hybris.platform.commerceservices.search.solrfacetsearch.populators.SearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean class="mx.neoris.core.services.search.solrfacetsearch.querybuilder.impl.DefaultNeorisFreeTextQueryBuilder">
+					<property name="propertyName" value="code"/>
+					<property name="boost" value="100"/>
+				</bean>
+				<bean class="mx.neoris.core.services.search.solrfacetsearch.querybuilder.impl.DefaultNeorisFreeTextQueryBuilder">
+					<property name="propertyName" value="fullDescription"/>
+					<property name="boost" value="90"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="neorisIncidentService" class="mx.neoris.core.services.impl.DefaultNeorisIncidentService"/>
+	<bean id="neorisIncidentTypeService" class="mx.neoris.core.services.impl.DefaultNeorisIncidentTypeService"/>
+	<bean id="neorisIncidentStateService" class="mx.neoris.core.services.impl.DefaultNeorisIncidentStateService"/>
+	<bean id="neorisSAPInvoiceValidateService" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisInvoiceValidate" />
+	
+	<bean id="generateAddedIncidentEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"  parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+        <property name="frontendTemplateName" value="AddedIncidentEmailTemplate"/>
+        <property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+        <property name="emailGenerationService" ref="emailGenerationService"/>
+    </bean>
+
+    <bean id="addedIncidentEmailProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/prolamsacore/processes/addedIncidentEmailProcess.xml"/>
+    </bean>
+
+	<bean id="incidentAddedListener" class="mx.neoris.core.event.IncidentAddedEventListener"/>
+	
+	<alias alias="emailGenerationService" name="neorisEmailGenerationService"/>
+	<bean id="neorisEmailGenerationService"
+	      class="mx.neoris.core.services.impl.DefaultNeorisEmailGenerationService"
+	      parent="defaultEmailGenerationService">
+	</bean>
+	
+	<!-- CustomerProductReference Interceptor -->
+	<bean id="neorisCustomerProductReferencePrepareInterceptor" class="mx.neoris.core.interceptors.DefaultNeorisCustomerProductReferencePrepareInterceptor" autowire="byName" />
+	
+	<bean id="neorisCustomerProductReferencePrepareInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="neorisCustomerProductReferencePrepareInterceptor" />
+		<property name="typeCode" value="CustomerProductReference" />
+		<property name="replacedInterceptors" ref="uniqueCatalogItemValidator" />
+		<property name="order" value="5000" />
+	</bean>
+		
+	<!-- B2BUnit Interceptor -->
+	<bean id="neorisB2BUnitPrepareInterceptor" class="mx.neoris.core.interceptors.DefaultNeorisB2BUnitPrepareInterceptor" autowire="byName" />
+	
+	<bean id="neorisB2BUnitPrepareInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="neorisB2BUnitPrepareInterceptor" />
+		<property name="typeCode" value="B2BUnit" />
+		<property name="replacedInterceptors" ref="uniqueCatalogItemValidator" />
+		<property name="order" value="5000" />
+	</bean>
+	
+	<!-- NeorisB2BUnitSettingByStore Interceptor -->
+	<bean id="neorisB2BUnitSettingByStorePrepareInterceptor" class="mx.neoris.core.interceptors.DefaultNeorisB2BUnitSettingByStorePrepareInterceptor" autowire="byName" />
+	
+	<bean id="neorisB2BUnitSettingByStorePrepareInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="neorisB2BUnitSettingByStorePrepareInterceptor" />
+		<property name="typeCode" value="NeorisB2BUnitSettingByStore" />
+		<property name="replacedInterceptors" ref="uniqueCatalogItemValidator" />
+		<property name="order" value="5000" />
+	</bean>
+	
+	<!-- CMSParagrapComponent Interceptor -->
+	<bean id="neorisCMSParagraphComponentPrepareInterceptor" class="mx.neoris.core.interceptors.DefaultNeorisCMSParagraphComponentPrepareInterceptor" autowire="byName" />
+	
+	<bean id="neorisCMSParagraphComponentPrepareInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="neorisCMSParagraphComponentPrepareInterceptor" />
+		<property name="typeCode" value="CMSParagraphComponent" />
+		<property name="replacedInterceptors" ref="uniqueCatalogItemValidator" />
+		<property name="order" value="5000" />
+	</bean>
+	
+	<!-- ProlamsaProduct Interceptor -->
+	<bean id="neorisProlamsaProductPrepareInterceptor" class="mx.neoris.core.interceptors.DefaultNeorisProlamsaProductPrepareInterceptor" autowire="byName" />
+	
+	<bean id="neorisProlamsaProductPrepareInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="neorisProlamsaProductPrepareInterceptor" />
+		<property name="typeCode" value="ProlamsaProduct" />
+		<property name="replacedInterceptors" ref="uniqueCatalogItemValidator" />
+		<property name="order" value="5000" />
+	</bean>
+
+	<!-- B2BUnit SalesRep Event Listener -->
+	<bean id="b2bUnitOnChangeEventListener" class="mx.neoris.core.event.B2BUnitSalesRepOnChangeEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<!-- B2BUnit Settings Changed Event Listener -->
+	<bean id="b2bUnitSettingByStoreOnChangeEventListener" class="mx.neoris.core.event.B2BUnitSettingByStoreOnChangeEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<!-- B2BUnit BackOffice Event Listener -->
+	<bean id="b2bUnitBackofficeOnChangeEventListener" class="mx.neoris.core.event.B2BUnitBackofficeOnChangeEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>	
+	
+	<!-- CMSParagraphComponent Event Listener -->
+	<bean id="cmsParagraphComponentOnChangeEventListener" class="mx.neoris.core.event.CMSParagraphComponentContentOnChangeEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<!-- CustomerProductReference Event Listener -->
+	<bean id="customerProductReferenceOnChangeEventListener" class="mx.neoris.core.event.CustomerProductReferenceOnChangeEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>	
+	
+	<!-- Updaters and Jobs-->
+	<bean id="neorisBackofficeB2BUnitUpdater" name="neorisBackOfficeB2BUnitUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisBackofficeB2BUnitUpdater" />
+	<bean id="neorisBackofficeB2BUnitUpdaterJob" class="mx.neoris.core.jobs.NeorisBackofficeB2BUnitUpdaterJob" autowire="byName" />
+	<bean id="neorisSalesRepB2BUnitUpdater" name="neorisSalesRepB2BUnitUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisSalesRepB2BUnitUpdater" />
+	<bean id="neorisSalesRepB2BUnitUpdaterJob" class="mx.neoris.core.jobs.NeorisSalesRepB2BUnitUpdaterJob" autowire="byName" />
+	<bean id="neorisTermsAndConditionsCheckedB2BCustomerUpdater" name="neorisTermsAndConditionsCheckedB2BCustomerUpdaterUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisTermsAndConditiosCheckedB2BCustomerUpdater" />
+	<bean id="neorisFavoriteProductsUpdater" name="neorisFavoriteProductsUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisFavoriteProductsUpdater" />
+	
+	<bean id="neorisB2BUnitMultisiteUpdaterJob" class="mx.neoris.core.jobs.NeorisB2BUnitMultisiteUpdaterJob" autowire="byName" />
+	<bean id="neorisB2BCustomerMultisiteUpdaterJob" class="mx.neoris.core.jobs.NeorisB2BCustomerMultisiteUpdaterJob" autowire="byName" />
+	
+	<bean id="neorisOrderAttachmentsUpdaterJob" class="mx.neoris.core.jobs.NeorisOrderAttachmentsUpdaterJob" autowire="byName" />
+	
+	<bean id="neorisProductFullDescriptionUpdaterJob" class="mx.neoris.core.jobs.NeorisProductFullDescriptionUpdaterJob" autowire="byName" />
+	
+	<bean id="neorisProductFavoriteCodeUpdaterJob" class="mx.neoris.core.jobs.NeorisProductFavoriteCodeUpdaterJob" autowire="byName" />
+	
+	<bean id="neorisUserDao" class="mx.neoris.core.services.dao.impl.DefaultNeorisUserDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+		
+	<bean id="neorisFavoriteProductService" class="mx.neoris.core.services.impl.DefaultNeorisFavoriteProductService"/>
+	
+	<bean id="neorisProductDao" class="mx.neoris.core.services.dao.impl.DefaultNeorisProductDao" parent="productDao" />
+	
+	<bean id="neorisProductService" class="mx.neoris.core.services.impl.DefaultNeorisProductService" parent="defaultProductService">
+		<property name="neorisProductDao" ref="neorisProductDao" />
+	</bean>
+	
+	<bean id="neorisB2BCustomerSettingByStoreService" class="mx.neoris.core.services.impl.DefaultNeorisB2BCustomerSettingByStoreService" />
+	<bean id="neorisB2BUnitSettingByStoreService" class="mx.neoris.core.services.impl.DefaultNeorisB2BUnitSettingByStoreService" />
+	
+	<bean id="neorisNoticesService" class="mx.neoris.core.services.impl.DefaultNeorisNoticesService"/>
+	
+	<bean id="neorisB2BCustomerDefaultSettingsService" class="mx.neoris.core.services.impl.DefaultNeorisB2BCustomerDefaultSettingsService"/>
+	
+	<bean id="neorisSAPBatchSearchService" class="mx.neoris.core.services.impl.DefaultSAPNeorisBatchSearchService" />
+	
+	<bean id="neorisSAPAlertConfigurationsService" class="mx.neoris.core.services.sap.impl.DefaultSAPAlertConfigurationsService" />		
+	
+	<!-- SharePoint beans -->
+	<bean id="neorisSharePointListWebServiceManager" class="mx.neoris.core.services.sharepoint.soap.NeorisSharePointListWebServiceManager" init-method="init"/>	
+	<bean id="neorisSharePointClaimsWebService" class="mx.neoris.core.services.sharepoint.soap.impl.DefaultNeorisSharePointClaimsWebService" init-method="init" />
+	<bean id="neorisSharePointQuoteNegotiationWebService" class="mx.neoris.core.services.sharepoint.soap.impl.DefaultNeorisSharePointQuoteNegotiationWebService" init-method="init" />
+	<!-- SharePoint beans -->
+	
+	<bean id="isAPIAttributeHandler" class="mx.neoris.core.attributehandlers.IsAPIAttributeHandler"   />
+	
+	<bean id="hasAPIProductsAttributeHandler" class="mx.neoris.core.attributehandlers.HasAPIProductsAttributeHandler"   />
+	
+	<bean id="hasNegPricesAttributeHandler" class="mx.neoris.core.attributehandlers.HasNegPricesAttributeHandler"   />
+	
+	<bean id="hasWishlist2APIProductsAttributeHandler" class="mx.neoris.core.attributehandlers.HasWishlist2APIProductsAttributeHandler" />
+	
+	
+	<!--  support beans for HSS Product and Orders -->
+	<bean id="isHSSAttributeHandler" class="mx.neoris.core.attributehandlers.IsHSSAttributeHandler"   />
+	
+	<bean id="hasHSSProductsAttributeHandler" class="mx.neoris.core.attributehandlers.HasHSSProductsAttributeHandler"   />
+	
+	<bean id="neorisHSSOrderSplitter" class="mx.neoris.core.orders.DefaultNeorisHSSOrderSplitter"/>
+	
+	<bean id="isFullyHSSAttributeHandler" class="mx.neoris.core.attributehandlers.IsFullyHSSAttributeHandler"   />
+	
+	<bean id="neorisSAPPublishOrdersQuotesJob" class="mx.neoris.core.jobs.NeorisSAPPublishOrdersQuotesJob" autowire="byName" />
+	
+</beans>

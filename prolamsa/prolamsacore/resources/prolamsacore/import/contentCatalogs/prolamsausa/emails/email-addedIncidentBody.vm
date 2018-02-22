@@ -1,0 +1,40 @@
+## messageSource=classpath:/prolamsacore/messages/email-addedIncident_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#set ($detailsURL = "${ctx.baseUrl}/incident/incidentDetail?incidentCode="+${ctx.incidentModel.code})
+
+<html>
+	<head>
+	</head>
+	<body >
+	<div>
+		<a href="${ctx.baseUrl}" target="_blank">
+			<img title="Prolamsa Logo" alt="Prolamsa Logo" src="${ctx.themeResourceUrl}/images/Prolamsa200x100.png" class="CToWUd">
+		</a>
+	</div>
+	<p>${ctx.messages.getMessage('headerText', ${ctx.userModel.uid},${ctx.incidentModel.code})}</p>
+	<p>${ctx.messages.getMessage('account', ${ctx.incidentModel.account.uid},${ctx.incidentModel.account.locName})}</p>
+	<p>${ctx.messages.getMessage('contactName', ${ctx.incidentModel.contactName})}</p>
+	
+	
+	#if ($!ctx.incidentModel.shipTo)
+		<p>${ctx.messages.getMessage('address', ${ctx.incidentModel.shipTo})}</p>
+	#else
+		<p>${ctx.messages.getMessage('address', "")}</p>
+	#end
+	
+	
+	<p>${ctx.messages.getMessage('email', ${ctx.incidentModel.email})}</p>
+	<p>${ctx.messages.getMessage('type', ${ctx.incidentModel.type.name})}</p>
+	<p>${ctx.messages.getMessage('invoice', ${ctx.incidentModel.invoiceNumber})}</p>
+	<p>${ctx.messages.getMessage('description', ${ctx.incidentModel.descriptionMax})}</p>
+	<p>${ctx.messages.getMessage('details')}<a href="$detailsURL">${ctx.messages.getMessage('here')}</a>
+	</body>
+</html>

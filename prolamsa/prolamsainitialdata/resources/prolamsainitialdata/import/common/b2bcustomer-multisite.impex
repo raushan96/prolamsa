@@ -1,0 +1,31 @@
+$lang=en
+
+# Customers
+$passwordEncoding=md5
+$defaultPassword=12341234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);baseStores(uid);groups(uid)[mode=append];permissionGroups(uid)[mode=append];sessionCurrency(isocode)[default='USD'];$setPassword;&B2BCustomerID
+;Ivan Castaneda;e-hicastaneda@neoris.com;e-hicastaneda@neoris.com;e-hicastaneda@neoris.com;Ivan Castaneda;mr;1000;Purchaser,Prolamsa-Group,b2bcustomergroup,Accounter,prolamsa_internal;;;;e-hicastaneda@neoris.com
+
+#
+# Create and assing sales rep by store
+#
+INSERT_UPDATE NeorisB2BCustomerSettingByStore;storeId[unique=true];setting[unique=true];b2bCustomerOwner(&B2BCustomerID)[unique=true];&settingRef
+;1000;2;e-hicastaneda@neoris.com;1000_2_e-hicastaneda@neoris.com
+;2000;345;e-hicastaneda@neoris.com;2000_345_e-hicastaneda@neoris.com
+;5000;567;e-hicastaneda@neoris.com;5000_567_e-hicastaneda@neoris.com
+
+UPDATE B2BCustomer;uid[unique=true];salesRepForStore(&settingRef)
+;e-hicastaneda@neoris.com;1000_2_e-hicastaneda@neoris.com,2000_345_e-hicastaneda@neoris.com,5000_567_e-hicastaneda@neoris.com
+
+#
+# Create and assing back offfice account by store
+#
+INSERT_UPDATE NeorisB2BCustomerSettingByStore;storeId[unique=true];setting[unique=true];b2bCustomerOwner(&B2BCustomerID)[unique=true];&settingRef
+;1000;12345678;e-hicastaneda@neoris.com;1000_12345678_e-hicastaneda@neoris.com
+;2000;678;e-hicastaneda@neoris.com;2000_678_e-hicastaneda@neoris.com
+;5000;890;e-hicastaneda@neoris.com;5000_890_e-hicastaneda@neoris.com
+
+UPDATE B2BCustomer;uid[unique=true];backOfficeAccountForStore(&settingRef)
+;e-hicastaneda@neoris.com;1000_12345678_e-hicastaneda@neoris.com,2000_678_e-hicastaneda@neoris.com,5000_890_e-hicastaneda@neoris.com

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsacockpits\resources" />
+    <src_description expected_position="9">
+      <src_folder value="file://$MODULE_DIR$/prolamsacockpits/src" expected_position="10" />
+      <src_folder value="file://$MODULE_DIR$/prolamsacockpits/testsrc" expected_position="11" />
+      <src_folder value="file://$MODULE_DIR$/prolamsacockpits/gensrc" expected_position="12" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsacockpits/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsacockpits">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacockpits/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacockpits/testsrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacockpits/gensrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="acceleratorservices" exported="" />
+    <orderEntry type="module" module-name="cscockpit" exported="" />
+    <orderEntry type="module" module-name="cmscockpit" exported="" />
+    <orderEntry type="module" module-name="productcockpit" exported="" />
+    <orderEntry type="module" module-name="reportcockpit" exported="" />
+    <orderEntry type="module" module-name="acceleratorcms" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsacockpits/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

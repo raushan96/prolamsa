@@ -1,0 +1,18 @@
+<Batch OnError="Return">
+	<Method ID="1" Cmd="New">
+		<Field Name="Date">%s</Field>
+		<Field Name="CustomerName">%s</Field>
+		<Field Name="Description">%s</Field>
+		<Field Name="HID">%s</Field>
+		<Field Name="CName">%s</Field>
+		<Field Name="DefectoH">%s</Field>
+		<Field Name="Telephone">%s</Field>
+		<Field Name="Email">%s</Field>
+		<Field Name="Invoice">%s</Field>
+		<Field Name="Location">%s</Field>
+		<Field Name="City">%s</Field>
+		<Field Name="Freight">%s</Field>
+		<Field Name="Status">%s</Field>
+		<Field Name="Materials"><![CDATA[<?xml version="1.0" encoding="utf-8"?><RepeaterData><Version /><Items>%s</Items></RepeaterData>]]></Field>
+	</Method>			   
+</Batch>

@@ -1,0 +1,15 @@
+$storeUid=prolamsa
+
+$catalogVersion=Online
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(catalog(id[default=$contentCatalog]),version[default='$catalogVersion'])
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid, $contentCV)
+# Catalog Restrictions
+;;StructuralTubingCategoryLink-GroupRestriction;StructuralTubingCategoryLink Restriction;Prolamsa-Group,TUBEST-Group-ProlamsaProductVisibility;false;StructuralTubingCategoryLink
+;;MechanicalTubingCategoryLink-GroupRestriction;MechanicalTubingCategoryLink Restriction;Prolamsa-Group,TUBMEC-Group-ProlamsaProductVisibility;false;MechanicalTubingCategoryLink
+;;MetalBuildingComponentsCategoryLink-GroupRestriction;MetalBuildingComponentsCategoryLink Restriction;Prolamsa-Group,POLINES-Group-ProlamsaProductVisibility;false;MetalBuildingComponentsCategoryLink
+# Roles Restrictions
+;;MY_STUFF_AccountBalanceCategoryLink-Restriction;Account Balance Restriction;Accounter;false;MY_STUFF_AccountBalanceCategoryLink
+;;MiniCart-Restriction;MiniCart Restriction;Purchaser;false;MiniCart
+;;QuickAccess-Restriction;QuickAccess Restriction;Purchaser;false;QuickAccessBarComponent

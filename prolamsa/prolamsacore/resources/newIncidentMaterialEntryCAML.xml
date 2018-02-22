@@ -1,0 +1,9 @@
+<Item>
+	<Lote type="System.String">%s</Lote>
+	<MaterialNumber type="System.String">%s</MaterialNumber>
+	<ProductDescription type="System.String">%s</ProductDescription>
+	<CantH type="System.String">%s</CantH>
+	<PesoH type="System.String">%s</PesoH>
+	<Pieces type="System.Double">%s</Pieces>
+	<PesoR type="System.String">%s</PesoR>
+</Item>

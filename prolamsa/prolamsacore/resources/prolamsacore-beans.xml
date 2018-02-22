@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2000-2013 hybris AG All rights reserved. 
+	This software is the confidential and proprietary information of hybris ("Confidential 
+	Information"). You shall not disclose such Confidential Information and shall 
+	use it only in accordance with the terms of the license agreement you entered 
+	into with hybris. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="mx.neoris.core.product.ProductInventoryEntry">
+		<property name="location" type="mx.neoris.core.enums.ProductLocation" />
+
+		<property name="availableStockBundles" type="java.lang.Integer" />
+		<property name="availableStockBundlesInternal" type="java.lang.Integer" />
+
+		<property name="rollingScheduleDates" type="java.util.List&lt;java.util.Date>"/>
+		<property name="rollingScheduleBundles" type="java.lang.Integer" />
+		
+		<property name="availableStockBundlesCol" type="java.util.List&lt;java.lang.Double>" />
+		<property name="availableStockBundlesColInternal" type="java.util.List&lt;java.lang.Double>" />
+		<property name="rollingScheduleBundlesCol" type="java.util.List&lt;java.lang.Double>" /> 
+		
+		<property name="noInventoyRoleBundles" type="java.lang.Integer" />
+		<property name="noInventoryRoleBundlesCol" type="java.util.List&lt;java.lang.Double>" />
+		
+		<property name="stockOuts" type="java.lang.String" />
+	</bean>
+	<bean class="mx.neoris.core.invoice.ValidateInvoiceResponse">
+		<property name="location" type="String" />
+		<property name="locationCode" type="mx.neoris.core.enums.ProductLocation" />
+		<property name="country" type="String"></property>
+		<property name="countryDisplay" type="String"></property>
+		<property name="incoterm" type="String"></property>
+		<property name="incotermDisplay" type="String"></property>
+		<property name="message" type="String"></property>
+		<property name="hasIncidentReports" type="boolean"/>
+		<property name="invoiceLines" type="java.util.List&lt;mx.neoris.core.invoice.ValidateInvoiceLineResponse>" />
+	</bean>
+		
+	<bean class="mx.neoris.core.invoice.ValidateInvoiceLineResponse">
+		<property name="shipTo" type="String"></property>
+		<property name="shipToDescription" type="String"></property>
+		<property name="customerName" type="String"></property>
+		<property name="invoice" type="String"></property>
+		<property name="invoice_p" type="Integer"></property>
+		<property name="sorder" type="String"></property>
+		<property name="sorder_p" type="Integer"></property>
+		<property name="product" type="String"></property>
+		<property name="productDescription" type="String"></property>
+		<property name="batch" type="String"></property>
+		<property name="netweight" type="Double"></property>
+		<property name="weightUnit" type="String"></property>
+		<property name="quantity" type="Integer"></property>
+		<property name="salesUnit" type="String"></property>
+		<property name="plant" type="String"></property>
+	</bean>
+	
+	<bean class="mx.neoris.core.incident.IncidentLine">
+		<property name="plant" type="String"></property>
+		<property name="salesUnit" type="String"></property>
+		<property name="quantity" type="Integer"></property>
+		<property name="quantityToClaim" type="Integer"></property>
+		<property name="weightUnit" type="String"></property>
+		<property name="netweight" type="Double"></property>
+		<property name="batch" type="Integer"></property>
+		<property name="sorder_p" type="String"></property>
+		<property name="sorder" type="String"></property>
+		<property name="product" type="String"></property>
+		<property name="invoice" type="String"></property>
+		<property name="invoice_p" type="String"></property>
+		<property name="shipTo" type="String"></property>
+		<property name="prodcutDescription" type="String"></property>
+	</bean>
+	
+</beans>
+
+

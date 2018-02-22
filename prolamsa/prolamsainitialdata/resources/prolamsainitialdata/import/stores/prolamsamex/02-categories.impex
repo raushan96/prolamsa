@@ -1,0 +1,174 @@
+# ImpEx for Importing Categories
+
+$storeUid=1000
+$productCatalog=$storeUidProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;CATALOG
+;TUBEST
+;TUBMEC
+;POLINES
+;PERESP
+;TUBEST_CUAD
+;TUBEST_RED
+;TUBEST_RECT
+;TUBEST_OVAL
+;TUBEST_ELIP
+;TUBMEC_CUAD
+;TUBMEC_RED
+;TUBMEC_RECT
+;TUBMEC_OVAL
+;TUBMEC_ELIP
+;POLINES_POLC
+;POLINES_POLZ
+;POLINES_CAN
+;POLINES_ANG
+;PERESP_PERF
+;PERESP_PMPK
+;PERESP_RIEL
+;PERESP_TABL
+#PRolamsa 14/08/2015
+;RED
+;RED_RED
+;RED_REDC
+;RED_REDCER
+;CUA
+;CUA_CUADTUBEST
+;CUA_CUADTUBMEC
+;RECT
+;REC_RECTTUBEST
+;REC_RECTTUBMEC
+;POL
+;POL_POLC
+;POL_POLZ
+;POL_POLA
+;ESP
+;ESP_OVAL
+;ESP_ELIP
+;PER
+;PER_PERF
+;PER_PMPK
+;PER_TABL
+;PER_DUEL
+;PER_RIEL
+;PER_PASA
+;PER_OTRO
+
+;CUA_HSS
+;REC_HSS
+;RED_HSS
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;TUBEST;CATALOG
+;TUBMEC;CATALOG
+;PERESP;CATALOG
+;POLINES;CATALOG
+;TUBEST_CUAD;TUBEST
+;TUBEST_RED;TUBEST
+;TUBEST_RECT;TUBEST
+;TUBEST_OVAL;TUBEST
+;TUBEST_ELIP;TUBEST
+;TUBMEC_CUAD;TUBMEC
+;TUBMEC_RED;TUBMEC
+;TUBMEC_RECT;TUBMEC
+;TUBMEC_OVAL;TUBMEC
+;TUBMEC_ELIP;TUBMEC
+;POLINES_POLC;POLINES
+;POLINES_POLZ;POLINES
+;POLINES_CAN;POLINES
+;POLINES_ANG;POLINES
+;PERESP_PERF;PERESP
+;PERESP_PMPK;PERESP
+;PERESP_RIEL;PERESP
+;PERESP_TABL;PERESP
+
+
+#PRolamsa 14/08/2015
+;RED_RED;RED
+;RED_REDC;RED
+;RED_REDCER;RED
+;CUA_CUADTUBEST;CUA
+;CUA_CUADTUBMEC;CUA
+;REC_RECTTUBEST;RECT
+;REC_RECTTUBMEC;RECT
+;POL_POLC;POL
+;POL_POLZ;POL
+;POL_POLA;POL
+;ESP_OVAL;ESP
+;ESP_ELIP;ESP
+;PER_PERF;PER
+;PER_PMPK;PER
+;PER_TABL;PER
+;PER_DUEL;PER
+;PER_RIEL;PER
+;PER_PASA;PER
+;PER_OTRO;PER
+
+;CUA_HSS;CUA
+;REC_HSS;RECT
+;RED_HSS;RED
+
+# ImpEx for Importing Categories
+
+$lang=en
+
+# Insert Language
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalog;Catalog
+;;TUBEST;Structural Tubing;Structural Tubing
+;;TUBMEC;Mechanical Tubing;Mechanical Tubing
+;;POLINES;Metal Building Components;Metal Building Components
+;;PERESP;Special Profiles;Special Profiles
+;;TUBEST_CUAD;SQR Square;SQR Square
+;;TUBEST_RED;RND Round;RND Round
+;;TUBEST_RECT;RECT Rectangular;RECT Rectangular
+;;TUBMEC_CUAD;SQR Square;SQR Square
+;;TUBMEC_RED;RND Round;RND Round
+;;TUBMEC_RECT;RECT Rectangular;RECT Rectangular
+;;TUBMEC_OVAL;OVAL Oval;OVAL Oval
+;;POLINES_POLC;CP C Purlin;CP C Purlin
+;;POLINES_POLZ;ZP Z Purlin;ZP Z Purlin
+;;POLINES_CAN;CHAN Channel;CHAN Channel
+;;POLINES_ANG;ANG Angle;ANG Angle
+;;PERESP_PERF;Windows;Windows
+;;PERESP_PMPK;Frames and Doors;Frames and Doors
+;;PERESP_RIEL;Rail;Rail
+;;PERESP_TABL;Boards and Planks;Boards and Planks
+
+;;CUA_HSS;HSS;HSS
+;;REC_HSS;HSS;HSS
+;;RED_HSS;HSS;HSS
+
+$lang=es
+
+# Insert Language, avoid accents or special chars as are used on urls
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalogo;Catalogo
+;;TUBEST;Tuberia Estructural;Tuberia Estructural
+;;TUBMEC;Tuberia Mecanica;Tuberia Mecanica
+;;POLINES;Componentes Estructurales;Componentes Estructurales
+;;PERESP;Perfiles Especiales;Perfiles Especiales
+;;TUBEST_CUAD;Cuadrado;Cuadrado
+;;TUBEST_RED;Redondo;Redondo
+;;TUBEST_RECT;Rectangular;Rectangular
+;;TUBMEC_CUAD;Cuadrado;Cuadrado
+;;TUBMEC_RED;Redondo;Redondo
+;;TUBMEC_RECT;Rectangular;Rectangular
+;;TUBMEC_OVAL;Ovalo;Ovalo
+;;POLINES_POLC;Polin C;Polin C
+;;POLINES_POLZ;Polin Z;Polin Z
+;;POLINES_CAN;Canal;Canal
+;;POLINES_ANG;Angulo;Angulo
+;;PERESP_PERF;Ventaneros;Ventaneros
+;;PERESP_PMPK;Marcos y Puertas;Marcos y Puertas
+;;PERESP_RIEL;Riel;Riel
+;;PERESP_TABL;Tableros y Duelas;Tableros y Duelas
+
+;;CUA_HSS;HSS;HSS
+;;REC_HSS;HSS;HSS
+;;RED_HSS;HSS;HSS

@@ -1,0 +1,643 @@
+$storeUid=prolamsamex
+
+$catalogVersion=Online
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=$catalogVersion])[default=$contentCatalog:$catalogVersion]
+$picture=media(code, $contentCV);
+
+# Language
+$lang=es
+
+# Site Logo Component
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;/images/company-logo.png
+
+# CMS Image Components
+UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+ ;;AboutAcceleratorLink;"Acerca del Commerce Accelerator"
+ ;;AboutHybrisLink;"Acerca de Hybris"
+ ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+ 
+ #New Footer Links
+ ;;AboutProlamsaLink;"Acerca de Prolamsa"
+ ;;QualityPolicyLink;"Normas de Calidad"
+ ;;PrivatePolicyLink;"Aviso de Privacidad"
+ ;;TermsAndConditionsLink;"Términos y Condiciones"
+ ;;ContactUsLink;"Contacto"
+ ;;NoticesLink;"Descargas"
+ 
+ ;;StructuralTubingCategoryLink;"Tub. Estructural"
+ ;;MechanicalTubingCategoryLink;"Tub. MecÃ¡nica"
+ ;;MetalBuildingComponentsCategoryLink;"Comp. Estructurales"
+ ;;SpecialProfilesCategoryLink;"Perfiles Especiales"
+ ;;ContactUsLink;"ContÃ¡ctanos"
+ ;;DocumentationLink;"DocumentaciÃ³n"
+ ;;FacebookLink;"Facebook"
+ ;;HomepageNavLink;"Inicio"
+ ;;LinkedInLink;"Linked In"
+ 
+ ;;ManageBudgetsLink;"Administrar Presupuestos"
+ ;;ManageBusinessUnitsLink;"Manage Business Units"
+ ;;ManageCostCentersLink;"Manage Cost Centers"
+ ;;ManagePermissionsLink;"Manage Permissions"
+ ;;ManageUsergroupsLink;"Manage Usergroups"
+ ;;ManageUsersLink;"Administrar Usuarios"
+ ;;MyCompanyLink;"Mi Empresa"
+ ;;TwitterLink;"Twitter"
+ ;;TermsAndConditionsLink;"Términos y Condiciones"
+ ;;QuickAccessCategoryLink;"Comprar"
+ ;;MyStuffCategoryLink;"Mi Cuenta"
+ 
+#SubMenu Links
+#TUBEST
+ ;;TUBEST_CUADCategoryLink;"Cuadrado"
+ ;;TUBEST_REDCategoryLink;"Redondo"
+ ;;TUBEST_RECTCategoryLink;"Rectangular"
+ ;;TUBEST_OVALCategoryLink;"Ovalado"
+ ;;TUBEST_ELIPCategoryLink;"ElÃ­ptico"
+#TUBMEC 
+ ;;TUBMEC_CUADCategoryLink;"Cuadrado"
+ ;;TUBMEC_REDCategoryLink;"Redondo"
+ ;;TUBMEC_RECTCategoryLink;"Rectangular"
+ ;;TUBMEC_OVALCategoryLink;"Ovalado"
+ ;;TUBMEC_ELIPCategoryLink;"ElÃ­ptico"
+#POLINES
+ ;;POLINES_POLCCategoryLink;"Polin C"
+ ;;POLINES_POLZCategoryLink;"Polin Z"
+ ;;POLINES_CANCategoryLink;"Canal"
+ ;;POLINES_ANGCategoryLink;"Angulo"
+#PERFESP
+ ;;PERESP_PERFCategoryLink;"Ventaneros"
+ ;;PERESP_PMPKCategoryLink;"Marcos y Puertas"
+ ;;PERESP_RIELCategoryLink;"Riel"
+ ;;PERESP_TABLCategoryLink;"Tableros y Duelas"
+ 
+ #REDONDOS14/08/2015
+;;RED_CategoryLink;"Redondos"
+;;RED_RED_CategoryLink;"TuberÃ­a"
+;;RED_REDC_CategoryLink;"CÃ©dulas"
+;;RED_REDCER_CategoryLink;"Tubo Cerquero"
+;;RED_HSS_CategoryLink;"HSS"
+
+#CUADRADOS
+;;CUA_CategoryLink;"Cuadrados"
+;;CUA_CUADTUBEST_CategoryLink;"PTR"
+;;CUA_CUADTUBMEC_CategoryLink;"Perfiles"
+;;CUA_HSS_CategoryLink;"HSS"
+
+#RECTANGULARES
+;;RECT_CategoryLink;"Rectangulares"
+;;RECT_RECTTUBEST_CategoryLink;"PTR"
+;;RECT_RECTTUBMEC_CategoryLink;"Perfiles"
+;;RECT_HSS_CategoryLink;"HSS"
+
+#POLINES 
+;;POL_CategoryLink;"Polines"
+;;POL_POLC_CategoryLink;"PolÃ­n C"
+;;POL_POLZ_CategoryLink;"PolÃ­n Z"
+;;POL_POLA_CategoryLink;"PolÃ­n AvÃ­cola"
+
+#ESPECIALES
+;;ESP_CategoryLink;"Especiales"
+;;ESP_OVAL_CategoryLink;"Ovalados"
+;;ESP_ELIP_CategoryLink;"ElÃ­pticos"
+
+#PERFILES
+;;PER_CategoryLink;"Perfiles"
+;;PER_PERF_CategoryLink;"Ventanas"
+;;PER_PMPK_CategoryLink;"Puertas"
+;;PER_TABL_CategoryLink;"Tableros"
+;;PER_DUEL_CategoryLink;"Duelas"
+;;PER_RIEL_CategoryLink;"Rieles"
+;;PER_PASA_CategoryLink;"Pasamanos"
+;;PER_OTRO_CategoryLink;"Otros"
+ 
+ 
+#QUICK_ACCESS
+ ;;QUICK_ACCESS_CustomerFavoriteProductsManageLink;"Adm Prod Favoritos"
+ ;;QUICK_ACCESS_CustomerFavoriteProductsListLink;"Consulta Favoritos"
+ ;;QUICK_ACCESS_OrderFormCategoryLink;"Carga con Códigos"
+ ;;QUICK_ACCESS_ExcelCategoryLink;"Subir Excel"
+ ;;QUICK_ACCESS_DraftTemplateCategoryLink;"Borradores y Plantillas"
+ ;;QUICK_ACCESS_UseQuoteFromCategoryLink;"Cotizaciones"
+#MY_STUFF
+ ;;MY_STUFF_PendingOrdersCategoryLink;"Backorder"
+ ;;MY_STUFF_OrderHistoryCategoryLink;"Mis Pedidos"
+ ;;MY_STUFF_AccountBalanceCategoryLink;"Estado de Cuenta"
+ ;;MY_STUFF_RelatedDocumentsCategoryLink;"Consulta de Documentos"
+ ;;MY_STUFF_BatchCategoryLink;"Consulta de Lotes"
+ 
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=$lang];url;&componentRef;target(code)[default='sameWindow']
+;;QuickAccessCategoryLink;Quick Access Category Link;Comprar;/;QuickAccessCategoryLink
+;;MyStuffCategoryLink;My Stuff Category Link;Mi Cuenta;/;MyStuffCategoryLink
+
+# Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+# CMS Mini Cart Component
+UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;MiniCart;"TU CARRITO"
+
+# CMS tabs components
+UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang];content[lang=$lang]
+;;deliveryTab;LogÃ­stica y Embarque;"<table border=""0"" cellspacing=""0"" cellpadding=""10"" style=""border-collapse: collapse empty-cells: show font-size: 12px padding: 0px margin: 0px border: 0px initial initial""><tbody><tr style=""padding: 0px margin: 0px""><td colspan=""4"" style=""vertical-align: top text-align: left font-weight: normal padding: 0px margin: 0px""><div style=""padding-top: 10px padding-right: 0px padding-bottom: 0px padding-left: 0px border-bottom-width: 1px border-bottom-style: solid border-bottom-color: #8edf75 height: 30px border-top-width: 1px border-top-style: solid border-top-color: #8edf75 margin: 0px""><strong style=""font-weight: bold padding: 0px margin: 0px""><span style=""color: #285190 font-size: 14px padding: 0px margin: 0px""></span></strong></div></td></tr><tr style=""padding: 0px margin: 0px""><td colspan=""4"" style=""vertical-align: top text-align: left font-weight: normal padding: 0px margin: 0px""><strong style=""font-weight: bold padding: 0px margin: 0px"">Servicio de envï¿½o por camiï¿½n o ferrocarril<br /></strong>Cualquier tipo de medio de transporte<br />Respuesta a solicitudes de informaciï¿½n y atenciï¿½n las 24 horas del dï¿½a<br />Planeaciï¿½n de cargas por medio de programa de citas<br />Seguimiento al envï¿½o mediante rastreo satelital<br /><br /><strong style=""font-weight: bold padding: 0px margin: 0px"">Servicio de embarques/ Cuidado de la mercancï¿½a<br /></strong>Cubicaje ï¿½ptimo<br />Documentaciï¿½n de embarque en sistema con registro fotogrï¿½fico<br />Atenciï¿½n a urgencias<br />Embarques seguros (en PROLAMSA nos aseguramos de que todos los transportistas cuenten con su equipo de seguridad de carga, como estacas, bandas y lonas, ademï¿½s de que las unidades se encuentren en perfecto estado)<br />Certificaciï¿½n C-TPAT #15536760 (Customs-Trade Partnership Against Terrorism)<br /><br /><strong style=""font-weight: bold padding: 0px margin: 0px"">Transporte a cargo de PROLAMSA (CIP)</strong><br />Contrataciï¿½n de unidades con tarifas competitivas<br />Entregas puerta-puerta y con repartos<br />Seguro PROLAMSA<br /><strong style=""font-weight: bold padding: 0px margin: 0px>";
+
+# CMS Footer Component
+UPDATE FooterComponent;$contentCV[unique=true];uid[unique=true];notice[lang=$lang]
+ ;;FooterComponent;"Â© 2013 hybris software"
+
+# CMS Paragraph Component (Contact information)
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;ContactInfo;"Llámanos: (81) 8154 0200 Ext. 11314"
+ ;;NewCustomerContactCenterParagraphComponent;"Interested in becoming a new customer? Call our customer service team on INFORMACION_PENDIENTE to register!"
+
+# CMS ProductReferences Components
+UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;AccessoriesProductReferencesComponent;"Accessories"
+
+# Category Pages
+UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+
+# CMS Navigation Nodes
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;ProlamsaNavNode;"QuiÃ©nes Somos"
+ ;;CustomerNavNode;"Servicio al Cliente"
+ 
+ ;;MyCompanyLinksNavNode;"Mi Empresa"
+ ;;SiteRootNode;"SiteRoot"
+ ;;StructuralTubingNavNode;"Structural Tubing"
+ ;;MechanicalTubingNavNode;"Mechanical Tubing"
+ ;;MetalBuildingComponentsNavNode;"Metal Building Components"
+ ;;SpecialProfilesNavNode;"Special Profiles"
+ ;;QuickAccessNavNode;"Acceso RÃ¡pido"
+ ;;MyStuffNavNode;"Mis Ordenes"
+
+
+# CMS Paragraph Component
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang];
+;;termsAndConditionsTextParagraph;"
+	<div class=""grid-container"" style=""width:790px"">
+	<div class=""span-4 aside-left"">
+	<div class=""span-4 nav_column myAccount"">
+	<div class=""title_holder"">
+	<div class=""title"">
+	<h2 style=""font-size:.84em"">Terminos y Condiciones</h2>
+	</div>
+	<div class=""item"">
+	<ul class=""facet_block indent"">
+	<li><a href=""#a00"">CONDICIONES DE USO</a></li>
+	<li><a href=""#b00"">PROPIEDAD INTELECTUAL</a></li>
+	<li><a href=""#c00"">PROPIEDAD INDUSTRIAL</a></li>
+	<li><a href=""#d00"">PROPIEDAD INDUSTRIAL E INTELECTUAL DE TERCEROS</a></li>
+	<li><a href=""#e00"">USO</a></li>
+	<li><a href=""#f00"">PRECIOS</a></li>
+	<li><a href=""#g00"">PROHIBICIONES</a></li>
+	<li><a href=""#h00"">SERVICIOS Y CONTENIDOS</a></li>
+	<li><a href=""#i00"">SERVICIOS Y CONTENIDOS DE TERCEROS PROVEEDORES</a></li>
+	<li><a href=""#j00"">USO DE LA INFORMACION NO CONFIDENCIAL</a></li>
+	<li><a href=""#k00"">QUEJAS Y RECLAMACIONES</a></li>
+	<li><a href=""#l00"">LIBERACION DE RESPONSABILIDAD</a></li>
+	<li><a href=""#m00"">LEYES APLICABLES Y JURISDICCION</a></li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	</div>
+	<a name=""00""></a>
+	<div class=""span-20 last main-right"" style=""width:543px"">
+	<div class=""title_holder"">
+	<h2><a name=""a00""></a>CONDICIONES DE USO</h2>
+	</div>
+	<div class=""item_container"">
+	<p>El acceso y la utilización de este Sitio o Portal denominado supone la expresa aceptación de usted como usuario a los presentes Términos y Condiciones de Uso y Privacidad.
+	<br>
+	Los siguientes términos establecen los derechos de Usted (""Usuario"") y limitan los alcances de responsabilidad de Productos Laminados de Monterrey S.A. de C.V. (""PROLAMSA"") derivados del uso de nuestro portal de Internet o las páginas o sitios hospedados, ubicados o ligados al o en el mismo, el cual se ubica en la dirección www.prolamsa.com., por lo que le sugerimos leerlos cuidadosamente, toda vez que nos reservamos el derecho de modificarlos sin previo aviso ni responsabilidad.
+	<br>
+	PROLAMSA tiene el derecho a limitar el acceso o utilización total o parcialmente, así como modificar en cualquier momento los Servicios y Contenidos.
+	<br>
+	PROLAMSA no garantiza de manera alguna la disponibilidad o continuidad de la operación de su portal ni de sus Contenidos, así como de su utilidad respecto de alguna actividad específica o en la toma de decisiones. PROLAMSA no será responsable por daños o pérdida alguna de cualquier naturaleza que pueda ser causado debido a la falta de disponibilidad.
+	</p>		
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""b00""></a>PROPIEDAD INTELECTUAL</h2>
+	</div>
+	<div class=""item_container"">
+	<p>Todos los derechos reservados por Productos Laminados de Monterrey S.A.de C.V. El contenido de este portal de Internet (incluyendo de manera enunciativa mas no limitativa: texto, imágenes, gráficas, archivos con sonido, animación, videos y sus adaptaciones en el sitio de Internet de PROLAMSA) está protegido con derechos de propiedad intelectual. Estos objetos no deberán ser copiados para uso comercial o de distribución, ni deberán ser modificados o colocados en otros sitios. Parte del contenido de nuestras páginas de Internet puede incluir materiales cuya propiedad intelectual pertenezca a proveedores de PROLAMSA.
+	<br>
+	PROLAMSA autoriza a sus usuarios a descargar (""download"") todo aquel material contenido en este sitio de Internet susceptible de serlo para uso estrictamente personal. Cualquier reproducción total o parcial así como cualquier intento de realizar o la realización efectiva de adiciones o en general de cualesquiera alteraciones al contenido de este sitio, sin la autorización previa y por escrito de PROLAMSA queda prohibida y será sancionada en los términos que determinen las leyes en vigor en los Estados Unidos Mexicanos.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""c00""></a>PROPIEDAD INDUSTRIAL</h2>
+	</div>
+	<div class=""item_container"">
+	<p>Los derechos de propiedad industrial de PROLAMSA, así como los Servicios y Contenidos presentados, signos distintivos y dominios están protegidos por la legislación vigente, y son propiedad exclusiva de PROLAMSA, sus subsidiarias y/ o afiliadas. El usuario reconoce y acepta que no adquiere derecho alguno de propiedad industrial por el simple acceso al Portal de PROLAMSA y en ningún momento dicho uso o acceso será considerado como una autorización, consentimiento o licencia para servirse de los Servicios y Contenidos con fines distintos a los que se contemplan en los presentes Términos y Condiciones de Uso y Privacidad.
+	<br>
+	Las marcas citadas en el sitio, los logotipos y personajes se encuentran legalmente registradas por Productos Laminados de Monterrey S.A. de C.V. y las utiliza para identificar y comercializar sus productos en México y otros países con base en las licencias que previamente le han sido otorgadas y debidamente registradas ante el Instituto Mexicano de la Propiedad Industrial y autoridades en la materia de los diferentes países, para esos efectos.
+	<br>
+	Se prohíbe expresamente al usuario modificar, alterar o suprimir, ya sea en forma total o parcial, las marcas, nombres y avisos comerciales, señas, anuncios, logotipos o en general cualquier indicación que se refiera a la propiedad de la información contenida en el Sitio. Cualquier infracción a las mismas será castigada conforme a la ley de la materia.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"" style=""height:86px"">
+	<h2><a name=""d00""></a>PROPIEDAD INDUSTRIAL E INTELECTUAL DE TERCEROS</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	Los derechos de propiedad industrial de los Servicios y Contenidos de este Portal referidos a terceros, signos distintivos y dominios, en su caso, están protegidos por la legislación vigente y son propiedad exclusiva de dichos terceros. El usuario reconoce y acepta que no adquiere derecho alguno de propiedad industrial por el simple acceso al sitio, a los vínculos de acceso de los terceros o por el uso de dichos Servicios y Contenidos, y en ningún momento el uso o acceso será considerado como una autorización, consentimiento o licencia de cualquier tercero para utilizar los Servicios y Contenidos con fines distintos a los que se contemplan en los presentes Términos y Condiciones de Uso y Privacidad, salvo que el tercero así lo establezca expresamente.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""e00""></a>USO</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	El uso y aprovechamiento de los Servicios y Contenidos del portal de PROLAMSA es exclusiva responsabilidad del usuario, quien en todo caso deberá servirse de ellos acorde a las funcionalidades del propio sitio, cumpliendo con lo establecido en la legislación aplicable y en las Condiciones Particulares que se establezcan.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""f00""></a>PRECIOS</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	Todos los precios están basados en el Precio de Venta Sugerido al Público por kilogramo, Centros de Servicio o Plantas Productivas en pesos Mexicanos, Dólares Americanos y Euros según aplique al producto y no incluyen impuestos tales como el I.V.A (Impuesto al Valor Agregado) y otros aplicables para cada región. Todos los precios y promociones aquí mostrados están sujetos a cambio sin previo aviso y sin obligación alguna para PROLAMSA.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""g00""></a>PROHIBICIONES</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	Al usuario le está prohibido establecer vínculos de acceso, ""hiperligas"" o cualquier otra forma de enlace de y hacia el portal de Prolamsa, así como el colocar o utilizar los Servicios y Contenidos en sitios o páginas ajenas a PROLAMSA o comercializarla de cualquier forma servirse de los Servicios y Contenidos sin la autorización previa y por escrito de PROLAMSA, sus filiales, afiliadas y/o subsidiarias o de terceros, según sea el caso. Asimismo, al usuario le está prohibido limitar o impedir por cualquier medio a cualquier otro usuario el uso de este Portal.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""h00""></a>SERVICIOS Y CONTENIDOS</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	PROLAMSA es responsable de la información contenida en este sitio. Sin embargo, no es responsable de los daños y/o perjuicios que pudiera sufrir el usuario como consecuencia de la toma de decisiones con base en la información presentada en el portal, la cual es de naturaleza general e informativa, por lo que el usuario debe tomarla en cuenta únicamente como referencia para la adopción de decisiones personales.
+	<br>
+	Toda la información facilitada por PROLAMSA tal y como figura en este sitio de Internet, se ofrece sin ningún tipo de garantía, ya sea implícita o explícita. Aún considerando en principio que el contenido publicado sea correcto, éste podría contener errores o imprecisiones, por lo que le sugerimos repita su visita frecuentemente.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"" style=""height:86px"">
+	<h2><a name=""i00""></a>SERVICIOS Y CONTENIDOS DE TERCEROS PROVEEDORES</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	Respecto de aquellos Servicios y Contenidos que proporcionan terceros dentro de este portal de Internet mediante enlaces, ligas, banners, botones u otras formas equivalentes, PROLAMSA no tiene responsabilidad alguna, ya que no existe ningún tipo de relación laboral, asociación o sociedad, y se limita exclusivamente, para conveniencia del usuario, a: (i) informarle sobre los Servicios y Contenidos que proporcionan dichos terceros proveedores, y (ii) proporcionar un medio para ponerles mutuamente en contacto.
+	<br>
+	La inclusión de dichas páginas y/o enlaces de terceros proveedores no implica la aprobación, respaldo, patrocinio, recomendación o garantía por parte de PROLAMSA, sus filiales, afiliadas o subsidiarias, respecto de los Servicios y Contenidos que se ofrecen y comercializan en los mismos.
+	<br>
+	PROLAMSA se obliga a mantener confidencial la información que en su caso reciba del usuario que tenga dicho carácter, conforme a las disposiciones legales aplicables. PROLAMSA no asume ninguna obligación de mantener confidencial cualquier otra información que el usuario le proporcione, incluyendo aquella información que el usuario proporcione a través de boletines, pizarras o plática en línea (chats), así como la información que obtenga PROLAMSA a través del envío de los mensajes de datos conocidos como ""Cookies"".
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"" style=""height:86px"">
+	<h2><a name=""j00""></a>USO DE LA INFORMACION NO CONFIDENCIAL</h2>
+	</div>
+	<div class=""item_container"">
+	<p>Mediante el uso de este sitio de internet el usuario autoriza a PROLAMSA a utilizar, publicar, reproducir, divulgar, comunicar públicamente y transmitir la información no confidencial en términos de lo establecido en el artículo 109 de la Ley Federal de los Derechos de Autor.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""k00""></a>QUEJAS Y RECLAMACIONES</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	En caso de que Usted tenga alguna reclamación o aclaración derivada de transacciones celebradas en nuestro portal o dudas acerca de nuestros productos, lo invitamos para a que nos contacte para que en breve alguno de nuestros representantes lo visite.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""l00""></a>LIBERACION DE RESPONSABILIDAD</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	PROLAMSA no asume ninguna responsabilidad por el funcionamiento de este sitio de Internet o por cualesquiera daños y/o perjuicios que pudieran derivarse de su uso, incluyendo de manera enunciativa mas no limitativa, por virus, la presencia de elementos operados y mostrados en los sitios de Internet por cualquier tercero distinto a PROLAMSA o la presencia de elementos publicitarios que pudieran ofender al Usuario.
+	<br>
+	PROLAMSA tiene el derecho de modificar en cualquier momento los presentes Términos y Condiciones de Uso y Privacidad y las Condiciones Particulares que le correspondan. En consecuencia, el usuario deberá leer y entender los mismos cada vez que pretenda utilizar este Portal.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	<div class=""title_holder"">
+	<h2><a name=""m00""></a>LEYES APLICABLES Y JURISDICCION</h2>
+	</div>
+	<div class=""item_container"">
+	<p>
+	Para la interpretación, cumplimiento y ejecución de los presentes Términos y Condiciones de Uso y Privacidad y las Condiciones Particulares que correspondan, las partes están de acuerdo en que serán aplicables las Leyes federales de los Estados Unidos Mexicanos y competentes los tribunales de la Ciudad de México, Distrito Federal, renunciando expresamente a cualquier otro fuero o jurisdicción que pudiera corresponderles en razón de sus domicilios presentes o futuros o por cualquier otra causa.
+	</p>
+	<a class=""pagetop-link"" href=""#00"">back to top</a>
+	</div>
+	</div>";
+##################term cond FIN##################
+	
+#FAQ
+;;FAQTextParagraph;"    
+			<div class=""grid-container"">		
+			<div class=""span-4 aside-left"">
+			<div class=""span-4 nav_column myAccount"">
+			<div class=""title_holder"">
+			<div class=""title"">
+			<h2>Frequently Asked Questions</h2>
+			</div>
+			<div class=""item"">
+			<br>
+			<h2>YOUR ACCOUNT</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a00"">Reviewing Your Order Status</a></li>	
+			<li><a href=""#b00"">Reviewing or Changing Your Email Address, Password, and Security Question and Answer</a></li>	
+			<li><a href=""#c00"">Reviewing or Changing Your Address Book</a></li>				
+			</ul>
+            </div>			
+									
+			<div class=""item"">
+			<br>
+			<h2>PLACING AN ORDER</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a01"">Your Shopping Card</a></li>	
+			<li><a href=""#b01"">How to Buy</a></li>	
+			<li><a href=""#c01"">Delivery Times, Shipping Rates, and Tax Information</a></li>				
+			<li><a href=""#d01"">General Tax Info</a></li>				
+			<li><a href=""#e01"">Canceling or Modifying an Order</a></li>				
+			<li><a href=""#f01"">Refund and Returns Policies</a></li>									
+			</ul>	
+			</div>
+			
+			<div class=""item"">
+			<br>
+			<h2>GENERAL TOPICS</h2>
+			<ul class=""facet_block indent"">
+			<li><a href=""#a02"">New Customers</a></li>	
+			<li><a href=""#b02"">Downloadable PDFs</a></li>	
+			<li><a href=""#c02"">How long is a Price Quote valid?</a></li>												
+			</ul>	
+			</div>
+			</div>
+			</div>
+			</div>						
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-right"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>Reviewing Your Order Status</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"" style=""height: 100px"">	
+				<h2><a name=""b00""></a>Reviewing or Changing Your Email Address, Password, and Security Question and Answer</h2>					
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c00""></a>Reviewing or Changing Your Address Book</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>
+				
+				
+				<div class=""title_holder"">
+				<h2><a name=""a01""></a>Your Shopping Card</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""b01""></a>How to Buy</h2>	
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c01""></a>Delivery Times, Shipping Rates, and Tax Information</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">
+				<h2><a name=""d01""></a>General Tax Info</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">
+				<h2><a name=""e01""></a>Canceling or Modifying an Order</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""f01""></a>Refund and Returns Policies</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+
+
+				<div class=""title_holder"">
+				<h2><a name=""a02""></a>New Customers</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	</div>	
+				<div class=""title_holder"">		
+				<h2><a name=""b02""></a>Downloadable PDFs</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>		
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>	
+				<div class=""title_holder"">	
+				<h2><a name=""c02""></a>How long is a Price Quote valid?</h2>
+				</div>
+				<div class=""item_container"">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				<a class=""pagetop-link"" href=""#00"">back to top</a>	
+				</div>				
+                </div>";
+	
+	
+	
+#Static Pages
+		########################INICIO########################################################
+#qualityPolicyTextParagraph
+;;qualityPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+			
+			;;privacyPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+
+			;;siteMapTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;feedbackTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;returnPolicyTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;valuesAndBenefitsTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;buyerGuidesTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+			;;takeTheTourTextParagraph;"
+			<div class=""grid-container"">		
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-rightXXX"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>A</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem augue, luctus interdum pellentesque ut, luctus congue ligula. Sed adipiscing lacus sit amet libero accumsan volutpat. Sed porta semper dui ut interdum. Suspendisse vitae eleifend quam. Nunc eu felis in diam ultricies ultricies nec at arcu. Etiam vehicula enim arcu, vel viverra arcu. Vivamus varius adipiscing posuere.</br>Maecenas interdum varius metus, sed feugiat lorem iaculis non. Donec congue, nulla quis ultrices euismod, dui odio fringilla risus, ac ultrices sapien ipsum sed lectus. Quisque accumsan ligula tincidunt arcu condimentum at dignissim lacus dapibus. Pellentesque fermentum nunc eget lectus vestibulum sagittis. Aenean iaculis, nulla sit amet condimentum suscipit, sapien odio pretium dui, sed euismod nunc risus cursus nibh. Sed volutpat, ante in scelerisque cursus, elit elit pellentesque magna, eu semper tellus magna et massa. Nullam erat lorem, porttitor eget mollis tempus, blandit quis velit. Curabitur turpis orci, sollicitudin eget dapibus a, pulvinar sed lorem. Sed ac felis metus, sed tempor odio.</p>
+				</div>	
+				</div>
+			</div> <br>";
+			
+			;;orderConditionsTextParagraph;"
+			<div class=""grid-container"" style=""width:800px"">	
+		   <a name=""00""></a>	
+			<div class=""span-20 last main-right"" style=""width:753px"">				
+				<div class=""title_holder"">
+				<h2><a name=""a00""></a>Condiciones de la orden</h2>
+				</div>
+				<div class=""item_container"">	
+				<p>1.- LOS PRECIOS EN ESTA ORDEN SON EN DESTINO FOB.<br>
+					2.- EL PESO TEORICO PUEDE VARIAR +-5%.<br>
+					3.- PARA PRODUCTOS NO EXISTENTES EN STOCK LA CANTIDAD FINAL PUEDE VARIAR +- 10%<br>
+					4.- NO SE ACEPTAN CANCELACIONES DE PRODUCTOS FUERA DE INVENTARIO UNA VEZ QUE LA ORDEN HAYA SIDO CONFIRMADA.<br><br>
+					Al crear la orden, usted reconoce y acepta las condiciones anteriormente mencionadas.
+				</p>
+				</div>	
+				</div>
+			</div> <br>";
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
+
+UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ 
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;NoSearchResultsParagraphComponent;"<h2>Sorry, we couldn't find any results for your search</h2><p>Suggestions:</p><ul><li>You may have typed your keywords incorrectly - please check for misspellings.</li><li>You may have been too specific - please broaden your search by using fewer keywords.</li><li>Browse our products by selecting a category above.</li></ul>";
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;EmptyCartParagraphComponent;"<h2>Your shopping cart is empty</h2><p>Suggestions</p><ul><li>Browse our products by selecting a category above</li></ul>";
+
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+ ;;HelpParagraphComponent;"<div class=""helpBanner""><span class=""icon-alert""></span><br><span class=""bannerHeadline"">Â¿NECESITA AYUDA?</span><br><span class=""bannerText"">Click aquÃ­ para ayuda</span><br><a href=""#"" class=""button"">Ayuda!</a></div>";
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+ 
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+ 

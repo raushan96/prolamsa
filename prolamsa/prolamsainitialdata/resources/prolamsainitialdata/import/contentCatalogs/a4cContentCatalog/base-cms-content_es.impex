@@ -1,0 +1,44 @@
+$storeUid=a4c
+
+# Import the CMS content for the Prolamsa site
+#
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$lang=es
+
+# Content Pages
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;account;Tu Cuenta;
+ ;;add-edit-address;Agregar/Editar Dirección;
+ ;;address-book;Directorio;
+ ;;cartPage;Tu Carro de Compra;
+ ;;checkout-login;Continuar a Checkout;
+ ;;homepage;Inicio;
+ ;;login;Registro;
+ ;;multiStepCheckoutPage;Checkout;
+ ;;my-quotes;Mis Cotizaciones;
+ ;;my-replenishment-orders;My Replenishment Orders;
+ ;;notFound;No Encontrado;
+ ;;order;Detalles de Ordenes;
+ ;;orderConfirmationPage;Confirmación de Orden;
+ ;;orders;Historial de Ordenes;
+ ;;payment-details;Detalles de Pago;
+ ;;profile;Perfil;
+ ;;searchAdvancedEmpty;Búsqueda Avanzada;
+ ;;searchEmpty;No hay Resultados;
+ ;;singleStepCheckoutSummaryPage;Checkout;
+ ;;storefinderPage;Buscador de Tiendas; 
+ ;;updatePassword;Actualizar Contraseña Olvidada; 
+ ;;termsAndConditions;Términos y Condiciones;
+ ;;FAQ;Preguntas Frecuentes;
+ ;;ContactUs;Contáctanos;    
+ ;;qualityPolicy;Política de Calidad;
+ ;;privacyPolicy;Política de Privacidad;
+ ;;siteMap;Mapa del Sitio;
+ ;;feedback;Sugerencias;
+ ;;returnPolicy;Política de Devoluciones;
+ ;;valuesAndBenefits;Valores y Beneficios;
+ ;;buyerGuides;Guía del Comprador;
+ ;;takeTheTour;Toma el Tour;
+ ;;orderConditions;Condiciones de la orden;
+ ;;NoticeListPage;Descargas;

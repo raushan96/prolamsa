@@ -1,0 +1,12 @@
+<Item>
+	<MaterialNumber>%s</MaterialNumber>
+	<ProductDescription>%s</ProductDescription>
+	<PiecesBundle>%s</PiecesBundle>
+	<Quantity>%s</Quantity>
+	<Weight>%s</Weight>
+	<Location>%s</Location>
+	<Price>%s</Price>
+	<NegPrice>%s</NegPrice>
+	<NetPrice>%s</NetPrice>
+	<ReadyToShip>%s</ReadyToShip>
+</Item>

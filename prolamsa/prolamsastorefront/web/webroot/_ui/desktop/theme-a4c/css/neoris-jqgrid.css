@@ -1,0 +1,114 @@
+/* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }       
+        
+        .ui-corner-all {
+    	border-radius: 0px;
+		}
+		
+		.ui-corner-top {
+		    border-top-left-radius: 0px;
+		    border-top-right-radius: 0px;
+		}
+		
+		.ui-widget-header {
+		    background: #4B4B4C;
+		}
+		
+		.ui-corner-bottom {
+		    border-bottom-left-radius: 0px;
+		    border-bottom-right-radius: 0px;
+		}
+		.ui-widget-header{
+			border: none;
+		}
+		
+		
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+		    background: -webkit-linear-gradient(#FFFFFF, #D8D8D7); /* For Safari 5.1 to 6.0 */
+			 background: -o-linear-gradient(#FFFFFF, #D8D8D7); /* For Opera 11.1 to 12.0 */
+			 background: -moz-linear-gradient(#FFFFFF, #D8D8D7); /* For Firefox 3.6 to 15 */
+			 background: linear-gradient(#FFFFFF, #D8D8D7); /* Standard syntax */
+			 color:#4B4B4C;
+			 border: 1px solid #D8D8D7;
+		}
+		
+		.ui-jqgrid  .ui-jqgrid-pager {
+		    background: #4B4B4C;
+		    color:#ADADAD;
+		}
+		
+		.ui-widget-content {
+		    border: 1px solid #D8D8D7;
+		}
+			.ui-state-default .ui-icon {
+		    background-image: url("../images/ui-icons_f1ad1d_256x240.png");
+		}
+		.ui-widget-content .ui-icon {
+		    background-image: url("../images/ui-icons_f1ad1d_256x240.png");
+		}
+		
+		.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+		    background: #fbec88;
+		    border: 1px solid #fbec88;
+		    color: #4B4B4C;
+		    font-weight: bold;
+		}
+		
+		 /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }
+		
+		html body table div#gbox_prods, html body table.ui-pg-table{
+			box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			-webkit-box-sizing: content-box;
+			border-collapse: separate;
+			background: #4B4B4C;
+		}
+		
+		.ui-jqgrid .ui-jqgrid-pager {
+    		height: 33px;
+		}
+		
+		.rowRed {
+			background:#FFEBCD !important;
+		}
+		
+		.rowGreen {
+			background:#98FB98 !important;
+		}
+		    
+		.rowYellow {
+			background:#FAFAD2 !important;
+		} 
+		
+/**** Rules to nullify conflicts with style.css on search modal */
+		table.ui-widget-content tr td:first-child{
+        	padding-left: 0px !important;
+        } 
+        
+        table.ui-widget-content td select {
+        	width: auto !important;
+       	}  
+/****/

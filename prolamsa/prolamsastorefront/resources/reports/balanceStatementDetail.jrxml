@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0FFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1"/>
+	<subDataset name="Table Dataset 2"/>
+	<parameter name="Sample_Parameter_Value" class="java.lang.String"/>
+	<parameter name="path" class="java.lang.String"/>
+	<parameter name="themeName" class="java.lang.String"/>
+	<field name="customer" class="java.lang.Object"/>
+	<field name="pastDue" class="java.lang.Double"/>
+	<field name="current" class="java.lang.Double"/>
+	<field name="balance" class="java.lang.Double"/>
+	<field name="creditLimit" class="java.lang.Double"/>
+	<field name="overdueCharge" class="java.lang.Double"/>
+	<field name="overdueCredit" class="java.lang.Double"/>
+	<field name="overdueInvoice" class="java.lang.Double"/>
+	<field name="overduePayment" class="java.lang.Double"/>
+	<field name="overdueAmount" class="java.lang.Double"/>
+	<field name="currentCharge" class="java.lang.Double"/>
+	<field name="currentCredit" class="java.lang.Double"/>
+	<field name="currentInvoice" class="java.lang.Double"/>
+	<field name="currentPayment" class="java.lang.Double"/>
+	<field name="currentBalance" class="java.lang.Double"/>
+	<field name="pastDue1_30" class="java.lang.Double"/>
+	<field name="pastDue31_60" class="java.lang.Double"/>
+	<field name="pastDue61_90" class="java.lang.Double"/>
+	<field name="pastDueMore90" class="java.lang.Double"/>
+	<field name="salVal" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<image>
+				<reportElement x="11" y="1" width="154" height="46"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{path} + "/_ui/desktop/" + $P{themeName} + "/images/prolamsa.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="9" y="7" width="123" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Details]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="27" width="372" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="307" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="1" y="14" width="555" height="264"/>
+				<textField isStretchWithOverflow="true" pattern="MMM/dd/yyyy">
+					<reportElement style="Detail" positionType="Float" x="89" y="0" width="289" height="14"/>
+					<textElement>
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customer}.shortName + "  (" + $F{customer}.uid +")"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" mode="Opaque" x="8" y="243" width="71" height="14" forecolor="#000000" backcolor="#FF9999"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{pastDue}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="89" y="35" width="75" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{current}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="89" y="53" width="75" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{balance}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="89" y="18" width="75" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{creditLimit}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="90" y="145" width="84" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{overdueInvoice}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="90" y="128" width="84" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{overdueCredit}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="9" y="145" width="75" height="13" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Invoices]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="89" y="112" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{overdueCharge}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="9" y="110" width="74" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Charges]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="213" y="161" width="75" height="13" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Compromise amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="9" y="128" width="74" height="12" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Credit]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="293" y="163" width="85" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{salVal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="89" y="181" width="85" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{overdueAmount}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="8" y="181" width="78" height="13" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Overdue Amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="9" y="90" width="100" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Overdue]]></text>
+				</staticText>
+				<line>
+					<reportElement x="9" y="178" width="166" height="1"/>
+				</line>
+				<staticText>
+					<reportElement style="Column header" x="213" y="112" width="74" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Charges]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="213" y="181" width="78" height="13" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Current Balance]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="294" y="129" width="84" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{currentCredit}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="292" y="114" width="86" height="14"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{currentCharge}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="213" y="145" width="75" height="13" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Invoices]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="213" y="90" width="100" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Current]]></text>
+				</staticText>
+				<line>
+					<reportElement x="213" y="178" width="166" height="1"/>
+				</line>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="294" y="146" width="84" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{currentInvoice}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="293" y="181" width="86" height="13"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{currentBalance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="213" y="128" width="74" height="12" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Credit]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" mode="Opaque" x="90" y="243" width="85" height="14" backcolor="#FF9999"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{pastDue1_30}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="89" y="229" width="87" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[From 1 to 30 Days]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="184" y="229" width="98" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[From 31 to 60 Days]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" mode="Opaque" x="184" y="243" width="98" height="14" backcolor="#FF9999"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{pastDue31_60}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="288" y="229" width="93" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[From 61 to 90 Days]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="289" y="243" width="92" height="14"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{pastDue61_90}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="390" y="229" width="86" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[More than 90 Days]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+					<reportElement style="Detail" positionType="Float" x="391" y="243" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{pastDueMore90}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="8" y="109" width="166" height="1"/>
+				</line>
+				<line>
+					<reportElement x="212" y="110" width="166" height="1"/>
+				</line>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="8" y="14" width="74" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Client]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="8" y="32" width="74" height="12" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Credit Limit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="8" y="49" width="75" height="13" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Credit Available]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="8" y="67" width="75" height="13" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="9" y="243" width="71" height="14" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Past Due]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#FFFFFF"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="495" y="0" width="50" height="20" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="344" y="0" width="149" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="13" y="0" width="197" height="20" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

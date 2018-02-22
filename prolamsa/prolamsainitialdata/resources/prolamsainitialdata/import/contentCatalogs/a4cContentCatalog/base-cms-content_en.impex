@@ -1,0 +1,45 @@
+$storeUid=a4c
+
+# Import the CMS content for the Prolamsa site
+#
+$contentCatalog=$storeUidContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$lang=en
+
+# Content Pages
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;account;Your Account;
+ ;;add-edit-address;Add/Edit Address;
+ ;;address-book;Address Book;
+ ;;cartPage;Your Shopping Cart;
+ ;;checkout-login;Proceed to Checkout;
+ ;;homepage;Homepage;
+ ;;login;Login;
+ ;;multiStepCheckoutPage;Checkout;
+ ;;my-quotes;My Quotes;
+ ;;my-replenishment-orders;My Replenishment Orders;
+ ;;notFound;Not Found;
+ ;;order;Order Details;
+ ;;orderConfirmationPage;Order Confirmation;
+ ;;orders;Order History;
+ ;;payment-details;Payment Details;
+ ;;profile;Profile;
+ ;;searchAdvancedEmpty;Advanced Search;
+ ;;searchEmpty;No Results;
+ ;;singleStepCheckoutSummaryPage;Checkout;
+ ;;storefinderPage;StoreFinder;
+ ;;updatePassword;Update Forgotten Password; 
+ ;;termsAndConditions;Terms and Conditions;
+ ;;FAQ;Frequently Asked Questions;
+ ;;ContactUs;Contact Us;  
+ ;;qualityPolicy;Quality Policy;
+ ;;privacyPolicy;Privacy Policy;
+ ;;siteMap;Site Map;
+ ;;feedback;Feedback;
+ ;;returnPolicy;Return Policy;
+ ;;valuesAndBenefits;Values And Benefits;
+ ;;buyerGuides;Buyer Guides;
+ ;;takeTheTour;Take the Tour;
+ ;;orderConditions;Order Conditions;
+ ;;NoticeListPage;Downloads;
+

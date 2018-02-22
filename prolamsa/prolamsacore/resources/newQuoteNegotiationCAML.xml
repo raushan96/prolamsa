@@ -1,0 +1,21 @@
+<Batch OnError="Continue" >
+	<Method ID="1" Cmd="New">
+    	<Field Name="PurchaseOrderID">%s</Field>
+    	<Field Name="QuoteNumber">%s</Field>
+    	<Field Name="PlacementDate">%s</Field>
+    	<Field Name="PlacedBy">%s</Field>
+    	<Field Name="Contact">%s</Field>
+    	<Field Name="UnitMeasure">%s</Field>
+    	<Field Name="Comment">%s</Field>
+    	<Field Name="BillingAddress">%s</Field>
+    	<Field Name="DeliveryAddress">%s</Field>
+    	<Field Name="TransportationMode">%s</Field>
+    	<Field Name="RequestDeliveryDate">%s</Field>
+    	<Field Name="MaterialDetails"><![CDATA[<RepeaterData><Version /><Items>%s</Items></RepeaterData>]]></Field>
+    	<Field Name="CartSummary"><![CDATA[<RepeaterData><Version /><Items>%s</Items></RepeaterData>]]></Field>
+    	<Field Name="OrderSummary"><![CDATA[<RepeaterData><Version /><Items>%s</Items></RepeaterData>]]></Field>
+    	<Field Name="OrderTotals"><![CDATA[<RepeaterData><Version /><Items>%s</Items></RepeaterData>]]></Field>
+    	<Field Name="ClientName">%s</Field>
+        <Field Name="ClientNumber">%s</Field>
+	</Method>
+</Batch>

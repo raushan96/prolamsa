@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="SpecificStencilCol_5L" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X42" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X46" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X52" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X56" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X60" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X65" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="X70" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="SpecificStencilCol_5CT" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="H40" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="J55" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="K55" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="N80" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="L80" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="A80" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="P110" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="SpecialDrifterCol" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="6.250" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="6.000" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="6.500" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="7.625" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="7.875" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="8.375" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="8.750" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="9.625" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="9.875" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="10.625" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="11.000" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="12.250" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="LocationOfTestCol" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="STD" />
+					<property name="label" value="Standard Charpy" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="SPC" />
+					<property name="label" value="Custom Charpy" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="WL" />
+					<property name="label" value="Weld Line Charpy" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="SampleDirectionCol" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="L" />
+					<property name="label" value="Longitudinal" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="T" />
+					<property name="label" value="Transverse" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="SampleSizeCol" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="" />
+					<property name="label" value="-"></property>
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="1/3" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="1/2" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="2/3" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="3/4" />
+				</bean>
+				<bean class="mx.neoris.core.util.ObjectAssoc">
+					<property name="value" value="Full" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+</beans>

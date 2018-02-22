@@ -1,0 +1,145 @@
+# ImpEx for Importing Categories
+
+$storeUid=6000
+$productCatalog=$storeUidProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;CATALOG
+# Created for visual organization
+;API
+;A53
+;STRUCTURAL
+;PILING
+#
+;5CT C
+;5CT T
+;5L
+;HSS
+;REJ
+;5CT C_RND
+;5CT T_RND
+;5L_RECT
+;5L_RND
+;ASTM252_RND
+;HSS_RECT
+;HSS_RND
+;HSS_SQR
+;ASTM 53_STD
+;ASTM 53_XS
+;ASTM 53_40
+;ASTM 53_OTHER
+;REJ_RECT
+;REJ_RND
+;REJ_SQR
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+# Created for visual organization
+;API;CATALOG
+;A53;CATALOG
+;STRUCTURAL;CATALOG
+;PILING;CATALOG
+#
+;5CT C;CATALOG
+;5CT T;CATALOG
+;5L;CATALOG
+;HSS;CATALOG
+;REJ;CATALOG
+;5CT C_RND;API
+;5CT C_RND;5CT C
+;5CT T_RND;API
+;5CT T_RND;5CT T
+;5L_RECT;API
+;5L_RECT;5L
+;5L_RND;API
+;5L_RND;5L
+;ASTM252_RND;PILING
+;ASTM252_RND;HSS
+;HSS_RECT;STRUCTURAL
+;HSS_RECT;HSS
+;HSS_RND;STRUCTURAL
+;HSS_RND;HSS
+;HSS_SQR;STRUCTURAL
+;HSS_SQR;HSS
+;ASTM 53_STD;A53
+;ASTM 53_STD;HSS
+;ASTM 53_XS;A53
+;ASTM 53_XS;HSS
+;ASTM 53_40;A53
+;ASTM 53_40;HSS
+;ASTM 53_OTHER;A53
+;ASTM 53_OTHER;HSS
+;REJ_RECT;REJ
+;REJ_RND;PILING
+;REJ_RND;REJ
+;REJ_SQR;REJ
+
+# ImpEx for Importing Categories
+
+$lang=en
+
+# Insert Language
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalog;Catalog
+# Created for visual organization
+;;API;API;API
+;;A53;A53;A53
+;;STRUCTURAL;STRUCTURAL;STRUCTURAL
+;;PILING;PILING;PILING
+#
+;;5CT C;5CT C;5CT C
+;;5CT T;5CT T;5CT T
+;;5L;5L;5L
+;;HSS;HSS;HSS
+;;REJ;REJ;REJ
+;;5CT C_RND;CASING;CASING
+;;5CT T_RND;TUBING;TUBING
+;;5L_RECT;LINE PIPE;LINE PIPE
+;;5L_RND;5L_RND;5L_RND
+;;ASTM252_RND;A252;A252
+;;HSS_RECT;RECTANGULAR;RECTANGULAR
+;;HSS_RND;ROUND;ROUND
+;;HSS_SQR;SQUARE;SQUARE
+;;ASTM 53_STD;STD;STD
+;;ASTM 53_XS;XS;XS
+;;ASTM 53_40;40;40
+;;ASTM 53_OTHER;OTHER;OTHER
+;;REJ_RECT;REJ_RECT;REJ_RECT
+;;REJ_RND;LIMITED SERVICE;LIMITED SERVICE
+;;REJ_SQR;REJ_SQR;REJ_SQR
+
+$lang=es
+
+# Insert Language, avoid accents or special chars as are used on urls
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalog;Catalog
+# Created for visual organization
+;;API;API;API
+;;A53;A53;A53
+;;STRUCTURAL;STRUCTURAL;STRUCTURAL
+;;PILING;PILING;PILING
+#
+;;5CT C;5CT C;5CT C
+;;5CT T;5CT T;5CT T
+;;5L;5L;5L
+;;HSS;HSS;HSS
+;;REJ;REJ;REJ
+;;5CT C_RND;CASING;CASING
+;;5CT T_RND;TUBING;TUBING
+;;5L_RECT;LINE PIPE;LINE PIPE
+;;5L_RND;5L_RND;5L_RND
+;;ASTM252_RND;A252;A252
+;;HSS_RECT;RECTANGULAR;RECTANGULAR
+;;HSS_RND;ROUND;ROUND
+;;HSS_SQR;SQUARE;SQUARE
+;;ASTM 53_STD;STD;STD
+;;ASTM 53_XS;XS;XS
+;;ASTM 53_40;40;40
+;;ASTM 53_OTHER;OTHER;OTHER
+;;REJ_RECT;REJ_RECT;REJ_RECT
+;;REJ_RND;LIMITED SERVICE;LIMITED SERVICE
+;;REJ_SQR;REJ_SQR;REJ_SQR

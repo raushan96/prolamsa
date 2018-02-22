@@ -1,0 +1,52 @@
+# ImpEx for Visibility of Products
+
+$storeUid=2000
+$categoryCode=topten
+
+$productCatalog=$storeUidProductCatalog
+$usergroupCode=$storeUid_usergroup_$categoryCode
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Create UserGroup
+INSERT_UPDATE UserGroup;uid[unique=true];name
+;$usergroupCode;$usergroupCode
+
+# Create Category
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid);$catalogVersion
+;$storeUid_$categoryCode;$usergroupCode;;
+
+$productRef=code,$catalogVersion
+$categoryRef=code,$catalogVersion
+
+# Register Products in Category
+INSERT_UPDATE CategoryProductRelation;source($categoryRef)[unique=true][default=$storeUid_$categoryCode];target($productRef)[unique=true];sequenceNumber
+;;300109_1100;1
+;;300109_2200;1
+;;300149_1100;2
+;;300216_1100;3
+;;300216_2200;3
+;;300217_1100;4
+;;300218_1100;5
+;;300218_2200;5
+;;300225_1100;6
+;;300225_2200;6
+;;300230_1100;7
+;;300230_2200;7
+;;300235_1100;8
+;;300235_2200;8
+;;300295_2200;9
+;;300296_2200;10
+
+# Query for restriction
+$query = EXISTS({{SELECT {c2p.target} FROM { CategoryProductRelation As c2p JOIN Category As cat ON {c2p.source} = {cat.pk} and {c2p.target} = {item.pk} and {cat.code} = '$storeUid_$categoryCode'}}})
+
+# Create Restriction
+INSERT_UPDATE SearchRestriction;code[unique=true];name;active[default=true];restrictedType(code);principal(uid);query;generate
+;$storeUid_category_$categoryCode;$storeUid_category_$categoryCode;;Product;$usergroupCode;$query;true
+
+# Assign Group to Customers
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;customer1@acme.com;$usergroupCode

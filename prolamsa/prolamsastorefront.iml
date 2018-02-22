@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/lib/jackson-core-asl-1.9.11.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/lib/jackson-mapper-asl-1.9.11.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/granule-1.0.9.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/json-taglib-0.4.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jsoup-1.6.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jstl-api-1.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jstl-impl-1.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/spring-security-taglibs-3.1.1.RELEASE.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/spring-webmvc-3.1.4.RELEASE.jar!/" />
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsastorefront\resources" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jasperreports-4.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jxls-core-1.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jxls-reader-1.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-3.10-FINAL-20140208.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-ooxml-3.10-FINAL-20140208.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-ooxml-schemas-3.10-FINAL-20140208.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/commons-jexl-2.1.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsacore/lib/GreyconReportsLib.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsastorefront/lib/UserAgentUtils-1.18.jar!/" />
+    <src_description expected_position="14">
+      <src_folder value="file://$MODULE_DIR$/prolamsastorefront/web/src" expected_position="14" />
+      <src_folder value="file://$MODULE_DIR$/prolamsastorefront/web/testsrc" expected_position="15" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsastorefront/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsastorefront">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsastorefront/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsastorefront/web/testsrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="btg" exported="" />
+    <orderEntry type="module" module-name="prolamsafacades" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="jackson-core-asl-1.9.11.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/lib/jackson-core-asl-1.9.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jackson-mapper-asl-1.9.11.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/lib/jackson-mapper-asl-1.9.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="granule-1.0.9.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/granule-1.0.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="json-taglib-0.4.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/json-taglib-0.4.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jsoup-1.6.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jsoup-1.6.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jstl-api-1.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jstl-api-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jstl-impl-1.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jstl-impl-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-security-taglibs-3.1.1.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/spring-security-taglibs-3.1.1.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="spring-webmvc-3.1.4.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/spring-webmvc-3.1.4.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsastorefront/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="jasperreports-4.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jasperreports-4.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jxls-core-1.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jxls-core-1.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jxls-reader-1.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/jxls-reader-1.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="poi-3.10-FINAL-20140208.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-3.10-FINAL-20140208.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="poi-ooxml-3.10-FINAL-20140208.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-ooxml-3.10-FINAL-20140208.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="poi-ooxml-schemas-3.10-FINAL-20140208.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/poi-ooxml-schemas-3.10-FINAL-20140208.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-jexl-2.1.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/web/webroot/WEB-INF/lib/commons-jexl-2.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="sapjco3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="GreyconReportsLib.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsacore/lib/GreyconReportsLib.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="UserAgentUtils-1.18.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsastorefront/lib/UserAgentUtils-1.18.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

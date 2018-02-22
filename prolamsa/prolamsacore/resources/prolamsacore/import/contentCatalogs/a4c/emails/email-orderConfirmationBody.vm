@@ -1,0 +1,475 @@
+## messageSource=classpath:/prolamsacore/messages/email-orderConfirmation_$lang.properties
+## messageSource=classpath:/prolamsacore/messages/email-generic_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro( genHtmlDetailOrderFont $title $text )
+<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>$title</b></font>&nbsp;<font color="#719430" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#macro(formatInteger $amount)
+${ctx.numberTool.format('###,###,##0', $amount)}
+#end
+#macro(formatDecimal $amount)
+${ctx.numberTool.format('###,###,##0.00', ${amount})}
+#end
+#macro(formatCurrency $amount)
+${ctx.numberTool.format('$ ###,###,##0.00', ${amount})}
+#end
+#macro(formatDate $aDate)
+${ctx.dateTool.format('MM/dd/yyyy', ${aDate})}
+#end
+
+<html>
+	<head>
+	</head>
+	<body bgcolor="#e4e7e8">
+	#set ($orderInfoUrl = "${ctx.baseUrl}/my-account/order/${ctx.order.code}")
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e4e7e8">
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="950" border="6" align="center" cellpadding="0" cellspacing="0" bordercolor="#ebedee">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">
+							<table width="930" cellpadding="0" cellspacing="0" border="0" align="center">
+								<tr>
+									<td valign="middle">&nbsp;</td>
+								</tr>
+								<tr>
+									<td valign="middle">
+										<!-- ${ctx.cmsSlotContents.SiteLogo} -->
+										<div>
+											<a href="${ctx.baseUrl}" target="_blank">
+												<img title="A4C Logo" alt="A4C Logo" src="${ctx.themeResourceUrl}/images/a4c180x91.png" class="CToWUd">
+											</a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td height="30" align="right" valign="middle" bgcolor="#94C95F">
+										<font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><a href="${ctx.secureBaseUrl}/my-account"><font color="#FFFFFF">${ctx.messages.myAccount}</font></a>&nbsp;&nbsp;</font>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<a href="${ctx.baseUrl}" style="display:block; margin-top:10px;margin-bottom:10px;">${ctx.cmsSlotContents.TopContent}</a>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="left" valign="top">
+										#set ($date = "#formatDate(${ctx.order.created})")
+										#set ($total = "#formatCurrency(${ctx.order.sapTotalPrice})")
+										<p><font color="#013243" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('salutation', ${ctx.displayName})}</b>,</font></p>
+                                        <p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('thankYouForOrder',${ctx.order.code},${ctx.order.unit.uid},${ctx.order.unit.name})}</font></p>
+                                        <p>#genHtmlDetailOrderFont(${ctx.messages.orderNumber} ${ctx.order.code})</p>
+                                        <p>#genHtmlDetailOrderFont(${ctx.messages.placementDate} ${date})</p>
+                                        <p>#genHtmlDetailOrderFont(${ctx.messages.createdBy} ${ctx.displayName})</p>
+                                        <p>#genHtmlDetailOrderFont(${ctx.messages.contactEmail} ${ctx.order.user.uid})</p>
+                                        <p>#genHtmlDetailOrderFont(${ctx.messages.unitOfMeasure} ${ctx.order.unitWhenPlaced.name})</p>
+                                        #if ($ctx.order.shippingInstructions)
+                                        	<p>#genHtmlDetailOrderFont(${ctx.messages.shippingInstructions} ${ctx.order.shippingInstructions})</p>
+										#end
+
+										<table  width="100%" border="1" align="center" cellpadding="2" cellspacing="0" bordercolor="#bfc1c0">
+											<tr>
+											    <th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Purchase_Order')}</font></th>
+											    <th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Billing_Address')}</font></th>
+											    <th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Delivery_Address')}</font></th>
+											    <th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Transportation_Mode')}</font></th>
+										  	</tr>
+											<tr>
+												<td>
+													<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('PO_No')}</font><br/>
+													<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.purchaseOrderNumber}</font><br/>
+												</td>
+												<td>
+													#if ($!ctx.order.costCenter.unit.name)
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.costCenter.unit.name}</font><br/>
+													#end
+													#if ($!ctx.order.billingAddress.line1)
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.billingAddress.line1}</font><br/>
+													#end
+													#if ($!ctx.order.billingAddress.line2)
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.billingAddress.line2}</font><br/>
+													#end
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">
+															#if ($!ctx.order.billingAddress.town)
+																${ctx.order.billingAddress.town},
+															#end
+															#if ($!ctx.order.billingAddress.region.name)
+																${ctx.order.billingAddress.region.name},
+															#end
+															#if ($!ctx.order.billingAddress.postalCode)
+																${ctx.order.billingAddress.postalCode}
+															#end
+														</font>
+													<br/>
+													#if ($!ctx.order.TPago)		
+                                                        #set( $tPago = "${ctx.order.TPago}" )													
+													    <br/>
+                                                        <table  width="100%" align="center" cellpadding="2" cellspacing="0">
+                                                        	<tr>
+											    				<th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Payment_Terms')}</font></th>
+											    			</tr>
+											    			<tr>
+											    				<td>
+											    					<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage($tPago)}</font>
+											    				</td>
+											    			</tr>
+                                                        </table>
+													#end
+												</td>
+												<td>
+													#if ($!ctx.order.costCenter.unit.name)
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.costCenter.unit.name}</font><br/>
+													#end
+													<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.deliveryAddress.line1}</font><br/>
+													#if ($!ctx.order.deliveryAddress.line2)
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.deliveryAddress.line2}</font><br/>
+													#end
+														<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">
+															#if ($!ctx.order.deliveryAddress.town)
+																${ctx.order.deliveryAddress.town},
+															#end
+															#if ($!ctx.order.deliveryAddress.region.name)
+																${ctx.order.deliveryAddress.region.name},
+															#end
+															#if ($!ctx.order.deliveryAddress.postalCode)
+																${ctx.order.deliveryAddress.postalCode}
+															#end
+														</font>
+													<br/> 
+												</td>
+												<td>
+													 #set ($deliverydate = "#formatDate(${ctx.order.requestedDeliveryDate})")
+													<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.transportationMode.name} (${ctx.order.transportationMode.maxCapacity} Tons)</font><br/>
+													<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.transportationMode.incotermCode} - ${ctx.order.transportationMode.incotermDescription} </font><br/>
+													<br/>
+													<table  width="100%" align="center" cellpadding="2" cellspacing="0">
+                                                    	<tr>
+											    			<th bgcolor="#013243"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Requested_Delivery_Date')}</font></th>
+											    		</tr>
+											    		<tr>
+											    			<td>
+											    				<font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">$deliverydate</font>
+											    			</td>
+											    		</tr>
+                                                     </table>
+												</td>
+											</tr>
+										</table>
+
+										<br />
+
+										<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#bfc1c0">
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('partNumber')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Description')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Pieces_Bundle')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Quantity')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Weight')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Location')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Price_per_Feet')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Net_price_wo_taxes')}</b></font></td>
+                                                            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Ready_to_Ship')}</b></font></td>
+                                                        </tr>
+
+#set ($cartTotalKg = 0)
+#set ($cartTotalPcs = 0)
+#set ($cartTotalStockKg = 0)
+#set ($cartTotalStockPcs = 0)
+#set ($cartTotalRollingKg = 0)
+#set ($cartTotalRollingPcs = 0)
+                                                        
+#foreach( $entry in ${ctx.order.entries} )
+                                                        	#set ($trStyle ="")
+                                        					#set ($tdStyle ="")
+                                                        ##	#if ($entry.isTransportationGroupFull)
+                                                        ##		#set ($trStyle ="background: none repeat scroll 0 0 #90EE90;")
+                                                        ##	#else
+                                                        ##		#set ($trStyle ="background: none repeat scroll 0 0 #D3D3D3;")
+                                                        ##	#end
+                                                        		
+                                                       ## 	#if ($entry.isTransportationGroupFull)
+                                                       ## 		#set ($tdStyle ="border-bottom: 1px solid #000000;")
+                                                       ## 	#end
+                                                        	#set ($weight ="")
+                                                        	#if ($!ctx.order.unitWhenPlaced)
+							                                  	#set ($unitWhenPlacedCode =${ctx.order.unitWhenPlaced.code})
+							                                  	#if ($entry.isQuantityInPieces)
+							                                  		#if ($unitWhenPlacedCode.contains("lb") || $unitWhenPlacedCode.contains("ft"))
+								                                  		#set ( $weight =  ($entry.product.pcLbEquiv*$entry.quantity) + " Lbs")
+								                                   	#end	
+								                                   	#if ($unitWhenPlacedCode.contains("kg") || $unitWhenPlacedCode.contains("mt"))
+								                                   		#set ( $weight =  ($entry.product.pcKgEquiv*$entry.quantity) + " Kgs")
+								                                   	#end
+								                                   	#if ($unitWhenPlacedCode.contains("ton") )
+								                                   		#set ( $weight =  ($entry.product.tnEquiv/$entry.product.piecesPerBundle*$entry.quantity) + " Tons")
+								                                   	#end
+							                                  	#else
+								                                  	#if ($unitWhenPlacedCode.contains("lb") || $unitWhenPlacedCode.contains("ft"))
+								                                  		#set ( $weight =  ($entry.product.bundleLbEquiv*$entry.quantity) + " Lbs")
+								                                   	#end	
+								                                   	#if ($unitWhenPlacedCode.contains("kg") || $unitWhenPlacedCode.contains("mt"))
+								                                   		#set ( $weight =  ($entry.product.bundleKgEquiv*$entry.quantity) + " Kgs")
+								                                   	#end
+								                                   	#if ($unitWhenPlacedCode.contains("ton") )
+								                                   		#set ( $weight =  ($entry.product.tnEquiv*$entry.quantity) + " Tons")
+								                                   	#end
+							                                  	#end
+							                                #end
+							                                
+	#set ( $cartTotalPcs = $cartTotalPcs + ($entry.product.piecesPerBundle*$entry.quantity) )
+	
+	#if ($!$entry.rollingScheduleWeek)
+		#set ( $cartTotalRollingKg =  $cartTotalRollingKg + ($entry.product.bundleKgEquiv*$entry.quantity) )
+		#set ( $cartTotalRollingPcs = $cartTotalRollingPcs + ($entry.product.piecesPerBundle*$entry.quantity) )
+	#else
+		#set ( $cartTotalStockKg =  $cartTotalStockKg + ($entry.product.bundleKgEquiv*$entry.quantity) )
+		#set ( $cartTotalStockPcs = $cartTotalStockPcs + ($entry.product.piecesPerBundle*$entry.quantity) )
+	#end                                         
+							                               
+                                                        <tr style="$trStyle">
+	                                                		<td style="$tdStyle" valign="middle"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">$entry.product.visibleCode</font></p></td>
+	                                                		<td style="$tdStyle" valign="middle"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">$entry.product.name</font></p></td>
+	                                                		<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatInteger($entry.product.piecesPerBundle)&nbsp;</font></p></td>
+	                                                		<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format(${ctx.orderQtyPattern}, $entry.convertedQuantity)}&nbsp;</font></p></td>
+															<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format(${ctx.orderWeightPattern}, ${weight})}&nbsp;</font></p></td>
+															<td style="$tdStyle" valign="middle"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">$entry.formattedLocation</font></p></td>
+															<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency($entry.pricePerFeet)&nbsp;</font></p></td>
+															<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency($entry.netPriceWOTaxes)&nbsp;</p></td>
+															<td style="$tdStyle" valign="middle" align="right"><p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatDate($entry.readyToShip)&nbsp;</p></td>
+                                                        </tr>
+#end
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <br/>
+                                        
+                                       #if ($!ctx.order.sapWeightUnit)
+                                        	#set ($baseStoreUoM =${ctx.order.sapWeightUnit})
+                                        	#set ($baseStoreUoMText ="")
+                                        	#if ($baseStoreUoM.contains("LB"))
+                                        		#set ($baseStoreUoMText ="Lbs")
+                                        	#end	
+                                        	#if ($baseStoreUoM.contains("KG"))
+                                        		#set ($baseStoreUoMText ="Kgs")
+                                        	#end
+                                        #end
+                                        
+#set ( $cartTotalStockKgWithPattern = ${ctx.numberTool.format(${ctx.orderWeightKgPattern}, ${cartTotalStockKg})} )
+#set ( $cartTotalRollingKgWithPattern = ${ctx.numberTool.format(${ctx.orderWeightKgPattern}, ${cartTotalRollingKg})} )
+
+#set ( $cartTotalStockKgParsed = ${ctx.numberTool.toNumber(${cartTotalStockKgWithPattern})} )
+#set ( $cartTotalRollingKgParsed = ${ctx.numberTool.toNumber(${cartTotalRollingKgWithPattern})} )
+
+#set ( $cartTotalKg = $cartTotalStockKgParsed + $cartTotalRollingKgParsed )
+
+                                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5" bordercolor="#bfc1c0">
+                                            <tr>
+                                                <td width="10%" ></td>
+                                                <td width="30%" valign="top">
+												    <table border="1"  width="100%" frame="box">
+												    	<tr> 
+												   			<td colspan="3" align="center"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Cart_Order_Summary')}<b></font></td>
+												   		</tr>
+												   		<tr >
+												            <th ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Unit')}</font></th>
+												            <th ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Unit_Kg')}</font></th>
+												            <th ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Unit_Pc')}</font></th>
+												        </tr>
+												        <tr >
+												            <td ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Order_Total')}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format(${ctx.orderWeightKgPattern}, ${cartTotalKg})}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${cartTotalPcs})}</font></td>
+												        </tr>
+												        <tr >
+												            <td ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Available')}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format(${ctx.orderWeightKgPattern}, ${cartTotalStockKg})}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${cartTotalStockPcs})}</font></td>
+												        </tr>
+												        <tr >
+												            <td ><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cart_Order_Summary_Rolling')}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format(${ctx.orderWeightKgPattern}, ${cartTotalRollingKg})}</font></td>
+												            <td align="right"><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${cartTotalRollingPcs})}</font></td>
+												        </tr>
+												    </table>
+                                                </td>
+                                                 <td width="30%" valign="top">
+												    <table  width="100%" frame="box">
+												    	<tr> 
+												   			<td colspan="2" align="center"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Order_Summary')}<b></font></td>
+												   		</tr>
+												        <tr >
+												            <th ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Base_Product')}</font></th>
+												            <th ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Weight')}</font></th>
+												        </tr>
+												        #if ($!ctx.order.hotRolledWeight && $ctx.order.hotRolledWeight > 0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Hot_Rolled')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.hotRolledWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.coldRolledWeight && $ctx.order.coldRolledWeight > 0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cold_Rolled')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.coldRolledWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.galvanizedWeight && $ctx.order.galvanizedWeight > 0)
+												        <tr >
+												            <td><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Galvanized')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.galvanizedWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.aluminizedWeight && $ctx.order.aluminizedWeight > 0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Aluminized')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.aluminizedWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.galvametalWeight && $ctx.order.galvametalWeight > 0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Galvametal')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.galvametalWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												        #end
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Total')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.numberTool.format('###,###,##0', ${ctx.order.totalWeight})} $baseStoreUoMText</font></td>
+												        </tr>
+												    </table>
+												</td>
+                                                <td width="30%" valign="top">
+                                              		<table width="100%" frame="box">
+                                          				<tr> 
+															<td colspan="2" align="center"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('Order_Totals')}<b></font></td>
+														</tr>
+												        <tr >
+												            <th ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Base_Product')}</font></th>
+												            <th ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Total')}</font></th>
+												        </tr>
+												        #if ($!ctx.order.hotRolledPrice && $ctx.order.hotRolledPrice>0)
+												        <tr >
+												            <td><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Hot_Rolled')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.hotRolledPrice})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.coldRolledPrice && $ctx.order.coldRolledPrice>0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Cold_Rolled')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.coldRolledPrice})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.galvanizedPrice  && $ctx.order.galvanizedPrice>0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Galvanized')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.galvanizedPrice})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.aluminizedPrice && $ctx.order.aluminizedPrice>0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Aluminized')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.aluminizedPrice})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.galvametalPrice && $ctx.order.galvametalPrice>0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Galvametal')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.galvametalPrice})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.totalDeliveryCost && $ctx.order.totalDeliveryCost >0 )
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('totalDeliveryCost')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.totalDeliveryCost})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.totalAssurance && $ctx.order.totalAssurance > 0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('totalAssurance')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.totalAssurance})</font></td>
+												        </tr>
+												        #end
+												        #if ($!ctx.order.sapSubtotalPrice && $ctx.order.sapSubtotalPrice>0)
+				                                        	<tr >
+		 														<td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('subtotal')}</font></td>
+		 														<td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.sapSubtotalPrice})</font></td>
+	 														</tr>
+ 														#end
+			                                        	#if ($!ctx.order.totalTaxas && $ctx.order.totalTaxas >0)
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('totalTaxas')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.totalTaxas})</font></td>
+												        </tr>
+												        #end
+												        <tr >
+												            <td ><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('Total')}</font></td>
+												            <td align="right"><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">#formatCurrency(${ctx.order.sapTotalPrice})</font></td>
+												        </tr>
+												    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <br/>
+#set ($termsAndConditionsUrl = "${ctx.baseUrl}/termsAndConditions")
+#set ($contactUsUrl = "${ctx.baseUrl}/contactUs/show")
+
+#set ($accountUrl = "${ctx.baseUrl}/my-account/orders")
+#set ($mailToUrl = "mailto:${ctx.messages.contactUsEmailAddress}")
+#set ($paragraphContactUs = ${ctx.messages.getMessage('paragraphContactUs', "#genHtmlLinkStartTag(${contactUsUrl})", "#genHtmlLinkEndTag()", "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmailAddress})")})
+										<p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('paragraphAccountLocation', "#genHtmlLinkStartTag($accountUrl)", "#genHtmlLinkEndTag()")}</font></p>
+										<p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('paragraphDeliveryInfo', "#genHtmlLinkStartTag($orderInfoUrl)", "#genHtmlLinkEndTag()")}</font></p>
+										<!-- <p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">$paragraphContactUs</font></p> -->
+										<p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.complimentaryClosing}</font></p>
+										<p><font color="#474D5D" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.signature}</font></p>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<a href="${ctx.baseUrl}" style="display:block; margin-top:10px;margin-bottom:10px;">${ctx.cmsSlotContents.BottomContent}</a>
+									</td>
+								</tr>
+								<tr>
+									<td height="30" align="right" valign="middle" bgcolor="#013243">
+										<font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><a href="${contactUsUrl}"><font color="#FFFFFF">${ctx.messages.contactUs}</font></a> | <a href="${termsAndConditionsUrl}"><font color="#FFFFFF">${ctx.messages.termsAndCondition}</font></a> &nbsp;&nbsp;</font>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

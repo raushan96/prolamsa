@@ -1,0 +1,73 @@
+
+#
+# customer 20001
+#
+
+#
+# B2BUnit Header
+#
+INSERT_UPDATE B2BUnit;uid[unique=true];shortName;locName[lang=en];locName[lang=es];currency(isocode);language(isocode);industry;salesRep;salesArea;backOfficeAccount;&B2BUnitID;
+;20001;Acme Metals Short;Acme Metals & Steel Supply;Acme Metals & Steel Supply;USD;en;Industry 1;Sales Rep 1; Sales Area 1;back office account 1;20001;
+
+#
+# Billing & Shipping Addresses
+#
+INSERT_UPDATE Address;code[unique=true];name;shortName;streetname[unique=true];town;postalcode;region(isocode);country(isocode);phone1;fax;billingAddress;shippingAddress;owner(&B2BUnitID)[unique=true];transportationMode(code);incoterm;defaultPlant;&addId;
+;20001;14930 S. San Pedro Street Name;14930 S. San Pedro Short;14930 S. San Pedro Street;Gardena;89140;US-CA;US;(310)329-2263;(310)329-4429;true;false;20001;;incoterm 1;plant 1;20001_20001;
+;30865;15005 South Avalon Blvd Name;South Avalon Short;15005 South Avalon Blvd;Gardena;89140;US-CA;US;818-123-4567;818-123-4567;false;true;20001;01;incoterm 2;plant 2;20001_30865;
+;30008;Spur # 752 Yard #1 Name;Spur Short;Spur # 752 Yard #1;Colton;89140;US-CA;US;818-123-4567;818-123-4567;false;true;20001;01;incoterm 3;plant 3;20001_30008;
+;30647;PHL c/o Martinez Trucking BNSF UP Name;PHL Trucking Short;PHL c/o Martinez Trucking BNSF UP;Wilmington;89140;US-NC;US;818-123-4567;818-123-4567;false;true;20001;02;incoterm 3;plant 3;20001_30647;
+;30813;15005 South Avalon Blvd Name;South Avalon 1 Short;15005 South Avalon Blvd;Gardena;89140;US-CA;US;818-123-4567;818-123-4567;false;true;20001;02;incoterm 4;plant 4;20001_30813;
+;30233;13708 North Unitec Dr Name;North Unitec Short;13708 North Unitec Dr;Laredo;89140;US-TX;US;818-123-4567;818-123-4567;false;true;20001;01;incoterm 5;plant 5;20001_30233;
+
+#
+# relate addresses to B2BUnit Header
+#
+INSERT_UPDATE B2BUnit;uid[unique=true];Addresses(&addId)[mode=append];
+;20001;20001_20001;
+;20001;20001_30865;
+;20001;20001_30008;
+;20001;20001_30647;
+;20001;20001_30813;
+;20001;20001_30233;
+
+#
+# customer 20003
+#
+
+#
+# B2BUnit
+#
+INSERT_UPDATE B2BUnit;uid[unique=true];shortName;locName[lang=en];locName[lang=es];currency(isocode);language(isocode);industry;salesRep;salesArea;backOfficeAccount;&B2BUnitID;
+;20003;A-Lert;A-Lert Building Systems;A-Lert Building Systems;USD;es;Industry 2;Sales Rep 2; Sales Area 2;back office account 2;20003;
+
+#
+# Billing & Shipping Addresses
+#
+INSERT_UPDATE Address;code[unique=true];name;shortName;streetname[unique=true];town;postalcode;region(isocode);country(isocode);phone1;fax;billingAddress;shippingAddress;owner(&B2BUnitID)[unique=true];transportationMode(code);incoterm;defaultPlant;&addId;
+;20003;2464 N. Heiteke Name;Heiteke Short;2464 N. Heiteke;Seguin;89140;US-TX;US;(800)210-5375...;(830)303-0361-NONE;true;false;20003;;incoterm 5;plant 5;20003_20003;
+;30868;2464 N. Heiteke Name;N. Heiteke Short 1;2464 N. Heiteke;Seguin;89140;US-TX;US;818-123-4567;818-123-4567;false;true;20003;01;incoterm 6;plant 6;20003_30868;
+;30002;2464 N. Heiteke Name;N. Heiteke Short 2;2464 N. Heiteke;Seguin;89140;US-TX;US;818-123-4567;818-123-4567;false;true;20003;02;incoterm 7;plant 7;20003_30002;
+
+#
+# relate addresses to B2BUnit
+#
+INSERT_UPDATE B2BUnit;uid[unique=true];Addresses(&addId)[mode=append];
+;20003;20003_20003;
+;20003;20003_30868;
+;20003;20003_30002;
+
+#
+# Budgets Header for all customers
+#
+$range=01.01.2010 00:00:00,12.31.2032 12:59:59
+INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);name[lang=en];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];budget[default=9999999];currency(isocode)[default=USD][allownull=true]
+;20001_Budget;20001;Acme Metals & Steel Supply Budget;$range
+;20003_Budget;20003;A-Lert Building Systems Budget;$range
+
+#
+# Cost Centers Header for all customer
+#
+INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='USD']
+;20001_CC;Acme Metals & Steel Supply CC;20001;20001_Budget
+;20003_CC;A-Lert Building Systems CC;20003;20003_Budget

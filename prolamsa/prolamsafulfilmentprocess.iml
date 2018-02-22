@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsafulfilmentprocess\resources" />
+    <src_description expected_position="5">
+      <src_folder value="file://$MODULE_DIR$/prolamsafulfilmentprocess/src" expected_position="6" />
+      <src_folder value="file://$MODULE_DIR$/prolamsafulfilmentprocess/testsrc" expected_position="7" />
+      <src_folder value="file://$MODULE_DIR$/prolamsafulfilmentprocess/gensrc" expected_position="8" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsafulfilmentprocess/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsafulfilmentprocess">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafulfilmentprocess/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafulfilmentprocess/testsrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsafulfilmentprocess/gensrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="acceleratorservices" exported="" />
+    <orderEntry type="module" module-name="ticketsystem" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsafulfilmentprocess/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

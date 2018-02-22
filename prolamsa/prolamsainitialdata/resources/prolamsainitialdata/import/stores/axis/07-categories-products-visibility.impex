@@ -1,0 +1,45 @@
+# ImpEx for Visibility of Products
+
+$storeUid=6000
+$productCatalog=$storeUidProductCatalog
+
+$visibilityCode=topcinco
+
+$categoryCode=$storeUid_$visibilityCode
+$usergroupCode=$storeUid_$visibilityCode-Group-ProlamsaProductVisibility
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Create UserGroup
+INSERT_UPDATE UserGroup;uid[unique=true];name
+;$usergroupCode;$usergroupCode
+
+# Create Category
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid);$catalogVersion
+;$categoryCode;$usergroupCode,customergroup;
+
+# Category Hierarchy
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;$categoryCode;CATALOG
+
+$productRef=code,$catalogVersion
+$categoryRef=code,$catalogVersion
+
+# Register Products in Category
+INSERT_UPDATE CategoryProductRelation;source($categoryRef)[unique=true][default=$categoryCode];target($productRef)[unique=true];sequenceNumber
+;;300109_1100;1
+;;300109_2200;1
+;;300216_1100;2
+;;300216_2200;2
+;;300218_1100;3
+;;300218_2200;3
+;;300225_1100;4
+;;300225_2200;4
+;;300230_1100;5
+;;300230_2200;5
+
+# Assign Group to Customers
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+#;customer1@acme.com;$usergroupCode

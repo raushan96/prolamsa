@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <prolamsafacades>
+    <testclass>mx.neoris.facades.suggestion.DefaultSimpleSuggestionFacadeIntegrationTest</testclass>
+    <testclass>mx.neoris.facades.search.impl.DefaultB2BProductSearchUtilTest</testclass>
+    <testclass>mx.neoris.facades.suggestion.impl.DefaultSimpleSuggestionFacadeTest</testclass>
+    <testclass>mx.neoris.facades.product.populators.ProductVariantMatrixPopulatorTest</testclass>
+  </prolamsafacades>
+</testclasses>

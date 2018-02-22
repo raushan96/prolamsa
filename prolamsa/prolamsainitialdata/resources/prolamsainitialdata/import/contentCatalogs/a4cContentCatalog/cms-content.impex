@@ -1,0 +1,454 @@
+$storeUid=a4c
+
+$productCatalog=5000ProductCatalog
+
+$catalogVersion=Online
+$contentCatalog=$storeUidContentCatalog
+$contentCatalogOriginal=$baseStoreIdContentCatalog
+$contentCatalogName=$storeUid Content Catalog
+$contentCV=catalogVersion(catalog(id[default=$contentCatalog]),version[default='$catalogVersion'])
+
+$productCatalogName=A4C Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='$catalogVersion'])[unique=true,default=$productCatalog:$catalogVersion]
+
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$prolamsaSiteResource=jar:de.hybris.platform.b2bacceleratorsampledata.constants.B2BAcceleratorSampleDataConstants&/prolamsainitialdata/import/contentCatalogs/$storeUidContentCatalog
+$jarResource=jar:de.hybris.platform.b2bacceleratorsampledata.constants.B2BAcceleratorSampleDataConstants&
+$jarResourceCms=jar:de.hybris.platform.b2bacceleratorsampledata.constants.B2BAcceleratorSampleDataConstants&/b2bacceleratorsampledata/import/cockpits/cmscockpit
+$prolamsaJarResourceCms=jar:de.hybris.platform.b2bacceleratorsampledata.constants.B2BAcceleratorSampleDataConstants&
+
+$siteUid=5000
+
+# CMS Site Settings
+UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV)
+;$siteUid;CATALOG;;
+
+# Site Logo
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+;;/images/company-logo.png;company-logo.png;$prolamsaSiteResource/images/Prolamsa240x120.png;image/png;Prolamsa Logo
+
+# Site Logo Component
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;"/"
+
+# CMS Link Components
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName[lang=en];url;&componentRef;target(code)[default='sameWindow'];navigationLinkFunction
+;;HomepageNavLink;Home Page Nav Link;Home Page Nav;;HomepageNavLink
+;;MyCompanyLink;My Company Link;My Company;/my-company;MyCompanyLink
+;;TermsAndConditionsLink;Terms and Conditions Link;Terms and Conditions;/termsAndConditions;TermsAndConditionsLink
+;;ManageBudgetsLink;Manage Budgets Link;Manage Budgets;/my-company/organization-management/manage-budgets;ManageBudgetsLink
+;;ManageCostCentersLink;Manage Cost Centers Link;Manage Cost Centers;/my-company/organization-management/manage-costcenters;ManageCostCentersLink
+;;ManageBusinessUnitsLink;Manage Business Units Link;Manage Business Units;/my-company/organization-management/manage-units;ManageBusinessUnitsLink
+;;ManageUsersLink;Manage Users Link;Manage Users;/my-company/organization-management/manage-users;ManageUsersLink
+;;ManageUsergroupsLink;Manage Usergroups Link;Manage Usergroups;/my-company/organization-management/manage-usergroups;ManageUsergroupsLink
+;;ManagePermissionsLink;Manage Permissions Link;Manage Permissions;/my-company/organization-management/manage-permissions;ManagePermissionsLink
+;;AboutAcceleratorLink;About Accelerator Link;About Accelerator;"http://www.hybris.com/multichannel-accelerator";AboutAcceleratorLink;newWindow
+
+#Links Footer(New)
+;;AboutProlamsaLink;About Prolamsa Link;About US;"http://www.a4c.mx/index.php/a4c/";AboutProlamsaLink;newWindow
+;;QualityPolicyLink;Quality Policy Link;Quality Policy;"http://www.a4c.mx/index.php/control-de-calidad/";QualityPolicyLink;newWindow
+;;PrivatePolicyLink;Private Policy Link;Private Policy;"http://www.a4c.mx/wp-content/uploads/2014/08/DH-DEHUM-190-A1-Aviso-de-Privacidad-A4C-completo.pdf";PrivatePolicyLink;newWindow
+;;TermsAndConditionsLink;Terms & Conditions Link;Terms & Conditions;"/termsAndConditions";TermsAndConditionsLink
+;;ContactUsLink;Contact Us Link;Contact Us;"/contactUs/show";ContactUsLink;sameWindow
+;;DocumentationLink;Documentation Link;Documentation;"https://wiki.hybris.com/display/release5/Release+5+Documentation+Home";DocumentationLink;newWindow
+;;AboutHybrisLink;About Hybris Link;About Hybris;"http://www.hybris.com";AboutHybrisLink;newWindow
+;;ContactUsLink;Contact Us Link;Contact Us;"/contactUs/show";ContactUsLink;sameWindow
+;;FacebookLink;Facebook Link;Facebook;"http://www.facebook.com/hybrissoftware";FacebookLink;newWindow
+;;TwitterLink;Twitter Link;Twitter;"http://twitter.com/#!/hybris_software";TwitterLink;newWindow
+;;AgileCommerceBlogLink;Agile Commerce Blog Link;Agile Commerce Blog;"http://www.agile-commerce.com/";AgileCommerceBlogLink;newWindow
+;;LinkedInLink;Linked In Link;Linked In;"http://www.linkedin.com/company/97435";LinkedInLink;newWindow
+;;QuickAccessCategoryLink;Quick Access Category Link;Quick Access;"/";QuickAccessCategoryLink
+;;MyStuffCategoryLink;My Stuff Category Link;My Stuff;"/";MyStuffCategoryLink
+;;NoticesLink;Notices Link;Notices;/my-account/notices/list;NoticesLink
+#
+# Main Prolamsa Categories
+#
+;;StructuralTubingCategoryLink;Structural Tubing Category Link;Structural Tubing;/Catalog/c/TUBEST;StructuralTubingCategoryLink
+;;MechanicalTubingCategoryLink;Mechanical Tubing Category Link Category Link;Mechanical Tubing;/Catalog/c/TUBMEC;MechanicalTubingCategoryLink
+;;IndustrialTubingCategoryLink;Industrial Tubing Category Link Category Link;Industrial Tubing;/Catalog/c/TUBIND;IndustrialTubingCategoryLink
+#SubMenu Links Prolamsa
+#TUBEST
+;;TUBEST_CUADCategoryLink;TUBEST_CUAD Category Link;Square;/Catalog/c/TUBEST_CUAD;TUBEST_CUADCategoryLink
+;;TUBEST_RECTCategoryLink;TUBEST_RECT Category Link;Rectangular;/Catalog/c/TUBEST_RECT;TUBEST_RECTCategoryLink
+#TUBMEC
+;;TUBMEC_REDC30CategoryLink;TUBMEC_REDC30 Category Link;Schedule 30;/Catalog/c/TUBMEC_REDC30;TUBMEC_REDC30CategoryLink
+;;TUBMEC_REDC40CategoryLink;TUBMEC_REDC40 Category Link;Schedule 40;/Catalog/c/TUBMEC_REDC40;TUBMEC_REDC40CategoryLink
+;;TUBMEC_REDCXCategoryLink;TUBMEC_REDCX Category Link;Schedule X;/Catalog/c/TUBMEC_REDCX;TUBMEC_REDCXCategoryLink
+#TUBIND
+;;TUBIND_CUADCategoryLink;TUBIND_CUAD Category Link;Square;/Catalog/c/TUBIND_CUAD;TUBIND_CUADCategoryLink
+;;TUBIND_REDCategoryLink;TUBIND_RED Category Link;Round;/Catalog/c/TUBIND_RED;TUBIND_REDCategoryLink
+;;TUBIND_RECTCategoryLink;TUBIND_RECT Category Link;Rectangular;/Catalog/c/TUBIND_RECT;TUBIND_RECTCategoryLink
+;;TUBIND_OVALCategoryLink;TUBIND_OVAL Category Link;Oval;/Catalog/c/TUBIND_OVAL;TUBIND_OVALCategoryLink
+;;TUBIND_ELIPCategoryLink;TUBIND_ELIP Category Link;Elliptic;/Catalog/c/TUBIND_ELIP;TUBIND_ELIPCategoryLink
+
+
+#QUICK_ACCESS
+;;QUICK_ACCESS_DraftTemplateCategoryLink;QUICK_ACCESS_Draft Template Category Link;Draft & Templates;/templates/list;QUICK_ACCESS_DraftTemplateCategoryLink
+;;QUICK_ACCESS_ExcelCategoryLink;QUICK_ACCESS_Excel Category Link;Excel;/uploadExcel/show;QUICK_ACCESS_ExcelCategoryLink
+;;QUICK_ACCESS_OrderFormCategoryLink;QUICK_ACCESS_Order Form Category Link;Order Form;/search/advanced;QUICK_ACCESS_OrderFormCategoryLink
+;;QUICK_ACCESS_UseQuoteFromCategoryLink;QUICK_ACCESS_Use Quote From Category Link;Use Quote;/my-account/my-quotes;QUICK_ACCESS_UseQuoteFromCategoryLink
+;;QUICK_ACCESS_CustomerFavoriteProductsManageLink;QUICK_ACCESS_Customer Favorite Products Manage Link;Mng Favorite Prod;/favorite-products/manage;QUICK_ACCESS_CustomerFavoriteProductsManageLink
+;;QUICK_ACCESS_CustomerFavoriteProductsListLink;QUICK_ACCESS_Customer Favorite Products List Link;List Favorite Prod;/favorite-products/list;QUICK_ACCESS_CustomerFavoriteProductsListLink
+#MY_STUFF
+;;MY_STUFF_PendingOrdersCategoryLink;MY_STUFF_Pending Orders Category Link;Backorder;/my-account/backorder/list;MY_STUFF_PendingOrdersCategoryLink
+;;MY_STUFF_OrderHistoryCategoryLink;MY_STUFF_Order History Category Link;Order History;/my-account/orders;MY_STUFF_OrderHistoryCategoryLink
+;;MY_STUFF_AccountBalanceCategoryLink;MY_STUFF_Account Balance Category Link;Account Balance;/my-account/balance-statement;MY_STUFF_AccountBalanceCategoryLink
+;;MY_STUFF_RelatedDocumentsCategoryLink;MY_STUFF_Related Documents Category Link;Document Search;/my-account/document/list;MY_STUFF_RelatedDocumentsCategoryLink
+;;MY_STUFF_BatchCategoryLink;MY_STUFF_Batch Category Link;Batch;/batch/list;MY_STUFF_BatchCategoryLink
+
+# Lightbox Banner for Mini Cart
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
+
+# CMS Mini Cart Component
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
+;;MiniCart;Mini Cart;MiniCart;TOTAL;3;LightboxHomeDeliveryBannerComponent
+
+# CMS tabs components
+INSERT_UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];name;visible;&componentRef
+;;deliveryTab;Delivery tab;true;deliveryTab
+
+INSERT_UPDATE CMSTabParagraphContainer;$contentCV[unique=true];uid[unique=true];name;visible;simpleCMSComponents(uid, $contentCV);&componentRef
+;;TabPanelContainer;Tab container;true;deliveryTab;TabPanelContainer
+
+# CMS Footer Component
+INSERT_UPDATE FooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;navigationNodes(&nodeRef)
+;;FooterComponent;2;FooterComponent;ProlamsaNavNode,CustomerNavNode
+
+# CMS Paragraph Component (Contact information)
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;ContactInfo;Contact information;ContactInfo
+;;NewCustomerContactCenterParagraphComponent;New Customer Contact Center Paragraph Component;NewCustomerContactCenterParagraphComponent
+
+# CMS VariantSelector Components
+INSERT_UPDATE ProductVariantSelectorComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;VariantSelector;Product Variant Selector;VariantSelector
+
+# CMS ProductAddToCart Components
+INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;AddToCart;Product Add To Cart;AddToCart
+
+# CMS ProductReferences Components
+INSERT_UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];name;productReferenceTypes(code);maximumNumberProducts;&componentRef
+;;AccessoriesProductReferencesComponent;Accessories Product References Component;ACCESSORIES;5;AccessoriesProductReferencesComponent
+
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+
+# Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;SiteLogoSlot;SiteLogoComponent
+;;HomepageNavLinkSlot;HomepageNavLink
+;;HeaderLinksSlot;ContactInfo
+;;SearchBoxSlot;SearchBox
+;;MiniCartSlot;MiniCart
+;;NavigationBarSlot;IndustrialTubingBarComponent,MechanicalTubingBarComponent,StructuralTubingBarComponent,QuickAccessBarComponent,MyStuffBarComponent
+;;TabsSlot;TabPanelContainer
+;;VariantSelectorSlot;VariantSelector
+;;AddToCartSlot;AddToCart
+;;UpSellingSlot;AccessoriesProductReferencesComponent
+;;CrossSellingSlot;
+;;FooterSlot;FooterComponent
+;;MerchantContactSlot;NewCustomerContactCenterParagraphComponent
+
+
+# Category Page Restrictions
+INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV)
+
+# CMS User Group Restrictions
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(&componentRef)
+;;MyCompanyLinkAdminGroupRestriction;My Company Link Admin Group Restriction;b2badmingroup;true;MyCompanyBarComponent
+
+# CMS Navigation Nodes #
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+# CMS Navigation Nodes
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+;ProlamsaUSANavNode;;Prolamsa USA Site;SiteRootNode;;ProlamsaUSANavNode
+#
+# Prolamsa
+#
+;StructuralTubingNavNode;;Structural Tubing Category;ProlamsaUSANavNode;TUBEST_CUADCategoryLink,TUBEST_RECTCategoryLink;StructuralTubingNavNode
+;StructuralTubingTypeNavNode;;Structural Tubing Type Category;StructuralTubingNavNode;TUBEST_CUADCategoryLink,TUBEST_RECTCategoryLink;StructuralTubingTypeNavNode
+;MechanicalTubingNavNode;;Mechanical Tubing Category;ProlamsaUSANavNode;TUBMEC_REDC30CategoryLink,TUBMEC_REDC40CategoryLink,TUBMEC_REDCXCategoryLink;MechanicalTubingNavNode
+;MechanicalTubingTypeNavNode;;Mechanical Tubing Category;MechanicalTubingNavNode;TUBMEC_REDC30CategoryLink,TUBMEC_REDC40CategoryLink,TUBMEC_REDCXCategoryLink;MechanicalTubingTypeNavNode
+;IndustrialTubingNavNode;;Industrial Tubing Category;ProlamsaUSANavNode;TUBIND_CUADCategoryLink,TUBIND_REDCategoryLink,TUBIND_RECTCategoryLink,TUBIND_OVALCategoryLink,TUBIND_ELIPCategoryLink;IndustrialTubingNavNode
+;IndustrialTubingTypeNavNode;;Industrial Tubing Category;IndustrialTubingNavNode;TUBIND_CUADCategoryLink,TUBIND_REDCategoryLink,TUBIND_RECTCategoryLink,TUBIND_OVALCategoryLink,TUBIND_ELIPCategoryLink;IndustrialTubingTypeNavNode
+
+;MyCompanyNavNode;;My Company Nav Node;ProlamsaUSANavNode;;MyCompanyNavNode
+;MyCompanyLinksNavNode;;My Company Links;MyCompanyNavNode;ManageBudgetsLink,ManageCostCentersLink,ManageBusinessUnitsLink,ManageUsersLink,ManageUsergroupsLink,ManagePermissionsLink;MyCompanyLinksNavNode
+
+#Footer (New)
+;ProlamsaNavNode;;Prolamsa Pages;ProlamsaUSANavNode;AboutProlamsaLink,QualityPolicyLink,PrivatePolicyLink,TermsAndConditionsLink;ProlamsaNavNode
+;CustomerNavNode;;Customer Support Pages;ProlamsaUSANavNode;ContactUsLink,NoticesLink;CustomerNavNode
+
+;QuickAccessNavNode;;Quick Access Category;ProlamsaUSANavNode;QUICK_ACCESS_CustomerFavoriteProductsManageLink,QUICK_ACCESS_CustomerFavoriteProductsListLink,QUICK_ACCESS_OrderFormCategoryLink,QUICK_ACCESS_ExcelCategoryLink,QUICK_ACCESS_DraftTemplateCategoryLink,QUICK_ACCESS_UseQuoteFromCategoryLink;QuickAccessNavNode
+;QuickAccessTypeNavNode;;Quick Access Category;QuickAccessNavNode;QUICK_ACCESS_CustomerFavoriteProductsManageLink,QUICK_ACCESS_CustomerFavoriteProductsListLink,QUICK_ACCESS_OrderFormCategoryLink,QUICK_ACCESS_ExcelCategoryLink,QUICK_ACCESS_DraftTemplateCategoryLink,QUICK_ACCESS_UseQuoteFromCategoryLink;QuickAccessTypeNavNode
+;MyStuffNavNode;;My Stuff Category;ProlamsaUSANavNode;MY_STUFF_PendingOrdersCategoryLink,MY_STUFF_OrderHistoryCategoryLink,MY_STUFF_AccountBalanceCategoryLink,MY_STUFF_RelatedDocumentsCategoryLink,NoticesLink,MY_STUFF_BatchCategoryLink;MyStuffNavNode
+;MyStuffTypeNavNode;;My Stuff Category;MyStuffNavNode;MY_STUFF_PendingOrdersCategoryLink,MY_STUFF_OrderHistoryCategoryLink,MY_STUFF_AccountBalanceCategoryLink,MY_STUFF_RelatedDocumentsCategoryLink,NoticesLink,MY_STUFF_BatchCategoryLink;MyStuffTypeNavNode
+
+# Navigation Bar Component
+INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];name;wrapAfter;link(uid, $contentCV);styleClass;navigationNode(&nodeRef);dropDownLayout(code)[default=AUTO];&componentRef
+
+#
+# Prolamsa
+#
+;;StructuralTubingBarComponent;Structural Tubing Bar Component;10;StructuralTubingCategoryLink;;StructuralTubingNavNode;;StructuralTubingBarComponent
+;;MechanicalTubingBarComponent;Mechanical Tubing Bar Component;10;MechanicalTubingCategoryLink;;MechanicalTubingNavNode;;MechanicalTubingBarComponent
+;;IndustrialTubingBarComponent;Industrial Tubing Bar Component;10;IndustrialTubingCategoryLink;;IndustrialTubingNavNode;;IndustrialTubingBarComponent
+
+;;MyCompanyBarComponent;My Company Bar Component;10;MyCompanyLink;right;MyCompanyNavNode;RIGHT_EDGE;MyCompanyBarComponent
+;;QuickAccessBarComponent;Quick Access Bar Component;10;QuickAccessCategoryLink;right;QuickAccessNavNode;RIGHT_EDGE;QuickAccessBarComponent
+;;MyStuffBarComponent;My Stuff Bar Component;10;MyStuffCategoryLink;right;MyStuffNavNode;RIGHT_EDGE;MyStuffBarComponent
+
+# Preview Image for use in the CMS Cockpit for special ContentPages
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;accountPagePreview;text/png;AccountPage.png;$jarResourceCms/preview-images/powertools/AccountPage.png
+;;addressBookPagePreview;text/png;AddressBook.png;$jarResourceCms/preview-images/powertools/AddressBookPage.png
+;;cartPagePreview;text/png;CartPage.png;$jarResourceCms/preview-images/powertools/CartPage.png
+;;addEditAddressPagePreview;text/png;AddEditAddressPage.png;$jarResourceCms/preview-images/powertools/AddEditAddressPage.png
+;;checkoutLoginPagePreview;text/png;CheckoutLoginPage.png;$jarResourceCms/preview-images/powertools/CheckoutLoginPage.png
+;;singleStepCheckoutSummaryPagePreview;text/png;SingleStepCheckoutSummaryPage.png;$jarResourceCms/preview-images/powertools/SingleStepCheckoutSummaryPage.png
+;;multiStepCheckoutPagePreview;text/png;MultiStepCheckoutPage.png;$jarResourceCms/preview-images/powertools/MultiStepCheckoutPage.png
+;;orderConfirmationPagePreview;text/png;OrderConfirmationPage.png;$jarResourceCms/preview-images/powertools/OrderConfirmationPage.png
+;;homepagePreview;text/png;Homepage.png;$jarResourceCms/preview-images/powertools/Homepage.png
+;;notFoundPagePreview;text/png;NotFoundPage.png;$jarResourceCms/preview-images/powertools/NotFoundPage.png
+;;orderHistoryPagePreview;text/png;OrderHistoryPage.png;$jarResourceCms/preview-images/powertools/OrderHistoryPage.png
+;;profilePagePreview;text/png;ProfilePage.png;$jarResourceCms/preview-images/powertools/ProfilePage.png
+;;loginPagePreview;text/png;LoginPage.png;$jarResourceCms/preview-images/powertools/LoginPage.png
+;;storefinderPagePreview;text/png;StoreFinderPage.png;$jarResourceCms/preview-images/powertools/StoreFinderPage.png
+;;searchResultsEmptyPagePreview;text/png;SearchResultsEmptyPage.png;$jarResourceCms/preview-images/powertools/SearchResultsEmptyPage.png
+;;paymentDetailsPagePreview;text/png;PaymentDetailsPage.png;$jarResourceCms/preview-images/powertools/PaymentDetailsPage.png
+;;mycompanyPagePreview;text/png;MyCompanyPage.png;$jarResourceCms/preview-images/powertools/MyCompanyPage.png
+;;manageUnitsPagePreview;text/png;ManageUnitsPage.png;$jarResourceCms/preview-images/powertools/ManageUnitsPage.png
+;;manageUserGroupsPagePreview;text/png;ManageUserGroupsPage.png;$jarResourceCms/preview-images/powertools/ManageUserGroupsPage.png
+;;organizationManagementPagePreview;text/png;OrganizationManagementPage.png;$jarResourceCms/preview-images/powertools/OrganizationManagementPage.png
+;;productDetailsPagePreview;text/png;ProductDetailsPage.png;$jarResourceCms/preview-images/powertools/ProductDetailsPage.png
+;;productListPagePreview;text/png;ProductListPage.png;$jarResourceCms/preview-images/powertools/ProductListPage.png
+;;searchPagePreview;text/png;SearchPage.png;$jarResourceCms/preview-images/powertools/SearchPage.png
+;;myReplenishmentOrdersPagePreview;text/png;MyReplenishmentOrdersPage.png;$jarResourceCms/preview-images/powertools/MyReplenishmentOrdersPage.png
+;;myQuotesPagePreview;text/png;MyQuotesPage.png;$jarResourceCms/preview-images/powertools/MyQuotesPage.png
+;;orderApprovalDashboardPagePreview;text/png;OrderApprovalDashboardPage.png;$jarResourceCms/preview-images/powertools/OrderApprovalDashboardPage.png
+;;myCompanyloginPagePreview;text/png;MyCompanyLoginPage.png;$jarResourceCms/preview-images/powertools/MyCompanyLoginPage.png
+;;orderDetailsPagePreview;text/png;OrderPage.png;$jarResourceCms/preview-images/powertools/OrderPage.png
+;;manageUnitApproversPagePreview;text/png;ManageUnitApproversPage.png;$jarResourceCms/preview-images/powertools/ManageUnitApproversPage.png
+;;updatePasswordPagePreview;text/png;UpdatePasswordPage.png;$jarResourceCms/preview-images/powertools/UpdatePasswordPage.png
+;;termsAndConditionsPagePreview;text/png;TermsAndConditionsPage.png;$jarResourceCms/preview-images/powertools/TermsAndConditionsPage.png
+
+# Preview for Content Pages
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];previewImage(code,$contentCV)
+;;singleStepCheckoutSummaryPage;singleStepCheckoutSummaryPagePreview
+;;multiStepCheckoutPage;multiStepCheckoutPagePreview:
+;;orderConfirmationPage;orderConfirmationPagePreview:
+;;cartPage;cartPagePreview:
+;;search;searchPagePreview:
+;;account;accountPagePreview:
+;;profile;profilePagePreview:
+;;address-book;addressBookPagePreview:
+;;add-edit-address;addEditAddressPagePreview:
+;;payment-details;paymentDetailsPagePreview:
+;;order;orderDetailsPagePreview:
+;;orders;orderHistoryPagePreview:
+;;storefinderPage;storefinderPagePreview:
+;;checkout-login;checkoutLoginPagePreview:
+;;login;loginPagePreview:
+;;notFound;notFoundPagePreview:
+;;searchEmpty;searchResultsEmptyPagePreview:
+;;homepage;homepagePreview:
+;;my-company;mycompanyPagePreview:
+;;manageUnits;manageUnitsPagePreview:
+;;manageUsergroups;manageUserGroupsPagePreview:
+;;organizationManagement;organizationManagementPagePreview:
+;;my-replenishment-orders;myReplenishmentOrdersPagePreview:
+;;my-quotes;myQuotesPagePreview:
+;;order-approval-dashboard;orderApprovalDashboardPagePreview:
+;;my-company-login;myCompanyloginPagePreview:
+;;manageUnitApprovers;manageUnitApproversPagePreview:
+;;updatePassword;updatePasswordPagePreview:
+
+# Preview for Product Page
+UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];previewImage(code,$contentCV)
+;;productDetails;productDetailsPagePreview:
+
+# Preview for Terms and Conditions Page
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;termsAndConditions;termsAndConditionsPagePreview
+
+# Preview for Category Page
+UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];previewImage(code,$contentCV)
+;;productList;productListPagePreview:
+
+###### Powertools Homepage ######
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+
+INSERT_UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+
+INSERT_UPDATE RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];name;banners(&componentRef);&componentRef
+
+INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;searchQuery;categoryCode;&componentRef
+
+INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);&componentRef
+#;;QuickAccessFeatureComponent;Quick Access Feature Component;POLINES;QuickAccessFeatureComponent
+#;;MyStuffFeatureComponent;My Stuff Feature Component;POLINES;MyStuffFeatureComponent
+#
+# Prolamsa
+#
+;;StructuralTubingFeatureComponent;Structural Tubing Feature Component;TUBEST;StructuralTubingFeatureComponent
+;;MechanicalTubingFeatureComponent;Mechanical Tubing Feature Component;TUBMEC;MechanicalTubingFeatureComponent
+#;;MetalBuildingComponentsFeatureComponent;Metal Building Components Feature Component;POLINES;MetalBuildingComponentsFeatureComponent
+#;;SpecialProfilesComponentsFeatureComponent;Special Profiles Components Feature Component;PERFESP;SpecialProfilesComponentsFeatureComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section1Slot-Homepage;Section1 Slot for Homepage;false;;
+;;Section2ASlot-Homepage;Section2A Slot for Homepage;false;;
+;;Section2BSlot-Homepage;Section2B Slot for Homepage;false;;
+;;Section2CSlot-Homepage;Section2C Slot for Homepage;false;;
+;;Section3Slot-Homepage;Section3 Slot for Homepage;false;;
+;;Section4Slot-Homepage;Section4 Slot for Homepage;true;StructuralTubingFeatureComponent,MechanicalTubingFeatureComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section1-Homepage;Section1;;Section1Slot-Homepage
+;;Section2A-Homepage;Section2A;;Section2ASlot-Homepage
+;;Section2B-Homepage;Section2B;;Section2BSlot-Homepage
+;;Section2C-Homepage;Section2C;;Section2CSlot-Homepage
+;;Section3-Homepage;Section3;;Section3Slot-Homepage
+;;Section4-Homepage;Section4;;Section4Slot-Homepage
+
+###### Powertools Product Details Page ######
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+
+###### Powertools Search Results Page ######
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SearchResultsSideBanner;Search Results Side Banner;SearchResultsSideBanner;#
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section4Slot-search;Section4 Slot for search;true;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='search'];contentSlot(uid,$contentCV)[unique=true]
+;;Section4-search;Section4;;Section4Slot-search
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;NoSearchResultsParagraphComponent;No Search Results Paragraph Component;NoSearchResultsParagraphComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-searchEmpty;Side Slot for searchEmpty;true;
+;;MiddleContent-searchEmpty;Middle Slot for searchEmpty;true;NoSearchResultsParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='searchEmpty'];contentSlot(uid,$contentCV)[unique=true]
+;;Middle-searchEmpty;MiddleContent;;MiddleContent-searchEmpty
+;;Side-searchEmpty;SideContent;;SideContent-searchEmpty
+
+###### Powertools Cart Page ######
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;NextDayDeliveryBanner120;Next Day Delivery Banner (120);NextDayDeliveryBanner120;#
+;;HelpBanner;Help Banner;HelpBanner;#
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;EmptyCartParagraphComponent;Empty Cart Paragraph Component;EmptyCartParagraphComponent
+;;HelpParagraphComponent;Help Paragraph Component;HelpParagraphComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;TopContent-cartPage;Top Slot for cartPage;true;NextDayDeliveryBanner120
+;;SideContent-cartPage;Side Slot for cartPage;true;HelpParagraphComponent
+;;MiddleContent-cartPage;Middle Slot for cartPage;true;EmptyCartParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='cartPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Top-cartPage;TopContent;;TopContent-cartPage
+;;Side-cartPage;SideContent;;SideContent-cartPage
+;;Middle-cartPage;MiddleContent;;MiddleContent-cartPage
+
+###### Powertools Login/Register Page ######
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-login;Side Slot for Login Page;true;HelpParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='login'];contentSlot(uid,$contentCV)[unique=true]
+;;Side-login;SideContent;;SideContent-login
+
+###### Powertools Checkout Login Page ######
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-checkoutLogin;Side Slot for Checkout Login Page;true;HelpParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='checkout-login'];contentSlot(uid,$contentCV)[unique=true]
+;;Side-checkoutLogin;SideContent;;SideContent-checkoutLogin
+
+###### Powertools Single/Multi Step Checkout Pages ######
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-singleStepCheckoutSummaryPage;Side Slot for singleStepCheckoutSummaryPage;true;HelpParagraphComponent
+;;SideContent-multiStepCheckoutPage ;Side slot for the multi-step checkout page ;true;HelpParagraphComponent
+;;SideContent-orderConfirmationPage;Side slot for the Order Confirmation Page;true;HelpParagraphComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true]
+;;Side-singleStepCheckoutSummaryPage;SideContent;singleStepCheckoutSummaryPage;SideContent-singleStepCheckoutSummaryPage
+;;Side-multiStepCheckoutPage;SideContent;multiStepCheckoutPage;SideContent-multiStepCheckoutPage
+;;SideContent-orderConfirmationPage;SideContent;orderConfirmationPage;SideContent-orderConfirmationPage
+
+###### Powertools Store Finder Page ######
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;StoreFinderSideBanner;Store Finder Side Banner;StoreFinderSideBanner;#
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-StoreFinderPage;Side Slot for Store Finder Page;true;StoreFinderSideBanner
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='storefinderPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Side-StoreFinderPage;SideContent;;SideContent-StoreFinderPage
+
+######  Footer Static Pages 
+
+# CMSParagraphComponent
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;termsAndConditionsTextParagraph;Terms and Conditions Paragraph;TermsAndConditionsTextParagraph
+#FAQ
+;;FAQTextParagraph;FAQ Paragraph;FAQTextParagraph
+#Static Pages
+;;qualityPolicyTextParagraph;Quality Policy Paragraph;qualityPolicyTextParagraph
+;;privacyPolicyTextParagraph;Privacy Policy Paragraph;privacyPolicyTextParagraph
+;;siteMapTextParagraph;Site Map Paragraph;siteMapTextParagraph
+;;feedbackTextParagraph;Feedback Paragraph;feedbackTextParagraph
+;;returnPolicyTextParagraph;Return Policy Paragraph;returnPolicyTextParagraph
+;;valuesAndBenefitsTextParagraph;Values And Benefits Paragraph;valuesAndBenefitsTextParagraph
+;;buyerGuidesTextParagraph;Buyer Guides Paragraph;buyerGuidesTextParagraph
+;;takeTheTourTextParagraph;Take The Tour Paragraph;takeTheTourTextParagraph
+;;orderConditionsTextParagraph;Order Conditions Paragraph;orderConditionsTextParagraph
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section2BSlot-TermsAndConditions;Section2B Slot for Terms and Conditions Page;true;TermsAndConditionsTextParagraph
+#FAQ
+;;Section2BSlot-FAQ;Section2B Slot for FAQ Page;true;FAQTextParagraph
+#Static Pages
+;;Section2BSlot-qualityPolicy;Section2B Slot for Quality Policy Page;true;qualityPolicyTextParagraph
+;;Section2BSlot-privacyPolicy;Section2B Slot for Privacy Policy Page;true;privacyPolicyTextParagraph
+;;Section2BSlot-siteMap;Section2B Slot for Site Map Page;true;siteMapTextParagraph
+;;Section2BSlot-feedback;Section2B Slot for feedback Page;true;feedbackTextParagraph
+;;Section2BSlot-returnPolicy;Section2B Slot for Return Policy Page;true;returnPolicyTextParagraph
+;;Section2BSlot-valuesAndBenefits;Section2B Slot for Values And Benefits Page;true;valuesAndBenefitsTextParagraph
+;;Section2BSlot-buyerGuides;Section2B Slot for Buyer Guides;true;buyerGuidesTextParagraph
+;;Section2BSlot-takeTheTour;Section2B Slot for Take The Tour Page;true;takeTheTourTextParagraph
+;;Section2BSlot-orderConditions;Section2B Slot for Order Conditions Page;true;orderConditionsTextParagraph
+
+# ContentSlotForPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='termsAndConditions'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2B-TermsAndConditions;Section2B;;Section2BSlot-TermsAndConditions
+#FAQ
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='FAQ'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2B-FAQ;Section2B;;Section2BSlot-FAQ
+#Static Pages
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true]
+;;Section2B-qualityPolicy;Section2B;qualityPolicy;Section2BSlot-qualityPolicy
+;;Section2B-privacyPolicy;Section2B;privacyPolicy;Section2BSlot-privacyPolicy
+;;Section2B-siteMap;Section2B;siteMap;Section2BSlot-siteMap
+;;Section2B-feedback;Section2B;feedback;Section2BSlot-feedback
+;;Section2B-returnPolicy;Section2B;returnPolicy;Section2BSlot-returnPolicy
+;;Section2B-valuesAndBenefits;Section2B;valuesAndBenefits;Section2BSlot-valuesAndBenefits
+;;Section2B-buyerGuides;Section2B;buyerGuides;Section2BSlot-buyerGuides
+;;Section2B-takeTheTour;Section2B;takeTheTour;Section2BSlot-takeTheTour
+;;Section2B-orderConditions;Section2B;orderConditions;Section2BSlot-orderConditions

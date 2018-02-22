@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:\hybris\bin\custom\prolamsa\prolamsacore\resources" />
+    <libelement value="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/prolamsacore/lib/GreyconReportsLib.jar!/" />
+    <src_description expected_position="7">
+      <src_folder value="file://$MODULE_DIR$/prolamsacore/src" expected_position="7" />
+      <src_folder value="file://$MODULE_DIR$/prolamsacore/hmc/src" expected_position="8" />
+      <src_folder value="file://$MODULE_DIR$/prolamsacore/testsrc" expected_position="9" />
+      <src_folder value="file://$MODULE_DIR$/prolamsacore/gensrc" expected_position="10" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/prolamsacore/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/prolamsacore">
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacore/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacore/hmc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacore/testsrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/prolamsacore/gensrc" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module" module-name="acceleratorcms" exported="" />
+    <orderEntry type="module" module-name="b2bacceleratorservices" exported="" />
+    <orderEntry type="module" module-name="prolamsafulfilmentprocess" exported="" />
+    <orderEntry type="module" module-name="hmc" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/prolamsacore/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="wishlist" />
+    <orderEntry type="module-library">
+      <library name="sapjco3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsacore/lib/sapjco3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="GreyconReportsLib.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/prolamsacore/lib/GreyconReportsLib.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

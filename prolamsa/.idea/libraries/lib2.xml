@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/prolamsastorefront/lib/jackson-mapper-asl-1.9.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/prolamsastorefront/lib/jackson-core-asl-1.9.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/prolamsastorefront/lib/UserAgentUtils-1.18.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

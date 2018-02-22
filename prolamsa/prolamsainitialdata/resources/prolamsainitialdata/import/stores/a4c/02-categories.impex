@@ -1,0 +1,82 @@
+# ImpEx for Importing Categories
+
+$storeUid=5000
+$productCatalog=$storeUidProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;CATALOG
+;TUBIND
+;TUBMEC
+;TUBEST
+;TUBIND_RED
+;TUBIND_CUAD
+;TUBIND_RECT
+;TUBIND_OVAL
+;TUBIND_ELIP
+;TUBMEC_REDC30
+;TUBMEC_REDC40
+;TUBMEC_REDCX
+;TUBEST_CUAD
+;TUBEST_RECT
+
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;TUBIND;CATALOG
+;TUBMEC;CATALOG
+;TUBEST;CATALOG
+;TUBIND_RED;TUBIND
+;TUBIND_CUAD;TUBIND
+;TUBIND_RECT;TUBIND
+;TUBIND_OVAL;TUBIND
+;TUBIND_ELIP;TUBIND
+;TUBMEC_REDC30;TUBMEC
+;TUBMEC_REDC40;TUBMEC
+;TUBMEC_REDCX;TUBMEC
+;TUBEST_CUAD;TUBEST
+;TUBEST_RECT;TUBEST
+
+# ImpEx for Importing Categories
+
+$lang=en
+
+# Insert Language
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalog;Catalog
+;;TUBIND;Industrial Tubing
+;;TUBMEC;Mechanical Tubing;Mechanical Tubing
+;;TUBEST;Structural Tubing;Structural Tubing
+;;TUBIND_RED;Round
+;;TUBIND_CUAD;Square
+;;TUBIND_RECT;Rectangular
+;;TUBIND_OVAL;Oval
+;;TUBIND_ELIP;Elliptic
+;;TUBMEC_REDC30;Schedule  30
+;;TUBMEC_REDC40;Schedule  40
+;;TUBMEC_REDCX;Schedule  X
+;;TUBEST_CUAD;Square
+;;TUBEST_RECT;Rectangular
+
+
+$lang=es
+
+# Insert Language, avoid accents or special chars as are used on urls
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+;;CATALOG;Catalogo;Catalogo
+;;TUBIND;Tubería Industrial
+;;TUBMEC;Tuberia Mecanica;Tuberia Mecanica
+;;TUBEST;Tuberia Estructural;Tuberia Estructural
+;;TUBIND_RED;Redondo
+;;TUBIND_CUAD;Cuadrado
+;;TUBIND_RECT;Rectangular
+;;TUBIND_OVAL;Ovalado
+;;TUBIND_ELIP;Elíptico
+;;TUBMEC_REDC30;Cédula 30
+;;TUBMEC_REDC40;Cédula 40
+;;TUBMEC_REDCX;Cédula X
+;;TUBEST_CUAD;Cuadrado
+;;TUBEST_RECT;Rectangular

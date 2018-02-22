@@ -1,0 +1,76 @@
+#
+# customer00009
+#
+$storeId=5000
+#
+# B2BUnit Header
+#
+
+INSERT_UPDATE B2BUnit;uid[unique=true];shortName;locName[lang=en];locName[lang=es];language(isocode);&B2BUnitID;baseStores(uid)[mode=append]
+;00009;AB;Abinsa,;Abinsa,;es;00009;$storeId
+
+#
+# Billing & Shipping Addresses
+#
+INSERT_UPDATE Address;code[unique=true];name;shortName;streetname;town;postalcode;region(isocode);country(isocode);phone1;fax;billingAddress;shippingAddress;owner(&B2BUnitID)[unique=true];transportationMode(internalCode);incoterm;defaultPlant;&addId;baseStores(uid)[mode=append]
+;00009;Abinsa,;AB;Ave. Adolfo Lopéz Mateos K.m. 6.5;SAN NICOLÁS DE LOS GARZA;66400;MX-NL;MX;;;TRUE;TRUE;00009;;EXW;5100;00009_00009;$storeId
+
+#
+# relate addresses to B2BUnit Header
+#
+INSERT_UPDATE B2BUnit;uid[unique=true];Addresses(&addId)[mode=append]
+;00009;00009_00009
+
+#
+# Create and assing currency by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting;b2bUnitOwner(&B2BUnitID)
+;$storeId_USD_00009;$storeId;USD;00009
+
+UPDATE B2BUnit;uid[unique=true];currencyForStore(uid)[mode=append]
+;00009;$storeId_USD_00009
+
+#
+# Create and assing industry by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting;b2bUnitOwner(&B2BUnitID)
+;$storeId_R101_00009;$storeId;R101;00009
+
+UPDATE B2BUnit;uid[unique=true];industryForStore(uid)[mode=append]
+;00009;$storeId_R101_00009
+
+#
+# Create and assing sales rep by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting;b2bUnitOwner(&B2BUnitID)
+;$storeId_321_00009;$storeId;321;00009
+
+UPDATE B2BUnit;uid[unique=true];salesRepForStore(uid)[mode=append]
+;00009;$storeId_321_00009
+
+#
+# Create and assing sales area by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting;b2bUnitOwner(&B2BUnitID)
+;$storeId_MXCEN_00009;$storeId;MXCEN;00009
+
+UPDATE B2BUnit;uid[unique=true];salesAreaForStore(uid)[mode=append]
+;00009;$storeId_MXCEN_00009
+
+#
+# Create and assing back offfice account by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting;b2bUnitOwner(&B2BUnitID)
+;$storeId_654_00009;$storeId;654;00009
+
+UPDATE B2BUnit;uid[unique=true];backOfficeAccountForStore(uid)[mode=append]
+;00009;$storeId_654_00009
+
+#
+# Create and assing tpago by store
+#
+INSERT_UPDATE NeorisB2BUnitSettingByStore;uid[unique=true];storeId;setting[cellDecorator=mx.neoris.core.impex.decorators.NeorisEnumeratorDecorator];b2bUnitOwner(&B2BUnitID)
+;$storeId_Z000_00009;$storeId;Z000;00009
+
+UPDATE B2BUnit;uid[unique=true];TPagoForStore(uid)[mode=append]
+;00009;$storeId_Z000_00009

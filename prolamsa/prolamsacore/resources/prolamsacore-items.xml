@@ -1,0 +1,3068 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+ 
+
+	
+	<collectiontypes>
+	
+	
+		<collectiontype elementtype="Catalog" code="DependentCatalogs"
+						autocreate="true" type="list"/>
+
+		<collectiontype elementtype="ProductLocation" code="ProductLocationCollection"
+						autocreate="true" type="list"/>
+
+		<collectiontype elementtype="TransportationMode" code="TransportationModeCollection"
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="Unit" code="UnitCollection"
+						autocreate="true" type="list"/>
+				
+		<collectiontype elementtype="java.lang.String" code="ProductCodeCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="PaymentTermsType" code="PaymentTermsCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="MeasurementSystemType" code="MeasurementSystemCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="Category" code="ProductCategoryCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="java.lang.String" code="MaterialTypeCollection"
+						autocreate="true" type="list"/>		
+						
+		<collectiontype elementtype="java.lang.String" code="GenericListCollection"
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="BaseStore" code="BaseStoreCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="IncidentLine" code="IncidentLineCollection"
+						autocreate="true" type="list"/>		
+						
+		<collectiontype elementtype="IncidentType" code="IncidentTypeCollection"
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="TermsAndCoditionsByStore" code="TermsAndCoditionsByStoreCollection" 
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="NeorisB2BUnitSettingByStore" code="NeorisB2BUnitSettingByStoreCollection"
+						autocreate="true" type="set"/>	
+						
+		<collectiontype elementtype="NeorisB2BCustomerSettingByStore" code="NeorisB2BCustomerSettingByStoreCollection"
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="SalesArea" code="SalesAreaCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="NeorisMedia" code="NeorisMediaCollection"
+						autocreate="true" type="list"/>
+						
+		<collectiontype elementtype="Notice" code="NoticeCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="NeorisB2BCustomerDefaultSetting" code="NeorisB2BCustomerDefaultSettingCollection"
+						autocreate="true" type="list"/>	
+						
+		<collectiontype elementtype="Alert" code="AlertCollection"
+						autocreate="true" type="list"/>
+		<collectiontype elementtype="AlertConfiguration" code="AlertConfigurationCollection"
+						autocreate="true" type="list"/>
+		<collectiontype elementtype="AlertTimeOption" code="TimeOptionCollection"
+						autocreate="true" type="list"/>
+		<collectiontype elementtype="AlertProductOption" code="ProductOptionCollection"
+						autocreate="true" type="list"/>
+	</collectiontypes>
+	
+	          
+	<enumtypes>
+		<enumtype generate="true" code="NoticeType" autocreate="true" dynamic="true">
+			<value code="CATALOG"/>
+			<value code="NOTICE"/>
+		</enumtype>
+		<enumtype generate="true" code="B2BCheckoutFlowEnum" autocreate="true" dynamic="true">
+			<!-- <model package="mx.neoris.core.enums"/> -->
+			<value code="SINGLE"/>
+			<value code="MULTISTEP"/>
+		</enumtype>
+		<enumtype generate="true" code="B2BCheckoutPciOptionEnum" autocreate="true" dynamic="true">
+			<!-- <model package="mx.neoris.core.enums"/> -->
+			<value code="Default"/>
+			<value code="HOP"/>
+		</enumtype>
+
+
+		<!-- Prolamsa -->
+		<enumtype generate="true" code="Wishlist2Type" autocreate="true" dynamic="false">
+			<!-- <model package="mx.neoris.core.enums"/> -->
+			<value code="TEMPLATE"/>
+			<value code="DRAFT"/>
+		</enumtype>
+
+		<enumtype generate="true" code="ProductLocation" autocreate="true" dynamic="false">
+			<!-- <model package="mx.neoris.core.enums"/> -->
+			<value code="_1100"/>
+			<value code="_2200"/>
+			<value code="_5100"/>
+			<value code="_6100"/>
+			<value code="_1200"/>
+			<value code="_1300"/>
+			<value code="_1400"/>
+			<value code="_1500"/>
+			<value code="_1600"/>
+			<value code="_5200"/>
+			<value code="_1700"/>
+			<value code="_1800"/>
+		</enumtype>
+		
+		<!-- NEORIS_CHANGE #72 -->
+		<!--enumtype generate="true" code="DocumentSearchType" autocreate="true" dynamic="false"-->
+			<!-- <model package="mx.neoris.core.enums"/> -->
+			<!-- <value code="INVOICE"/>
+			<value code="MTR"/>
+			<value code="REMISSION"/>
+			<value code="DEBIT_NOTE"/>
+			<value code="CREDIT_NOTE"/>
+			<value code="TALLY"/>
+			<value code="BOL"/>
+			<value code="PO"/>
+			<value code="SO"/>
+			<value code="QUOTE"/>
+		</enumtype> -->
+		
+		<enumtype generate="true" code="DocumentSearchType" autocreate="true" dynamic="false">
+			<value code="INVOICE"/>
+			<value code="CREDIT_NOTE"/>
+			<value code="DEBIT_NOTE"/>
+			<value code="ORDER"/>			
+			<!-- <value code="TRANSPORT"/> -->
+			<!-- NEORIS_CHANGE  #Replace TRANSPORT by SHIPMENT -->
+			<value code="SHIPMENT"/>
+			<value code="PURCHASE_ORDER"/>
+		</enumtype>
+		
+		<enumtype generate="true" code="OrdenEstatus" autocreate="true" dynamic="false">
+			<value code="OPEN"/>
+			<value code="COMPLETED"/>
+			<value code="CANCELLED"/>
+		</enumtype>
+
+		<enumtype code="OrderStatus" autocreate="false" generate="false" dynamic="true">
+			<value code="IN_PROCESS" />
+			<value code="USED_QUOTE" />
+			<value code="EXPIRED_QUOTE" />
+			<value code="CANCELLED_QUOTE" />
+			<value code="ORDER_APPROVED_AND_PENDING_SAP_ID" />	
+			<value code="ORDER_PENDING_APPROVAL_AND_PENDING_SAP_ID" />	
+			<value code="QUOTE_PENDING_SAP_ID" />	
+		</enumtype>
+		
+		<enumtype code="OrderEntryStatus" autocreate="false" generate="true" dynamic="false">
+			<value code="OPEN" />
+			<value code="IN_PROCESS" />
+			<value code="COMPLETED" />
+			<value code="CANCELLED" />
+			<value code="OVERDUE" />
+		</enumtype>
+		
+		<enumtype code="PaymentTermsType" autocreate="true" generate="true" dynamic="true">		    
+			<value code="_0001" />
+			<value code="_0002" />
+			<value code="_0003" />
+			<value code="_0004" />
+			<value code="_0005" />
+			<value code="_0006" />
+			<value code="_0007" />
+			<value code="_0008" />
+			<value code="_0009" />
+			<value code="Z000" />	
+			<value code="Z001" />	
+		 	<value code="Z003" />	
+			<value code="Z007" />	
+			<value code="Z00A" />	
+			<value code="Z00B" />	
+			<value code="Z010" />	
+			<value code="Z015" />	
+			<value code="Z020" />	
+			<value code="Z023" />	
+			<value code="Z030" />	
+			<value code="Z035" />	
+			<value code="Z045" />	
+			<value code="Z060" />
+			<value code="Z090" />		
+			<value code="Z120" />		
+			<value code="Z30A" />		
+			<value code="Z30B" />		
+			<value code="Z30D" />	
+			<value code="Z30F" />
+			<value code="Z30G" />		
+			<value code="ZCCR" />		
+			<value code="ZSH0" />
+			<value code="Z10G" />											
+		</enumtype>		
+		
+		<enumtype generate="true" code="MeasurementSystemType" autocreate="true" dynamic="true">			
+			<value code="English"/>	
+			<value code="Metric"/>					
+		</enumtype>
+					
+		<enumtype code="SolrPropertiesTypes" dynamic="true" generate="true" autocreate="false">
+			<value code="text_prolamsa" />
+		</enumtype>
+	</enumtypes>
+		
+	<relations>
+		<relation code="B2BCustomers2BaseStores" localized="false"
+		          generate="true" autocreate="true">
+			<deployment table="b2bcust2baseStrrel" typecode="10798"/>
+			<sourceElement type="B2BCustomer" collectiontype="set" 
+							cardinality="many" navigable="false">
+				<modifiers read="true" write="false" search="true"/>
+			</sourceElement>
+			<targetElement type="BaseStore" qualifier="baseStores"
+			               cardinality="many" collectiontype="set">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+		<relation code="B2BUnits2BaseStores" localized="false"
+		          generate="true" autocreate="true">
+			<deployment table="b2bunit2baseStrrel" typecode="10799"/>
+			<sourceElement type="B2BUnit" collectiontype="set" 
+							cardinality="many" navigable="false">
+				<modifiers read="true" write="false" search="true"/>
+			</sourceElement>
+			<targetElement type="BaseStore" qualifier="baseStores"
+			               cardinality="many" collectiontype="set">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+		<relation code="B2BUnits2ProlamsaProducts" localized="false"
+		          generate="true" autocreate="true">
+			<deployment table="b2bunit2productrel" typecode="10801"/>
+			<sourceElement type="B2BUnit" collectiontype="set" 
+							cardinality="many" navigable="false">
+				<modifiers read="true" write="false" search="true"/>
+			</sourceElement>
+			<targetElement type="ProlamsaProduct" qualifier="favoriteProducts"
+			               cardinality="many" collectiontype="set">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+		<relation code="BaseStore2PointOfServs" localized="false" autocreate="true">
+			<deployment table="basestr2pointSevsrel" typecode="10803"/>
+			<sourceElement type="BaseStore" collectiontype="list"
+							cardinality="many" navigable="true" qualifier="basestores">
+				<modifiers read="true" write="true" search="true"/>
+			</sourceElement>
+			<targetElement type="PointOfService" qualifier="pointOfServices"
+							cardinality="many" collectiontype="list">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+		<relation code="Address2BaseStores" localized="false"
+		          generate="true" autocreate="true">
+			<deployment table="Address2baseStrrel" typecode="10804"/>
+			<sourceElement type="Address" collectiontype="set" 
+							cardinality="many" navigable="false">
+				<modifiers read="true" write="false" search="true"/>
+			</sourceElement>
+			<targetElement type="BaseStore" qualifier="baseStores"
+			               cardinality="many" collectiontype="set">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+		<relation code="AlertConfiguration2Change" localized="false"
+		          generate="true" autocreate="true">
+			<deployment table="AlertConf2Change" typecode="10805"/>
+			<sourceElement type="AlertConfiguration" collectiontype="set" 
+							cardinality="many" navigable="false">
+				<modifiers read="true" write="false" search="true"/>
+			</sourceElement>
+			<targetElement type="AlertConfigurationChange" qualifier="customerChanges"
+			               cardinality="many" collectiontype="set">
+				<modifiers read="true" write="true" search="true"/>
+			</targetElement>
+		</relation>
+	</relations>
+
+	<itemtypes>
+		<!-- Add your item definitions here -->
+		
+		<itemtype code="MultipleCatalogsSyncCronJob" extends="CronJob" autocreate="true" generate="true"
+				jaloclass="mx.neoris.core.jalo.MultipleCatalogsSyncCronJob">
+			<attributes>
+				<attribute type="DependentCatalogs" qualifier="contentCatalogs">
+					<modifiers optional="false" initial="true"/>
+					<persistence type="property"/>
+					<description>
+						List of content catalogs used for CatalogVersionSyncJob
+					</description>
+				</attribute>
+				<attribute type="Catalog" qualifier="productCatalog">
+					<modifiers optional="false" initial="true"/>
+					<persistence type="property"/>
+					<description>
+						Products catalog used for CatalogVersionSyncJob
+					</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="PowertoolsSizeVariantProduct" extends="VariantProduct"
+          autocreate="true" generate="true"
+          jaloclass="mx.neoris.core.jalo.PowertoolsSizeVariantProduct">
+				 <description>Powertools size variant type that contains additional attribute describing variant size.
+				</description>
+				<attributes>
+					<attribute qualifier="size" type="localized:java.lang.String"
+					           metatype="VariantAttributeDescriptor">
+						<description>Size of the product.</description>
+						<modifiers/>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+		<typegroup name="btg">
+			<itemtype code="OrganizationOrderStatistics" autocreate="true" generate="true"
+					jaloclass="mx.neoris.core.jalo.btg.OrganizationOrderStatistics">
+				<description>Used to collect order total information within an organization</description>
+				<deployment table="OrganizationOrderStats" typecode="6214"/>
+				<attributes>
+					<attribute qualifier="unit" type="B2BUnit">
+						<description>The root unit of an organization</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="currency" type="Currency">
+						<description>The currency of orders</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="orderTotal" type="java.lang.Double">
+						<description>The total of all orders for an organization</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="date" type="java.util.Date">
+						<description>The date for which to gather order total information</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="category" type="java.lang.String">
+						<description>The category for which to gather order total information</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="catalog" type="java.lang.String">
+						<description>The catalog code to which the category belongs to</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+				<indexes>
+					<index name="orgStatsIdx" unique="false">
+						<key attribute="unit"/>
+						<key attribute="currency"/>
+						<key attribute="date"/>
+					</index>
+				</indexes>
+			</itemtype>
+
+
+			<itemtype code="OrganizationOrdersReportingCronJob" autocreate="true" generate="true" extends="CronJob"
+					  jaloclass="mx.neoris.core.jalo.btg.OrganizationOrdersReportingCronJob">
+			</itemtype>
+
+			<itemtype code="BTGOrganizationTotalSpentInCurrencyLastYearOperand" extends="BTGAbstractOrderOperand" autocreate="true" generate="true"
+					jaloclass="mx.neoris.core.jalo.btg.BTGOrganizationTotalSpentInCurrencyLastYearOperand">
+				<description>Gets total of all orders for an organization in the prior year for a given catalog category
+					if provided
+				</description>
+				<attributes>
+					<attribute type="Currency" qualifier="currency">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="productCatalogId">
+						<persistence type="property"/>
+						<modifiers optional="true"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="categoryCode">
+						<persistence type="property"/>
+						<modifiers optional="true"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="BTGOrganizationTotalSpentInCurrencyRelativeDatesOperand" extends="BTGOrganizationTotalSpentInCurrencyLastYearOperand"
+					autocreate="true" generate="true" jaloclass="mx.neoris.core.jalo.btg.BTGOrganizationTotalSpentInCurrencyRelativeDatesOperand">
+				<description>Gets total of all orders for an organization in the past period specified for a given catalog
+					category if provided
+				</description>
+				<attributes>
+					<attribute type="java.lang.Integer" qualifier="value">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="IntervalResolution" qualifier="unit">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<!-- Prolamsa -->
+
+		<typegroup name="prolamsa">
+			<itemtype code="CMSLinkComponent" autocreate="false" generate="false">
+				<attributes>
+					<attribute type="java.lang.String" qualifier="navigationLinkFunction">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			<!-- NEORIS_CHANGE #103 Added b2bunit -->
+			<itemtype code="WorkflowAction"	jaloclass="de.hybris.platform.workflow.jalo.WorkflowAction" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="b2bUnit" type="B2BUnit">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="HotFolderImportFailedProcess" extends="StoreFrontCustomerProcess" autocreate="true" generate="true">
+				<deployment table="HotFolderImportFailed" typecode="10822" />
+
+				<attributes>
+					<attribute type="java.lang.String" qualifier="filename">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="stackTrace">
+						<persistence type="property">
+							<columntype database="sap">
+								<value>nvarchar(5000)</value>
+							</columntype>
+							<columntype database="oracle">
+								<value>varchar2(4000)</value>
+							</columntype>
+							<columntype database="mysql">
+								<value>text</value>
+							</columntype>
+							<columntype database="sqlserver">
+								<value>nvarchar(max)</value>
+							</columntype>
+							<columntype database="hsqldb">
+								<value>LONGVARCHAR</value>
+							</columntype>					
+						</persistence>
+					</attribute>
+
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="AddedIncidentProcess" extends="StoreFrontCustomerProcess" autocreate="true" generate="true">
+				<deployment table="AddedIncident" typecode="10833" />
+
+				<attributes>
+					<attribute type="Incident" qualifier="incident">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="USer" qualifier="user">
+						<persistence type="property">
+						</persistence>
+					</attribute>
+
+				</attributes>
+			</itemtype>
+			<!-- NEORIS_CHANGE #74 Added to send quote requested email -->
+			<itemtype code="QuoteRequestedProcess" extends="StoreFrontCustomerProcess" autocreate="true" generate="true">
+				<deployment table="QuoteRequested" typecode="10823" />
+
+				<attributes>
+					<attribute type="Order" qualifier="order">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="B2BUnit" autocreate="false" generate="false">
+				<description>Extending the B2BUnit with additional attributes for Prolamsa.
+				</description>
+
+				<attributes>
+					<attribute type="Currency" qualifier="currency">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="Language" qualifier="language">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="shortName">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="industry">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="salesRep">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="salesArea">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="backOfficeAccount">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="PaymentTermsType" qualifier="TPago">					       
+						<persistence type="property">
+						   <columntype>
+								<value>java.lang.Long</value>
+							</columntype>
+						</persistence>
+						<defaultvalue>em().getEnumerationValue("PaymentTermsType","Z000")</defaultvalue>	
+					</attribute>
+					
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="currencyForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="salesRepForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="salesAreaForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="industryForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="backOfficeAccountForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="TPagoForStore">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="NeorisB2BUnitSettingByStoreCollection" qualifier="salesAreaWildCardVisibilityForStore">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="java.lang.String" qualifier="emailNotification">
+						<persistence type="property"/>
+					</attribute>
+
+				</attributes>
+			</itemtype>
+
+			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
+				<description>Extending the AbstractOrderEntryModel (CartEntry/OrderEntry) type from core with additional attributes for Prolamsa.
+				</description>
+
+				<attributes>
+					<attribute type="ProlamsaAPIProductConfiguration" qualifier="apiProductConfiguration">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.util.Date" qualifier="rollingScheduleWeek">
+						<persistence type="property"/>
+					</attribute>
+					<!-- NEORIS_CHANGE #74 Added properties to store sap data -->
+					<attribute type="java.lang.Double" qualifier="pricePerFeet">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="pricePerTon">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="netPriceWOTaxes">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.util.Date" qualifier="readyToShip">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="isTransportationGroupFull">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="isLastOnTraspotation">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="groupNumber">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="sapEntryNumber">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="convertedQuantity">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="weight">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="OrderEntryStatus" qualifier="status">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="negotiablePrice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="isAvailableToNegotiatePrice">
+						<persistence type="property"/>
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="isQuantityInPieces">
+						<persistence type="property"/>
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="stockOuts">
+						<persistence type="property"/>
+					</attribute>				
+					<attribute type="java.lang.Double" qualifier="pricePerPc">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="totalTaxas">
+						<persistence type="property"/>
+					</attribute>				
+					<attribute type="java.lang.Double" qualifier="totalAssurance">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="totalDeliveryCost">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="steelCategory">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="NeorisMedia" extends="Media" autocreate="true" generate="true">
+				<description>Special Media to be used by Hybris objects
+				</description>
+			</itemtype>
+
+			<itemtype code="Notice" autocreate="true" generate="true">
+				<description>Item type to hold notices from Prolamsa to prolamsa internal users.</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code" >
+						<persistence type="property"></persistence>
+						<modifiers unique="true"/>
+					</attribute>
+					<attribute qualifier="name" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="media" type="NeorisMedia" >
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="NoticeType" qualifier="type" >
+						<persistence type="property"/>
+					</attribute>
+					
+				</attributes>
+			</itemtype>
+			<itemtype code="BaseStore" autocreate="false" generate="false">
+				<description>Extending the BaseStore type from core with additional attributes for Prolamsa.
+				</description>
+				
+				<attributes>
+					<attribute type="Unit" qualifier="unit">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute qualifier="units" type="UnitCollection" >
+						<persistence type="property" />
+					</attribute>
+
+					<attribute qualifier="transportationModes" type="TransportationModeCollection" >
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="java.lang.Integer" qualifier="maxBundlesInventory">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="java.lang.Integer" qualifier="daysAddedDeliveryDate">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="MeasurementSystemType" qualifier="defaultMeasurementSystem">
+						<persistence type="property">
+						   <columntype>
+								<value>java.lang.Long</value>
+							</columntype>
+						</persistence>
+						<defaultvalue>em().getEnumerationValue("MeasurementSystemType","English")</defaultvalue>	
+					</attribute>
+					<attribute qualifier="incindentTypes" type="IncidentTypeCollection" >
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="java.lang.Boolean" qualifier="placeOrderButtonEnabled">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute qualifier="creditScoreCardLowLimit" type="java.lang.Integer" >
+						<persistence type="property" />
+						<defaultvalue>40</defaultvalue>
+					</attribute>
+					
+					<attribute qualifier="creditScoreCardHighLimit" type="java.lang.Integer" >
+						<persistence type="property" />
+						<defaultvalue>80</defaultvalue>
+					</attribute>
+					
+					<attribute type="boolean" qualifier="showAccountBalance">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="boolean" qualifier="showBackorder">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="boolean" qualifier="showDocumentSearch">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="boolean" qualifier="allowCategoryVisibility">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="boolean" qualifier="termsAndConditionsChecked">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="favoriteCustomersMaxLimit" type="java.lang.Integer" >
+						<persistence type="property" />
+						<defaultvalue>100</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="qualityEmail">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="priceDecimalsNumber">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberKG">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberBunKg">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberPcKg">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberTon">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberMt">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberBunLb">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberPcLb">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberLb">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="weightDecimalsNumberFt">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="boolean" qualifier="automaticallyCheckTermsAndConditions">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="genericNotificationEmail">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="salesDepartmentEmail">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="productSpecsEmail">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="techinicalSupportEmail">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="priceNegotiationEnabled">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="SalesAreaCollection" qualifier="salesAreaManagers">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="NoticeCollection" qualifier="notices">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="boolean" qualifier="showOptStudioReports">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="boolean" qualifier="showNoticesModule">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="boolean" qualifier="showIncidentsModule">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="boolean" qualifier="showOrdersAndQuotes">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="AlertCollection" qualifier="alerts">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="boolean" qualifier="showAlertsDashboard">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="maxOrderLimit">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="CategoryCollection" qualifier="APICategories">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="inventoryQtyFtAPIMin">
+						<persistence type="property" />
+						<defaultvalue>0</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="inventoryQtyFtAPIMax">
+						<persistence type="property" />
+						<defaultvalue>0</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="rollingQtyFtAPIMin">
+						<persistence type="property" />
+						<defaultvalue>0</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="rollingQtyFtAPIMax">
+						<persistence type="property" />
+						<defaultvalue>0</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="quoteNegotiationDiscountMin">
+						<persistence type="property"/>
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="quoteNegotiationDiscountMax">
+						<persistence type="property"/>
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="APIFunctionaliatyEnabled">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="HSSFunctionaliatyEnabled">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="quickCheckoutConfirmationEnabled">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.TRUE</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="activeSendNotificationToContactClient">
+						<persistence type="property"/>
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					<attribute type="boolean" qualifier="activeValidateFileNameAttachIncident">
+						<persistence type="property" />
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="validationRegExAttachIncident">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Boolean" qualifier="sendNotificationToUserDocument">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="sendNotificationToProlamsaInternal">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="activateFunctionalityLocationDefault">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="sendNotificactionOrderHiddenJGzzMRdz">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+					
+					<attribute type="java.lang.Boolean" qualifier="activateDefaultSettingLocation">
+						<persistence type="property"></persistence>
+						<defaultvalue>Boolean.FALSE</defaultvalue>
+					</attribute>
+					
+					
+					
+				</attributes>
+			</itemtype>
+
+			<!-- NEORIS_CHANGE #74 Changed from Order to AbrastractOrder -->
+			<itemtype code="AbstractOrder" autocreate="false" generate="false">
+				<description>Extending the Order type from core with additional attributes for Prolamsa.
+				</description>
+
+				<attributes>	
+					<attribute type="java.lang.String" qualifier="sapOrderId">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="sapWeightUnit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="sapLabelWeightUnit">
+						<persistence type="property"/>
+					</attribute>					
+					<attribute type="java.lang.String" qualifier="sapCurrency">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Address" qualifier="billingAddress">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="sapTotalPrice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="galvanizedPrice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="galvametalPrice">
+						<persistence type="property"/>
+					</attribute>					
+					<attribute type="java.lang.Double" qualifier="aluminizedPrice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="hotRolledPrice">
+						<persistence type="property"/>
+					</attribute>					
+					<attribute type="java.lang.Double" qualifier="coldRolledPrice">
+						<persistence type="property"/>
+					</attribute>					
+					<attribute type="java.lang.Double" qualifier="totalWeight">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="galvanizedWeight">
+						<persistence type="property"/>			
+					</attribute>					
+					<attribute type="java.lang.Double" qualifier="galvametalWeight">
+						<persistence type="property"/>			
+					</attribute>					
+					<attribute type="java.lang.Double" qualifier="aluminizedWeight">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="hotRolledWeight">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="coldRolledWeight">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="creditScoreCard">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="totalAssurance">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="totalDeliveryCost">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="totalTaxas">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="PaymentTermsType" qualifier="TPago">
+						<persistence type="property">
+						   <columntype>
+								<value>java.lang.Long</value>
+							</columntype>
+						</persistence>
+						<defaultvalue>em().getEnumerationValue("PaymentTermsType","Z000")</defaultvalue>
+					</attribute>
+					
+					<attribute type="java.util.Date" qualifier="requestedDeliveryDate">
+						<persistence type="property"/>
+					</attribute>
+					
+					<!-- NEORIS_CHANGE #74 Added property to store the unit of measure when an order is placed-->
+					<attribute type="Unit" qualifier="unitWhenPlaced">
+						<persistence type="property"/>
+					</attribute>
+					
+					<!-- NEORIS_CHANGE #108 Added property to store the B2B unit of the order-->
+					<attribute type="B2BUnit" qualifier="unit">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="TransportationMode" qualifier="transportationMode">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="NeorisMedia" qualifier="attachedPO">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="NeorisMediaCollection" qualifier="attachmentsPO" >
+						<persistence type="property"></persistence>
+					</attribute>
+
+					<attribute type="AbstractOrder" qualifier="originalQuote">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="AbstractOrder" qualifier="finalOrder">
+						<persistence type="property"></persistence>
+					</attribute>
+					
+					<attribute type="java.lang.String" qualifier="uPrice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="semaphoreCredit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="sapSubtotalPrice">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.String" qualifier="shippingInstructions">
+						<persistence type="property">
+							<columntype database="sap">
+								<value>nvarchar(5000)</value>
+							</columntype>
+							<columntype database="oracle">
+								<value>varchar2(4000)</value>
+							</columntype>
+							<columntype database="mysql">
+								<value>text</value>
+							</columntype>
+							<columntype database="sqlserver">
+								<value>nvarchar(max)</value>
+							</columntype>
+							<columntype>
+                             	<value>HYBRIS.LONG_STRING</value>
+                         	</columntype>				
+						</persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="originalUserOrder">
+						<persistence type="property"/>
+					</attribute>
+					
+				<!-- For Axis API products -->
+					<attribute type="java.lang.Boolean" qualifier="isAPIOrder">
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="hasAPIProducts" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="hasAPIProductsAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+				<!-- For Axis API products -->
+				
+				<!-- For MX HSS Funtionality-->
+					<attribute type="java.lang.Boolean" qualifier="isHSSOrder">
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="hasHSSProducts" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="hasHSSProductsAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+				     <attribute type="Order" qualifier="hssOrder">
+				     	<persistence type="property"></persistence>
+				     </attribute>
+				<!-- For MX HSS Funtionality -->
+					     
+				<!-- For Axis negotiation -->
+					<attribute qualifier="sharePointId" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="sharePointErrorTrace" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="hasNegPrices" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="hasNegPricesAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+				<!-- For Axis negotiation -->
+				
+				<attribute type="java.lang.String" qualifier="sapExceptionMessage">
+					<persistence type="property"></persistence>
+				</attribute>
+				
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="Cart" autocreate="false" generate="false">
+				<description>Extending the CartModel type from core with additional attribute for Prolamsa</description>
+				<attributes>
+					<attribute qualifier="unitOwner" type="B2BUnit">
+						<description>The unit owner of cart</description>
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="boolean" qualifier="cartProcessingOrderOrQuote">
+						<persistence type="property" />
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					<attribute type="boolean" qualifier="isFullyHSS">
+						<persistence type="dynamic" attributeHandler="isFullyHSSAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+					</attribute>
+					<!--  
+					<attribute type="boolean" qualifier="tryCreateOrder">
+						<persistence type="property"/>
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+					-->
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ProlamsaAPIProductConfiguration" autocreate="true" generate="true">
+				<description>Prolamsa API Product Configuration</description>
+
+				<deployment table="APIProductConfiguration" typecode="10791" />
+
+				<attributes>
+					<attribute qualifier="pressure" type="java.lang.Integer" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="duration" type="java.lang.Integer" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="specificStencil" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="specialDrifter" type="java.lang.Double" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="specificLength" type="java.lang.Double" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="locationOfTest" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="sampleDirection" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="testTemp" type="java.lang.Integer" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="sampleSize" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+				</attributes>
+			</itemtype>
+
+			<itemtype code="ProlamsaProduct" extends="Product" autocreate="true" generate="true">
+				<description>Prolamsa Product definition</description>
+
+				<attributes>
+					<attribute qualifier="baseCode" type="java.lang.String" >					     
+						<modifiers optional="false" search="true" />
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="codeForFavorites" type="java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="manufacturingDescription" type="localized:java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="fullDescription" type="localized:java.lang.String" >
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="location" type="ProductLocation" >
+					     <modifiers optional="false" unique="true"/>
+						<persistence type="property" />
+					</attribute>
+
+					<attribute qualifier="relatedProductCodes" type="ProductCodeCollection" >
+						<persistence type="property" />
+					</attribute>
+
+					<attribute qualifier="family" type="java.lang.String">
+					    <modifiers optional="false"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="subFamily" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="section" type="java.lang.String">
+					    <modifiers optional="false"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="dimA" type="java.lang.Double">
+						<persistence type="property"/>
+					</attribute>
+	
+					<attribute qualifier="dimB" type="java.lang.Double">
+						<persistence type="property"/>
+					</attribute> 
+	
+					<attribute qualifier="wallThickness" type="java.lang.Double">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="steel" type="java.lang.String">
+					    <modifiers optional="false"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="quality" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="covering" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="length" type="java.lang.Double">
+						<description>Material length in ft</description>
+						<persistence type="property"/>
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute qualifier="lengthmm" type="java.lang.Double">
+						<description>Material length in mm</description>
+						<persistence type="property"/>
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+	
+					<attribute qualifier="materialType" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="standard" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="packing" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="piecesPerBundle">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="bundleKgEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="bundleLbEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="pcKgEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="pcLbEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="kgEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="lbEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="tnEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="mtEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="ftEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="lengthCode" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="norm" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="grade" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="endFinish" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="finish" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="deburr" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="idScarf" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="endFacer" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="coating" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="drift" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="thread" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="strategy">
+						<persistence type="property"/>
+					</attribute>
+					
+					<!-- Attributes added for Axis support -->
+					
+					<attribute type="java.lang.Double" qualifier="ftLbEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="ftKgEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.Double" qualifier="ftTnEquiv">
+					    <modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="isAPI" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="isAPIAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+					<!-- Attributes added for Axis support -->
+					
+					<!-- Attribute for hss product -->
+					<attribute qualifier="isHSS" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="isHSSAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+					 
+					 <attribute qualifier="approvalVisibility" type="java.lang.String">
+						<persistence type="property"/>
+						<defaultvalue>String.valueOf("N")</defaultvalue>
+					</attribute>
+					
+				</attributes>
+			</itemtype>
+
+			<itemtype code="CustomerProductReference" autocreate="true" generate="true">
+				<description>Type that represents a Prolamsa customer product that maps to a Prolamsa product catalo.
+				</description>
+				<deployment table="CustomerProductReference" typecode="10780"/>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="description">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="productCode">
+					    <modifiers optional="false" />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="B2BUnit" qualifier="customer">
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="catalogId">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="location" type="ProductLocation" >
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="TransportationMode" autocreate="true" generate="true">
+				<description>Type that represents a Prolamsa transportation mode.
+				</description>
+				<deployment table="TransportationMode" typecode="10781"/>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="internalCode">
+						<modifiers search="true" />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="code">
+						<modifiers search="true" />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="incotermCode">
+						<modifiers search="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="incotermDescription">
+						<modifiers search="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="name">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.Double" qualifier="maxCapacity">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Address" autocreate="false" generate="false">
+				<description>Extending the Address type from core with additional attributes for Prolamsa.
+				</description>
+				
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<modifiers search="true" />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="name">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="shortName">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="incoterm">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="java.lang.String" qualifier="defaultPlant">
+						<persistence type="property" />
+					</attribute>
+
+					<attribute type="TransportationMode" qualifier="transportationMode">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Wishlist2" autocreate="false" generate="false">
+				<description>Extending the Wishlist2 type from core with additional attributes for Prolamsa.
+				</description>
+
+				<attributes>
+					<attribute type="Wishlist2Type" qualifier="type" >
+						<persistence type="property"/>
+						<defaultvalue>em().getEnumerationValue("Wishlist2Type","TEMPLATE")</defaultvalue>
+					</attribute>
+
+					<attribute type="B2BUnit" qualifier="b2bUnit">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="Unit" qualifier="unit">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute type="java.lang.String" qualifier="orderCode">
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute qualifier="hasAPIProducts" type="java.lang.Boolean" >
+				        <persistence type="dynamic" attributeHandler="hasWishlist2APIProductsAttributeHandler"/>
+				        <modifiers read="true" write="false"/>
+				     </attribute>
+				</attributes>
+
+			</itemtype>
+
+			<itemtype code="Wishlist2Entry" autocreate="false" generate="false">
+				<description>Extending the Wishlist2Entry type from core with additional attributes for Prolamsa.
+				</description>
+
+				<attributes>	
+					<attribute type="java.util.Date" qualifier="rollingScheduleWeek">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute type="ProlamsaAPIProductConfiguration" qualifier="apiProductConfiguration">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Invoice" autocreate="true" generate="true">
+				<deployment table="invoice" typecode="10750" />
+				<attributes>
+				
+				   <attribute type="B2BUnit" qualifier="customer" autocreate="true" generate="true">
+				        <modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute qualifier="number" type="java.lang.String">
+						<modifiers read="true" write="true" initial="false" optional="false" search="true" />
+						<persistence type="property" />
+					</attribute>
+
+					<attribute qualifier="documentNumber" type="java.lang.String">
+						<modifiers read="true" write="true" initial="false" optional="false" search="true" />
+						<persistence type="property" qualifier="document_number"/>
+					</attribute>
+					
+					<attribute qualifier="documentDescription" type="java.lang.String">
+						<modifiers read="true" write="true" initial="false" optional="false" search="true" />
+						<persistence type="property" qualifier="document_description"/>
+					</attribute>
+					
+					<attribute qualifier="currency" type="java.lang.String">
+						<modifiers read="true" write="true" initial="false" optional="false" search="true" />
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute qualifier="invoiceDate" type="java.util.Date">
+						<modifiers read="true" write="true" initial="false" optional="false" />
+						<persistence type="property" qualifier="invoice_date" />
+					</attribute>
+
+					<attribute qualifier="dueDate" type="java.util.Date">
+						<modifiers read="true" write="true" initial="false" optional="false" />
+						<persistence type="property" qualifier="due_date" />
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="originalAmount" type="java.lang.Double" generate="true">
+						<persistence type="property" qualifier="original_amount">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="credits" type="java.lang.Double" generate="true">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="debits" type="java.lang.Double" generate="true">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+					<attribute autocreate="true" qualifier="balanceAmount" type="java.lang.Double" generate="true">
+						<persistence type="property" qualifier="balance_amount">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+				</attributes>
+			</itemtype>
+			
+			<!-- NEORIS_CHANGE #60 -->  
+		   <itemtype code="Backorder" autocreate="true" generate="true">
+		     <deployment table="Backorder" typecode="10770" />
+		    <attributes>
+		     <attribute type="Address" qualifier="customer">
+			  <persistence type="property" />
+		     </attribute>
+		
+		     <attribute type="java.lang.String" qualifier="description">
+		      <persistence type="property" />
+		     </attribute>
+		
+		     <attribute type="java.lang.String" qualifier="pcsOrder">
+		      <persistence type="property" />
+		     </attribute>
+		
+		     <attribute autocreate="true" qualifier="kgsOrder" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="kgs_Order">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="pendingKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="pending_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="readyKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="ready_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="loadingKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loading_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balanceKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="orderQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="orderQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="pendingQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="pendingQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="readyQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="readyQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="loadingQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loadingQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balance2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uom2">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="orderQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="orderQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="pendingQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="pendingQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="readyQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="readyQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="loadingQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loadingQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balance3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uom3">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		    </attributes>
+		   </itemtype>
+			
+			<!-- NEORIS_CHANGE #61 -->
+			<itemtype code="BalanceStatement" autocreate="true" generate="true">
+				<description>Type that represents a Prolamsa Balance Statement
+				</description>
+				<deployment table="BalanceStatement" typecode="10760" />
+				<attributes>
+				    <attribute type="B2BUnit" qualifier="customer" autocreate="true" generate="true">
+				        <modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" qualifier="customer" />
+					</attribute>
+			    									
+					<attribute autocreate="true" qualifier="pastDue" type="java.lang.Double" generate="true">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+					<attribute autocreate="true" qualifier="currentAmount" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+					<attribute autocreate="true" qualifier="balance" type="java.lang.Double" generate="true">
+						<persistence type="property" qualifier="balance">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="creditLimit" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>					
+				</attributes>
+			</itemtype>
+		
+		<!-- NEORIS_CHANGE #62 -->
+			<itemtype code="BalanceStatementDetail" autocreate="true" generate="true">
+				<description>Type that represents a Prolamsa Balance Statement
+				</description>
+				<deployment table="BalanceStatementDetail" typecode="10790" />
+				<attributes>
+				    <attribute type="B2BUnit" qualifier="customer" autocreate="true" generate="true">
+				        <modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" qualifier="customer" />
+					</attribute>
+			    									
+					<attribute autocreate="true" qualifier="pastDue" type="java.lang.Double" generate="true">
+						<persistence type="property">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+					<attribute autocreate="true" qualifier="creditAvailable" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="current" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+
+					<attribute autocreate="true" qualifier="balance" type="java.lang.Double" generate="true">
+						<persistence type="property" qualifier="balance">
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="creditLimit" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>	
+					
+					<attribute autocreate="true" qualifier="overdueCharge" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="overdueCredit" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="overdueInvoice" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>	
+					
+					<attribute autocreate="true" qualifier="overduePayment" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>	
+					
+					<attribute autocreate="true" qualifier="overdueAmount" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>		
+						
+					<attribute autocreate="true" qualifier="currentCharge" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="currentCredit" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="currentInvoice" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>	
+					
+					<attribute autocreate="true" qualifier="currentPayment" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>	
+					
+					<attribute autocreate="true" qualifier="currentBalance" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="pastDue1_30" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="pastDue31_60" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="pastDue61_90" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="pastDueMore90" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+					
+					<attribute autocreate="true" qualifier="salVal" type="java.lang.Double" generate="true">
+						<persistence type="property" >
+							<columntype>
+								<value>java.math.BigDecimal</value>
+							</columntype>
+						</persistence>
+						<modifiers read="true" write="true" optional="true" />
+						<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+					</attribute>
+							
+				</attributes>
+			</itemtype>
+			
+		<!-- NEORIS_CHANGE BACKORDERDETAIL -->
+			<itemtype code="BackorderDetail" autocreate="true" generate="true">
+		     <deployment table="BackorderDetail" typecode="10800" />
+			    <attributes>
+			    
+		    	<attribute type="B2BUnit" qualifier="customer" autocreate="true" generate="true">
+				<modifiers read="true" write="true" search="true" optional="true" />
+				<persistence type="property" qualifier="customer" />
+		     </attribute>
+			    	<attribute type="java.lang.String" qualifier="address" autocreate="true" generate="true">
+						<persistence type="property" qualifier="address" />
+			     	</attribute>
+	
+				    <attribute type="java.lang.String" qualifier="partNumber" autocreate="true" generate="true">
+						<persistence type="property" qualifier="partNumber" />
+				     </attribute>
+				     <attribute type="java.lang.String" qualifier="plant">
+				     	<persistence type="property"></persistence>
+				     </attribute>
+				     
+				     <attribute qualifier="deliveryDate" type="java.util.Date">
+						<modifiers read="true" write="true" initial="false" optional="false" />
+						<persistence type="property" qualifier="deliveryl_Date" />
+					</attribute>
+							
+					<attribute qualifier="orderDate" type="java.util.Date">
+						<modifiers read="true" write="true" initial="false" optional="false" />
+						<persistence type="property" qualifier="order_Date" />
+					</attribute>
+						
+					<attribute type="java.lang.String" qualifier="order" autocreate="true" generate="true">
+						<persistence type="property" qualifier="order_number" />
+				    </attribute>
+				     
+				    <attribute type="java.lang.String" qualifier="customerPO" autocreate="true" generate="true">
+						<persistence type="property" qualifier="customerPO" />
+				    </attribute>
+				     
+				    <attribute type="java.lang.Integer" qualifier="pieces" autocreate="true" generate="true">
+						<persistence type="property" qualifier="pieces" />
+				    </attribute>
+				    
+				    <attribute type="java.lang.String" qualifier="description">
+				    	<persistence type="property" />
+				    </attribute>
+		
+				     <attribute type="java.lang.String" qualifier="pcsOrder">
+				     	<persistence type="property" />
+				     </attribute>
+		
+				     <attribute autocreate="true" qualifier="kgsOrder" type="java.lang.Double" generate="true">
+				    	<persistence type="property" qualifier="kgs_Order">
+					       	<columntype>
+					        	<value>java.math.BigDecimal</value>
+					       </columntype>
+				      	</persistence>
+				      	<modifiers read="true" write="true" optional="true" />
+				      	<defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+				     </attribute>
+				     
+				     <attribute autocreate="true" qualifier="pendingKilos" type="java.lang.Double" generate="true">
+				      	<persistence type="property" qualifier="pending_Kilos">
+				       		<columntype>
+				        		<value>java.math.BigDecimal</value>
+					       </columntype>
+					   	</persistence>
+				      <modifiers read="true" write="true" optional="true" />
+				      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+				     </attribute>
+		     <attribute autocreate="true" qualifier="readyKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="ready_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     <attribute autocreate="true" qualifier="loadingKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loading_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     <attribute autocreate="true" qualifier="balanceKilos" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance_Kilos">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="estatusEsp">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="estatusEng">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="partida">
+				<persistence type="property" />
+			</attribute>
+
+			<attribute autocreate="true" qualifier="orderQty" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="orderQty">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uomOrderQty">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balance" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uomBalance">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="orderQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="orderQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+
+		     <attribute autocreate="true" qualifier="pendingQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="pendingQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="readyQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="readyQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="loadingQty2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loadingQty2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balance2" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance2">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uom2">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="orderQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="orderQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+
+		     <attribute autocreate="true" qualifier="pendingQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="pendingQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="readyQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="readyQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="loadingQty3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="loadingQty3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute autocreate="true" qualifier="balance3" type="java.lang.Double" generate="true">
+		      <persistence type="property" qualifier="balance3">
+		       <columntype>
+		        <value>java.math.BigDecimal</value>
+		       </columntype>
+		      </persistence>
+		      <modifiers read="true" write="true" optional="true" />
+		      <defaultvalue>Double.valueOf(0.0d)</defaultvalue>
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="uom3">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="logistic">
+		      <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute type="java.lang.String" qualifier="location">
+		      <persistence type="property" />
+		     </attribute>
+				    
+			     </attributes>
+		     </itemtype>
+		     
+		      <!-- NEORIS_CHANGE #72  --> 
+		   <itemtype code="DocumentSearch" autocreate="true" generate="true">
+		     <deployment table="DocumentSearch" typecode="10820" />
+		    <attributes>
+		     		     
+		     	<attribute qualifier="code" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="invoice" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="mtr" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				 <attribute qualifier="remission" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="debitNote" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="creditNote" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="tolly" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="boL" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="po" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="so" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="quote" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="dateInvoice" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+			 </attributes>
+		     </itemtype>
+		     
+		     
+		     <!-- NEORIS_CHANGE QUOTE_REPORT
+		   <itemtype code="Quote" autocreate="true" generate="true">
+		     <deployment table="Quote" typecode="10810" />
+		    <attributes>
+		     <attribute type="B2BUnit" qualifier="customer">
+			  <persistence type="property" />
+		     </attribute>
+		     
+		     <attribute qualifier="quoteNumber" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="orderStatus" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="numberPO" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="datePlaced" type="java.util.Date">
+						<modifiers read="true" write="true" initial="false" optional="false" />
+						<persistence type="property" qualifier="date_placed" />
+					</attribute>
+			 </attributes>
+		     </itemtype>
+		       --> 
+		       
+			<itemtype code="Unit" autocreate="false" generate="false">
+				<description>Adding a new property to hold prolamsa(SAP) unit of measure code</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="sapCode">
+						<modifiers read="true" write="true" search="true" optional="true"/>
+						<persistence type="property"></persistence>
+					</attribute>
+					
+					<attribute type="MeasurementSystemType" qualifier="defaultMeasurementSystem">
+						<persistence type="property">
+						   <columntype>
+								<value>java.lang.Long</value>
+							</columntype>
+						</persistence>
+						<defaultvalue>em().getEnumerationValue("MeasurementSystemType","English")</defaultvalue>	
+					</attribute>
+					
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="ProductVisibility" autocreate="true" generate="true">
+				<description>Type that represents a Prolamsa Product Visibility.
+				</description>
+				<deployment table="ProductVisibility" typecode="10830"/>
+				<attributes>
+					
+					<attribute  qualifier="code"  type="java.lang.String" >						
+						<modifiers  optional="false" />
+						<persistence type="property" /> 
+					</attribute>
+									
+					<attribute  qualifier="category"  type="ProductCategoryCollection" >						
+						<persistence type="property" />
+					</attribute>		
+					
+					<attribute  qualifier="catalog"  type="DependentCatalogs" >						
+						<persistence type="property" />
+					</attribute>
+					
+					<attribute type="java.lang.Boolean" qualifier="active">
+						<persistence type="property"/>
+						<defaultvalue>false</defaultvalue>
+					</attribute>
+							
+				
+                    <!-- PRODUCT ATTRIBUTES -->
+					<attribute qualifier="location" type="ProductLocationCollection" >					   
+						<persistence type="property" />
+					</attribute>
+							
+					<attribute qualifier="materialType" type="MaterialTypeCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="steel" type="GenericListCollection">					    
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="quality" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+
+					<attribute qualifier="covering" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="finish" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="family" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="section" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="industry" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="salesArea" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="salesRep" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+					
+					<attribute qualifier="salesAreaWildCardVisibility" type="GenericListCollection">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="TermsAndCoditionsByStore" autocreate="true" generate="true" >
+				<description>Item type to hols if the terms and conditiosn should be checked or not by store</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="baseStoreId">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="termsAndConditionsChecked">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="B2BCustomer" autocreate="false" generate="false">
+				<description>Extending the B2BCustomer with additional attributes for Prolamsa.</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="salesRep">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="TermsAndCoditionsByStoreCollection" qualifier="TermsAndCoditionsByStore">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="backofficeAccount">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="NeorisB2BCustomerSettingByStoreCollection" qualifier="backofficeAccountForStore">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="NeorisB2BCustomerSettingByStoreCollection" qualifier="salesRepForStore">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="NeorisB2BCustomerDefaultSettingCollection" qualifier="defaultSettings">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="boolean" qualifier="isFirstAccesPortal">
+						<persistence type="property"/>
+						<defaultvalue>true</defaultvalue>
+					</attribute>
+					<attribute type="AlertConfigurationCollection" qualifier="alertsConfiguration">
+						<persistence type="property"></persistence>
+					</attribute>
+					
+					<attribute type="java.lang.String" qualifier="currentLocation">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="customerCurrentSMetrico">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="customerCurrentUMedida">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="customerCurrentLenguaje">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="customerCurrentMoneda">
+						<persistence type="property"/>
+					</attribute>
+
+					
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="IncidentType">
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<persistence type="property" />
+						<modifiers unique="true"/>
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="name">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="IncidentState">
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<persistence type="property" />
+						<modifiers unique="true"/>
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="name">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			  
+			<itemtype code="Incident">
+				<deployment table="Incident" typecode="10850"/>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<persistence type="property"/>
+						<modifiers unique="true" optional="false"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="invoiceNumber">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="contactName">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="alternateContactName">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="IncidentType" qualifier="type">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="IncidentState" qualifier="state">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="B2BUnit" qualifier="account">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="phone">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="email">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Media" qualifier="attachement1">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Media" qualifier="attachement2">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Media" qualifier="attachement3">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Media" qualifier="attachement4">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Media" qualifier="attachement5">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="atach1Description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="atach2Description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="atach3Description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="atach4Description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="atach5Description">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="IncidentLineCollection" qualifier="incidentLines">
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="date" type="java.util.Date">
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="customerCode" type="java.lang.String">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="shipTo">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="BaseStore" qualifier="baseStore">
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="location" type="ProductLocation" >
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="country" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="incoterm" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="descriptionMax">
+						<persistence type="property">
+							<columntype database="sap">
+								<value>nvarchar(5000)</value>
+							</columntype>
+							<columntype database="oracle">
+								<value>varchar2(4000)</value>
+							</columntype>
+							<columntype database="mysql">
+								<value>text</value>
+							</columntype>
+							<columntype database="sqlserver">
+								<value>nvarchar(max)</value>
+							</columntype>
+							<columntype>
+                             	<value>HYBRIS.LONG_STRING</value>
+                         	</columntype>				
+						</persistence>
+					</attribute>
+					<attribute qualifier="sharePointId" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="sharePointErrorTrace" type="java.lang.String" >
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="IncidentLine">
+			<deployment table="IncidentLine" typecode="10840"/>
+				<attributes>
+					<attribute type="Product" qualifier="product">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="productBaseCode">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="productDescription">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="quantity">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="quantityToClaim">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Integer" qualifier="batch">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="salesUnit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="weightUnit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.Double" qualifier="netweight">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="sorder_p">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="sorder">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="invoice">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="invoice_p">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="shipTo">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="shipToDescription">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="plant">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="PointOfService" autocreate="false" generate="false">
+				<description>Extending the PointOfService with additional attributes for Prolamsa.</description>
+
+				<attributes>	
+					<attribute type="localized:java.lang.String" qualifier="locDisplayName">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="NeorisB2BUnitSettingByStore" autocreate="true" generate="true">
+				<description>Type that represents key value pair to define B2BUnit settings applied by store</description>
+				<deployment table="B2BUnitSettingByStore" typecode="10870"/>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="uid">
+						<persistence type="property"/>
+						<modifiers write="false" initial="true" optional="false" unique="true"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="storeId">
+						<persistence type="property"/>
+						<modifiers write="false" initial="true" optional="false"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="setting">
+						<persistence type="property"/>
+						<modifiers optional="false"/>
+					</attribute>
+					<attribute type="B2BUnit" qualifier="b2bUnitOwner">
+						<persistence type="property"/>
+						<modifiers write="false" initial="true" optional="false"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="NeorisB2BCustomerSettingByStore" autocreate="true" generate="true">
+				<description>Type that represents key value pair to define B2BCustomer settings applied by store</description>
+				<deployment table="B2BCustSettingByStore" typecode="10880"/>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="uid">
+						<persistence type="property"/>
+						<modifiers write="false" initial="true" optional="false" unique="true"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="storeId">
+						<persistence type="property" />
+						<modifiers write="false" initial="true" optional="false"/>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="setting">
+						<persistence type="property"/>
+						<modifiers optional="false"/>
+					</attribute>
+					<attribute type="B2BCustomer" qualifier="b2bCustomerOwner">
+						<persistence type="property"/>
+						<modifiers write="false" initial="true" optional="false"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="SalesArea" autocreate="true" generate="true">
+				<description>Type that represents a sale area in Prolamsa</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<persistence type="property"></persistence>
+						<modifiers optional="false" unique="true"/>
+					</attribute>
+					<attribute type="B2BCustomer" qualifier="manager">
+						<persistence type="property"></persistence>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="NeorisB2BCustomerDefaultSetting" autocreate="true" generate="true">
+				<description>Type that represents b2b customer default setting</description>
+				<deployment table="B2BCustDefaultSetting" typecode="10881"/>
+				<attributes>
+					<attribute type="B2BUnit" qualifier="b2bunit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="BaseStore" qualifier="baseStore">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Unit" qualifier="uom">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="Address" qualifier="shippingAddress">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="PointOfService" qualifier="location">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="TransportationMode" qualifier="transportationMode">
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="BatchSearch" autocreate="true" generate="true">
+		     <deployment table="BatchSearch" typecode="10890" />
+		    <attributes>
+		     		     
+		     	<attribute qualifier="code" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="invoice" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="mtr" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				 <attribute qualifier="remission" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="debitNote" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="creditNote" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="tolly" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="boL" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="po" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+					
+				<attribute qualifier="so" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="quote" type="java.lang.String">
+					<modifiers read="true" write="true" initial="false" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				
+				<attribute qualifier="dateInvoice" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property"/>
+				</attribute>
+			 </attributes>
+		     </itemtype>
+		     
+		     <itemtype code="Alert" autocreate="true" generate="true">
+		     	<description>This type is created to hold alerts for Axis site</description>
+		     	<attributes>
+		     		<attribute type="java.lang.String" qualifier="code">
+		     			<modifiers unique="true"/>
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="description" type="localized:java.lang.String">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasDailyOption" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasWeeklyOption" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasMonthlyOption" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasTimeOptions" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasDayOptions" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasProductOptions" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasMTROption" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute qualifier="hasCCEmailOptions" type="java.lang.Boolean">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute type="TimeOptionCollection" qualifier="timeOptions">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute type="ProductOptionCollection" qualifier="productOptions">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     	</attributes>
+		     </itemtype>
+			
+			<itemtype code="AlertConfiguration" autocreate="true" generate="true">
+		     	<description>This type is created to hold alert configuration for Axis site</description>
+		     	<attributes>
+		     		<attribute type="Alert" qualifier="alert">
+		     			<persistence type="property"></persistence>
+		     		</attribute>
+		     		<attribute type="B2BUnit" qualifier="b2bunit">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="BaseStore" qualifier="baseStore">
+						<persistence type="property"/>
+					</attribute>
+					<attribute type="B2BCustomer" qualifier="b2bcustomer">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="notify">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="periodicity">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="time">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="daysOfWeek">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="dayOfMonth">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="productOptions">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.Boolean" qualifier="includeMTR">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ccEmail">
+						<persistence type="property"></persistence>
+					</attribute>
+		     	</attributes>
+		     </itemtype>
+		     <itemtype code="AlertTimeOption" autocreate="true" generate="true">
+		     	<description>Time Option</description>
+		     	<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<modifiers unique="true"/>
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="description">
+						<persistence type="property"></persistence>
+					</attribute>
+		     	</attributes>
+		     </itemtype>
+		      <itemtype code="AlertProductOption" autocreate="true" generate="true">
+		     	<description>Product Option</description>
+		     	<attributes>
+					<attribute type="java.lang.String" qualifier="code">
+						<modifiers unique="true"/>
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="localized:java.lang.String" qualifier="description">
+						<persistence type="property"></persistence>
+					</attribute>
+		     	</attributes>
+		     </itemtype>
+		     <itemtype code="AlertConfigurationChange" autocreate="true" generate="true">
+		     	<description>This item will containg the changes of alert configuration made by the customer</description>
+		     	<attributes >
+		     		<attribute type="java.lang.String" qualifier="attribute">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="previuosValue">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="newValue">
+						<persistence type="property"></persistence>
+					</attribute>
+					<attribute qualifier="changedDate" type="java.util.Date">
+						<description>The date for which to gather order total information</description>
+						<persistence type="property"/>
+					</attribute>
+		     	</attributes>
+		     </itemtype>
+		     
+		     <!-- Cron Job to import lost order -->
+		       <itemtype code="LostOrderJob" autocreate="true" generate="true" extends="CronJob">
+				<attributes>
+					<attribute qualifier="lastSuccessfulDate" type="java.util.Date">
+					<description>this date will get updated when job will finish successfully</description>
+                        <persistence type="property"/>
+					</attribute>
+					
+				</attributes>
+		 </itemtype>
+			
+		</typegroup>
+
+	</itemtypes>
+
+</items>

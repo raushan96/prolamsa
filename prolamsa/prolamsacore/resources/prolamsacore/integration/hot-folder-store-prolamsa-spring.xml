@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="baseDirectoryProlamsa" class="java.lang.String">
+		<constructor-arg value="#{baseDirectory}/${tenantId}/prolamsa" />
+	</bean>
+	
+	<bean id="baseStoreCode" class="java.lang.String">
+		<constructor-arg value="2000" />
+	</bean>
+
+	<!-- File Orders -->
+	<bean id="neorisFileOrderComparator" class="mx.neoris.core.dataimport.batch.NeorisFileOrderComparator">
+	</bean>
+
+	<!-- Import Config -->
+	<bean id="prolamsaImportConfig" class="de.hybris.platform.servicelayer.impex.ImportConfig" scope="prototype">
+		<property name="removeOnSuccess" value="true" />
+		<property name="failOnError" value="false" />
+		<property name="synchronous" value="true" />
+		<property name="legacyMode" value="false" />
+		<property name="maxThreads" value="#{configurationService.configuration.getProperty('acceleratorservices.batch.impex.max-threads')}" />
+		<property name="locale" value="en" />
+	</bean>
+
+
+	<!-- Product Import -->
+
+	<file:inbound-channel-adapter id="prolamsa_products" directory="#{baseDirectoryProlamsa}" filename-regex="1Pro\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_products" reply-channel="prolamsa_products_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_products_proc" output-channel="batchFilesImp" ref="prolamsa_products_task" method="execute" />
+
+	<bean id="prolamsa_products_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+		<property name="executeSOLRIndexer" value="true" />
+	</bean>
+
+	<!-- Categories Import -->
+
+	<file:inbound-channel-adapter id="prolamsa_categories" directory="#{baseDirectoryProlamsa}" filename-regex="categories\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_categories" reply-channel="prolamsa_categories_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_categories_proc" output-channel="batchFilesImp" ref="prolamsa_categories_task" method="execute" />
+
+	<bean id="prolamsa_categories_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+		<property name="executeSOLRIndexer" value="true" />
+		<property name="modeSOLRIndexer" value="full" />
+	</bean>
+
+	<!-- B2BUnits and Addresses Import filename-regex="^(.*)\-organizations\.csv" -->
+
+	<file:inbound-channel-adapter id="prolamsa_organization" directory="#{baseDirectoryProlamsa}" filename-regex="2Org\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_organization" reply-channel="prolamsa_organization_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_organization_proc" output-channel="batchFilesImp" ref="prolamsa_organization_task" method="execute" />
+
+	<bean id="prolamsa_organization_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="importService" ref="neorisAdminImportService" />
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+		<property name="executeSOLRIndexer" value="true" />
+	</bean>
+
+	<!-- CustomerProductReference -->
+
+	<file:inbound-channel-adapter id="prolamsa_custprodref" directory="#{baseDirectoryProlamsa}" filename-regex="3PCl\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_custprodref" reply-channel="prolamsa_custprodref_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_custprodref_proc" output-channel="batchFilesImp" ref="prolamsa_custprodref_task" method="execute" />
+
+	<bean id="prolamsa_custprodref_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+		<property name="executeSOLRIndexer" value="true" />
+		<!-- <property name="modeSOLRIndexer" value="full" /> -->
+	</bean>
+	
+	<!--**************** 03032015
+	 Impex de status -->
+
+	<file:inbound-channel-adapter id="prolamsa_status" directory="#{baseDirectoryProlamsa}" filename-regex="4Est\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_status" reply-channel="prolamsa_status_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_status_proc" output-channel="batchFilesImp" ref="prolamsa_status_task" method="execute" />
+
+	<bean id="prolamsa_status_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+	</bean>
+	<!--******************-->
+
+	<!-- ProductVisibility -->
+
+	<file:inbound-channel-adapter id="prolamsa_prodvis" directory="#{baseDirectoryProlamsa}" filename-regex="prod-vis\-(.*)\.impex" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_prodvis" reply-channel="prolamsa_prodvis_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_prodvis_proc" output-channel="batchFilesImp" ref="prolamsa_prodvis_task" method="execute" />
+
+	<bean id="prolamsa_prodvis_task" class="mx.neoris.core.dataimport.batch.task.NeorisImpexPatternRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.impex.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="importConfig" ref="prolamsaImportConfig" />
+		<property name="executeSOLRIndexer" value="true" />
+		<!-- <property name="modeSOLRIndexer" value="full" /> -->
+	</bean>
+
+	<!-- Order Updates -->
+
+	<file:inbound-channel-adapter id="prolamsa_orders" directory="#{baseDirectoryProlamsa}" filename-regex="order\-(.*)\.xml" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_orders" reply-channel="prolamsa_orders_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_orders_proc" output-channel="batchFilesImp" ref="prolamsa_orders_task" method="execute" />
+
+	<bean id="prolamsa_orders_task" class="mx.neoris.core.dataimport.batch.task.NeorisObjectUpdaterRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.order.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="objectUpdater" ref="prolamsa_OrderUpdater" />
+	</bean>
+	
+	<!--Nuevos estatus 08092014 -->
+	<bean id="prolamsa_OrderUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisOrderUpdater">
+		<property name="orderStatusMap">
+			<map>
+				<entry key="A" value="IN_PROCESS" />
+				<entry key="P" value="ON_VALIDATION" />
+				<entry key="R" value="CANCELLED" />
+				<entry key="X" value="CANCELLED" />
+				<entry key="B" value="PENDING_APPROVAL" />
+				<entry key="C" value="COMPLETED" />
+				
+
+				<entry key="QUOTE_P" value="PENDING_QUOTE" />
+				<entry key="QUOTE_O" value="EXPIRED_QUOTE" />
+				<entry key="QUOTE_A" value="APPROVED_QUOTE" />
+				<entry key="QUOTE_R" value="REJECTED_QUOTE" />
+				<entry key="QUOTE_B" value="USED_QUOTE" />
+				<entry key="QUOTE_X" value="CANCELLED_QUOTE" />
+			</map>
+		</property>
+		<property name="orderEntryStatusMap">
+			<map>
+				<entry key="A" value="OPEN" />
+				<entry key="B" value="IN_PROCESS" />
+				<entry key="C" value="COMPLETED" />
+				<entry key="D" value="CANCELLED" />
+				<entry key="P" value="IN_PROCESS" />
+				<entry key="R" value="CANCELLED" />
+				<entry key="X" value="CANCELLED" />
+				<entry key="O" value="OVERDUE" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Incident Updates -->
+	
+	<file:inbound-channel-adapter id="prolamsa_incidents" directory="#{baseDirectoryProlamsa}" filename-regex="incident\-(.*)\.xml" comparator="neorisFileOrderComparator">
+		<int:poller fixed-rate="1000" />
+	</file:inbound-channel-adapter>
+
+	<file:outbound-gateway request-channel="prolamsa_incidents" reply-channel="prolamsa_incidents_proc" directory="#{baseDirectoryProlamsa}/processing" delete-source-files="true" />
+
+	<int:service-activator input-channel="prolamsa_incidents_proc" output-channel="batchFilesImp" ref="prolamsa_incidents_task" method="execute" />
+
+	<bean id="prolamsa_incidents_task" class="mx.neoris.core.dataimport.batch.task.NeorisObjectUpdaterRunnerTask">
+		<property name="storeUid" value="#{baseStoreCode}" />
+		<property name="siteUid" value="#{baseStoreCode}" />
+		<property name="notificationUserUid" value="#{configurationService.configuration.getProperty('hotfolder.order.error.userUid')}" />
+
+		<property name="storeBaseDirectory" ref="baseDirectoryProlamsa" />
+		<property name="objectUpdater" ref="prolamsa_IncidentUpdater" />
+	</bean>
+	
+	<bean id="prolamsa_IncidentUpdater" class="mx.neoris.core.updaters.impl.DefaultNeorisIncidentUpdater" />	
+	
+</beans>

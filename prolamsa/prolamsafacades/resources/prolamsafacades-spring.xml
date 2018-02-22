@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Facades -->
+
+	<alias name="defaultB2BFlexibleSearchProductSearchFacade" alias="b2bProductFlexibleSearchFacade"/>
+	<bean id="defaultB2BFlexibleSearchProductSearchFacade"
+		  class="mx.neoris.facades.search.impl.DefaultB2BFlexibleSearchProductSearchFacade">
+		<property name="b2BProductService" ref="b2bProductService"/>
+		<property name="productConfiguredPopulator" ref="b2bProductConfiguredPopulator"/>
+	</bean>
+
+	<alias name="defaultB2BSolrProductSearchFacade" alias="productSearchFacade"/>
+	<bean id="defaultB2BSolrProductSearchFacade"
+		  class="mx.neoris.facades.search.impl.DefaultB2BSolrProductSearchFacade"
+		  parent="defaultSolrProductSearchFacade">
+	</bean>
+
+	<bean id="b2bProductSearchUtil"
+		  class="mx.neoris.facades.search.impl.DefaultB2BProductSearchUtil">
+	</bean>
+
+	<alias alias="b2bSimpleSuggestionFacade" name="b2bDefaultSimpleSuggestionFacade"/>
+	<bean id="b2bDefaultSimpleSuggestionFacade"
+		  class="mx.neoris.facades.suggestion.impl.DefaultSimpleSuggestionFacade">
+		<property name="b2bSimpleSuggestionService" ref="b2bSimpleSuggestionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productPricePopulator" ref="productPricePopulator"/>
+		<property name="productPrimaryImagePopulator" ref="productPrimaryImagePopulator"/>
+		<property name="productConverter" ref="productConverter"/>
+	</bean>
+
+	<bean id="b2bProductFacade" parent="defaultProductFacade">
+		<property name="productConfiguredPopulator" ref="b2bProductConfiguredPopulator"/>
+	</bean>
+
+	<alias name="defaultProductPriceRangePopulator" alias="productPriceRangePopulator"/>
+	<bean id="defaultProductPriceRangePopulator" parent="baseProductPopulator"
+		  class="mx.neoris.facades.product.populators.ProductPriceRangePopulator">
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="priceService" ref="priceService"/>
+	</bean>
+
+	<alias name="defaultProductVariantMatrixPopulator" alias="productVariantMatrixPopulator"/>
+	<bean id="defaultProductVariantMatrixPopulator" parent="baseProductPopulator"
+		  class="mx.neoris.facades.product.populators.ProductVariantMatrixPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+				<value>styleSwatch</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="b2bProductConfiguredPopulator" parent="defaultProductConfiguredPopulator">
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption" merge="true">
+<!-- 				<entry key="PRICE_RANGE" value-ref="productPriceRangePopulator"/> -->
+<!-- 				<entry key="VOLUME_PRICES" value-ref="productVolumePricesPopulator"/> -->
+				<entry key="VARIANT_MATRIX" value-ref="productVariantMatrixPopulator"/>
+				<entry key="URL" value-ref="productUrlPopulator"/>
+<!-- 				<entry key="IMAGES" value-ref="productPrimaryImagePopulator"/> -->
+<!-- NEORIS_CHANGE Include neorisProductPopulator to include the attributes required to be shown on the product list (category page, search, etc.) -->
+				<entry key="PROLAMSA_ATTRIBUTES" value-ref="neorisProductPopulator"/>
+			</map>
+		</property>
+	</bean>
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H"/>
+				<entry key="zoom" value="515Wx515H"/>
+				<entry key="store" value="365Wx246H"/>
+				<entry key="product" value="300Wx300H"/>
+				<entry key="thumbnail" value="96Wx96H"/>
+				<entry key="cartIcon" value="65Wx65H"/>
+				<entry key="styleSwatch" value="30Wx30H"/>
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator"/>
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Email -->
+
+	<alias alias="emailContextFactory" name="acceleratorEmailContextFactory"/>
+	<bean id="acceleratorEmailContextFactory" parent="defaultEmailContextFactory">
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy"/>
+		<property name="emailContextVariables">
+			<map merge="true">
+				<entry key="themeResourceUrl-powertools" value="{baseUrl}/_ui/{theme}"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="customerEmailContext"
+		  class="mx.neoris.facades.process.email.context.CustomerEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="b2bForgottenPasswordEmailContext"
+		  class="mx.neoris.facades.process.email.context.ForgottenPasswordEmailContext"
+		  parent="customerEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="orderReplenishmentEmailContext"
+		  class="mx.neoris.facades.process.email.context.OrderReplenishmentEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="scheduledCartConverter" ref="scheduledCartConverter"/>
+	</bean>
+
+	<bean id="b2bOrderNotificationContext"
+		  class="mx.neoris.facades.process.email.context.OrderNotificationEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	<alias name="defaultB2BCheckoutFlowFacade" alias="b2bCheckoutFlowFacade"/>
+	<bean id="defaultB2BCheckoutFlowFacade"
+		  class="mx.neoris.facades.flow.impl.DefaultB2BCheckoutFlowFacade"
+		  parent="defaultB2BCheckoutFacade">
+		<property name="checkoutFlowStrategy" ref="b2bCheckoutFlowStrategy"/>
+		<property name="checkoutPciStrategy" ref="b2bCheckoutPciStrategy"/>
+	</bean>
+
+	<alias name="b2bDefaultStoreFinderFacade" alias="b2bStoreFinderFacade"/>
+	<bean id="b2bDefaultStoreFinderFacade"
+		  class="de.hybris.platform.commercefacades.storefinder.impl.DefaultStoreFinderFacade">
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="storeFinderService" ref="storeFinderService"/>
+		<property name="searchPagePointOfServiceDistanceConverter" ref="b2bSearchPagePointOfServiceDistanceConverter"/>
+		<property name="pointOfServiceConverter" ref="pointOfServiceConverter"/>
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<alias name="b2bDefaultSearchPagePointOfServiceDistanceConverter"
+		   alias="b2bSearchPagePointOfServiceDistanceConverter"/>
+	<bean id="b2bDefaultSearchPagePointOfServiceDistanceConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="storeFinderSearchPageData"/>
+		<property name="populators">
+			<list>
+				<ref bean="b2bSearchPagePointOfServiceDistancePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="yb2bacceleratorSearchPagePointOfServiceDistancePopulator"
+		   alias="b2bSearchPagePointOfServiceDistancePopulator"/>
+	<bean id="yb2bacceleratorSearchPagePointOfServiceDistancePopulator"
+		  class="mx.neoris.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator">
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<alias name="variantCommerceSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="variantCommerceSearchResultProductPopulator"
+		  class="mx.neoris.facades.search.converters.populator.VariantSearchResultProductPopulator"
+		  parent="defaultCommerceSearchResultProductPopulator">
+	</bean>
+
+	<!-- Neoris -->
+
+	<!-- Invoice -->
+	<bean id="neorisInvoiceData" class="mx.neoris.facades.invoice.data.InvoiceData" scope="prototype"/>
+	<bean id="neorisInvoicePopulator" class="mx.neoris.facades.populators.NeorisInvoicePopulator"/>
+	<bean id="neorisInvoiceConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisInvoiceData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisInvoicePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Product -->
+	<bean id="neorisProductPopulator" class="mx.neoris.facades.populators.NeorisProductPopulator" />
+	<alias name="neorisProductConverter" alias="productConverter"/>
+	<bean id="neorisProductConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="productData"/>
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productPopulator"/>
+				<ref bean="neorisProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- converters -->
+
+	<!-- facades -->
+
+	<bean id="neorisCartFacade" class="mx.neoris.facades.impl.DefaultNeorisCartFacade" parent="defaultCartFacade">
+	</bean>
+	
+	<!--
+	<bean id="neorisUserPopulator" class="mx.neoris.facades.populators.NeorisUserPopulator"/>
+	-->
+	<bean id="neorisFacade" class="mx.neoris.facades.impl.DefaultNeorisFacade"> 	
+		<!--
+		<property name="userService" ref="neorisUserService" />
+		<property name="companyB2BCommerceService" ref="neorisCompanyB2BCommerceService" />  
+		<property name="b2BCommerceB2BUserGroupService" ref="neorisB2BCommerceB2BUserGroupService" />  
+		<property name="customerNameStrategy" ref="neorisCustomerNameStrategy" />  
+		<property name="b2BUserGroupsLookUpStrategy" ref="neorisB2BUserGroupsLookUpStrategy" />   	  	
+		<property name="b2bUnitService" ref="neorisB2BUnitService" /> 
+		<property name="populators">  	
+			<list>
+				<ref bean="neorisUserPopulator" />
+			</list>
+		</property>
+		-->
+	</bean>
+
+	<bean id="neorisProductFacade" class="mx.neoris.facades.impl.DefaultNeorisProductFacade">
+		<property name="productInventoryService" ref="neorisProductInventoryService" />
+		<property name="locationMap">
+			<map>
+				<entry key="LAREDO" value="_2200"/>
+				<entry key="ESCOBEDO" value="_1100"/>
+				<entry key="TEPEJI" value="_5100"/>
+				<entry key="BRYAN" value="_6100"/>
+				<entry key="MONTERREY" value="_1200"/>
+				<entry key="GUADALAJARA" value="_1300"/>
+				<entry key="MEXICO" value="_1400"/>
+				<entry key="SAN LUIS POTOSI" value="_1500"/>
+				<entry key="IZTAPALAPA" value="_1600"/>
+				<entry key="TLALNEPANTLA" value="_5200"/>
+				<entry key="TEPEJI" value="_1700"/>
+				<entry key="CULIACAN" value="_1800"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="neorisInvoiceFacade" class="mx.neoris.facades.impl.DefaultNeorisInvoiceFacade">
+		<property name="invoiceService" ref="neorisSAPInvoiceService" />
+		<property name="invoiceConverter" ref="neorisInvoiceConverter" />
+	</bean>
+	
+	<!--NEORIS_CHANGE #61  -->
+	<bean id="neorisBalanceStatementData" class="mx.neoris.facades.balancestatement.data.BalanceStatementData" scope="prototype"/>
+	<bean id="neorisBalanceStatementPopulator" class="mx.neoris.facades.populators.NeorisBalanceStatementPopulator"/>
+
+	<bean id="neorisBalanceStatementConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisBalanceStatementData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisBalanceStatementPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="neorisBalanceStatementFacade" class="mx.neoris.facades.impl.DefaultNeorisBalanceStatementFacade">
+		<property name="balanceStatementService" ref="neorisSAPBalanceStatementService" />
+		<property name="balanceStatementConverter" ref="neorisBalanceStatementConverter" />
+		<property name="balanceStatementDetailConverter" ref="neorisBalanceStatementDetailConverter" />
+		<property name="invoiceConverter" ref="neorisInvoiceConverter" />
+	</bean>
+	
+		<!--NEORIS_CHANGE #60  -->
+	<bean id="neorisBackorderData" class="mx.neoris.facades.backorder.data.BackorderData" scope="prototype"/>
+	<bean id="neorisBackorderPopulator" class="mx.neoris.facades.populators.NeorisBackorderPopulator"/>
+
+	<bean id="neorisBackorderConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisBackorderData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisBackorderPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="neorisBackorderFacade" class="mx.neoris.facades.impl.DefaultNeorisBackorderFacade">
+		<property name="backorderService" ref="neorisSAPBackorderService" />
+		<property name="backorderConverter" ref="neorisBackorderConverter" />
+		<property name="backorderDetailConverter" ref="neorisBackorderDetailConverter" />
+
+	</bean>
+	
+	<!-- NEORIS_CHANGE BACKORDERDETAIL -->
+	
+	<bean id="neorisBackorderDetailData" class="mx.neoris.facades.backorder.data.BackorderDetailData" scope="prototype"/>
+	<bean id="neorisBackorderDetailPopulator" class="mx.neoris.facades.populators.NeorisBackorderDetailPopulator"/>
+
+	<bean id="neorisBackorderDetailConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisBackorderDetailData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisBackorderDetailPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!--NEORIS_CHANGE #62  -->
+	<bean id="neorisBalanceStatementDetailData" class="mx.neoris.facades.balancestatement.data.BalanceStatementDetailData" scope="prototype"/>
+	<bean id="neorisBalanceStatementDetailPopulator" class="mx.neoris.facades.populators.NeorisBalanceStatementDetailPopulator"/>
+
+	<bean id="neorisBalanceStatementDetailConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisBalanceStatementDetailData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisBalanceStatementDetailPopulator" />
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="neorisOrderEntryPopulator" class="mx.neoris.facades.populators.NeorisOrderEntryPopulator"/>
+	<alias name="neorisOrderEntryConverter" alias="orderEntryConverter"/>
+	<bean id="neorisOrderEntryConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="orderEntryData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="orderEntryPopulator" />
+				<ref bean="neorisOrderEntryPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="neorisAddressPopulator" class="mx.neoris.facades.populators.NeorisAddressPopulator" />
+	<alias name="neorisAddressConverter" alias="addressConverter"/>
+	<bean id="neorisAddressConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="addressData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="addressPopulator"/>
+				<ref bean="neorisAddressPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="neorisB2BUnitPopulator" class="mx.neoris.facades.populators.NeorisB2BUnitPopulator" />
+	<bean id="neorisB2BUnitConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="b2bUnitTypeData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="neorisB2BUnitPopulator" />
+			</list>
+		</property>
+	</bean>
+		
+	<!-- NEORIS_CHANGE QUOTE_REPORT
+	
+	<bean id="neorisQuoteListData" class="mx.neoris.facades.quote.data.QuoteData" scope="prototype"/>
+	<bean id="neorisQuoteListPopulator" class="mx.neoris.facades.populators.NeorisQuoteListPopulator"/>
+	
+	<bean id="neorisQuoteListConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisQuoteListData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisQuoteListPopulator" />
+			</list>
+		</property>
+	</bean>
+	 
+	<bean id="neorisQuoteFacade" class="mx.neoris.facades.impl.DefaultNeorisQuoteFacade">
+
+	</bean>
+	 	 -->
+		<!-- NEORIS_CHANGE #72  -->
+		
+		
+	<bean id="neorisDocumentSesarchData" class="mx.neoris.facades.document.data.DocumentSearchData" scope="prototype"/>
+	<bean id="neorisDocumentSearchPopulator" class="mx.neoris.facades.populators.NeorisDocumentSearchPopulator"/>
+
+	<bean id="neorisDocumentsearchConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisDocumentSesarchData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisDocumentSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="neorisDocumentFacade" class="mx.neoris.facades.impl.DefaultNeorisDocumentSearchFacade">
+		<!-- 
+		<property name="documentService" ref="neorisDocumentSearchService" />
+		-->
+	 	<property name="documentService" ref="neorisSAPDocumentSearchService" />
+	 	
+	 	<property name="documentConverter" ref="neorisDocumentsearchConverter" />
+
+	</bean>
+		
+	<!-- Cart/Order Price Calculator -->
+
+	<bean id="neorisCartPriceCalculator_" class="mx.neoris.core.cart.DefaultNeorisCartPriceCalculator">
+	</bean>
+	
+	<!--NEORIS_CHANGE #SAP Implementation  -->
+	<bean id="neorisCartPriceCalculator" class="mx.neoris.sap.implementors.DefaultSAPNeorisCartPriceCalculator">
+	</bean>
+	
+	<bean id="neorisCartPriceHelper" class="mx.neoris.core.cart.DefaultNeorisCartPriceHelper">
+	</bean>
+	<!-- Null Announcement Changes -->
+	<bean id="cartNoPriceEntries" class="mx.neoris.core.cart.CartNoPriceDataHelper">
+	</bean>
+	
+	<bean id="neorisSapOrderCreator_" class="mx.neoris.core.orders.DefaultNeorisSapOrderCreator">
+	</bean>
+	<bean id="neorisSapOrderCreator" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisSapOrderCreator">
+	</bean>
+	
+	<bean id="neorisSapCreditScoreCard" class="mx.neoris.core.services.sap.impl.DefaultSAPNeorisCreditScoreCard">
+	</bean>
+	
+	<bean id="neorisEmailNotifierSAP" class="mx.neoris.core.updaters.impl.NeorisEmailNotifierSAP">
+	</bean>
+	
+	<!--NEORIS_CHANAGE# Visibility Product  -->
+	<bean id="neorisProductVisibilityService" class="mx.neoris.core.services.impl.DefaultNeorisProductVisibilityService"/>
+	
+	<bean id="categoryService" class="de.hybris.platform.category.impl.defaultCategoryService"/>
+		
+	
+	<!-- UoM converter -->
+	<bean id="neorisUoMQuantityConverter" class="mx.neoris.core.uom.DefaultNeorisUoMQuantityConverter">
+	</bean>
+	
+	<!-- NEORIS_CHANGE #82 -->	
+	<bean id="addressPopulator" class="de.hybris.platform.commercefacades.user.converters.populator.AddressPopulator" />
+	<bean id="neorisB2BUnitSearchConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisB2BUnitData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisB2BUnitPopulator" />				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- NEORIS_CHANGE #74 -->
+	<bean id="neorisOrderPopulator" class="mx.neoris.facades.populators.NeorisOrderPopulator"/>
+	<alias name="neorisOrderConverter" alias="orderConverter"/>
+	<bean id="neorisOrderConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="orderData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="orderPopulator" />
+				<ref bean="neorisOrderPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+
+	<!-- TransportationMode -->	
+	<bean id="transportationModeData" class="de.hybris.platform.commercefacades.user.data.TransportationModeData" scope="prototype"/>
+	<bean id="neorisTransportationModePopulator" class="mx.neoris.facades.populators.NeorisTransportationModePopulator"/>
+	<bean id="neorisTransportationModeConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="transportationModeData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="neorisTransportationModePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- TransportationMode -->	
+	<bean id="neorisMediaData" class="mx.neoris.facades.media.data.NeorisMediaData" scope="prototype"/>
+	<bean id="neorisMediaPopulator" class="mx.neoris.facades.populators.NeorisMediaPopulator"/>
+	<bean id="neorisMediaConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisMediaData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="neorisMediaPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="neorisCartPopulator" class="mx.neoris.facades.populators.NeorisCartPopulator"/>
+	<alias name="neorisCartConverter" alias="cartConverter"/>
+	<bean id="neorisCartConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="cartData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cartPopulator" />
+				<ref bean="neorisCartPopulator" />
+			</list>
+		</property>
+	</bean>
+
+    <!-- NEORIS_CHANGE #83 -->		
+	<bean id="wishlist2EntryData" class="mx.neoris.facades.wishlist2entry.data.Wishlist2EntryData" scope="prototype"/>
+	<bean id="neorisWishlist2EntryPopulator" class="mx.neoris.facades.populators.NeorisWishlist2EntryPopulator" />
+
+	<bean id="neorisWishlist2EntryConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="wishlist2EntryData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisWishlist2EntryPopulator" />				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- NEORIS_CHANGE mail for failed hotfolder import -->
+	<bean id="hotFolderImportFailedEmailContext"
+		class="mx.neoris.facades.process.email.context.HotFolderImportFailedEmailContext"
+		parent="customerEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+	<bean id="quoteRequestEmailContext"
+		class="mx.neoris.facades.process.email.context.QuoteNotificationEmailContext"
+		parent="customerEmailContext" scope="prototype">
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	
+	<!-- NEORIS_CHANGE quotes page -->
+	<alias name="neorisB2BOrderFacade" alias="b2bOrderFacade"/>
+	<bean id="neorisB2BOrderFacade" class="mx.neoris.facades.orders.impl.DefaultNeorisB2BOrderFacade"  parent="defaultB2BOrderFacade">
+	</bean>
+	
+	<alias name="neorisB2BOrderService" alias="orderService"/>
+	<bean id="neorisB2BOrderService" class="mx.neoris.core.services.impl.DefaultNeorisB2BOrderService"  parent="defaultOrderService">
+	</bean>
+
+	<alias name="defaultNeorisB2BCreateOrderFromCartStrategy" alias="defaultB2BCreateOrderFromCartStrategy"/>
+	<bean id="defaultNeorisB2BCreateOrderFromCartStrategy"
+		class="mx.neoris.facades.b2b.impl.DefaultNeorisB2BCreateOrderFromCartStrategy"
+		parent="createOrderFromCartStrategy">
+		<property name="businessProcessStrategies">
+			<list>
+				<ref bean="b2bApprovalBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteApprovalBusinessProcessStrategy"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- NEORIS_CHANGE # Product Visibility -->	
+	<bean id="productVisibilityData" class="de.hybris.platform.commercefacades.user.data.ProductVisibilityData" scope="prototype"/>
+	<bean id="neorisProductVisibilityPopulator" class="mx.neoris.facades.populators.NeorisProductVisibilityPopulator"/>
+	<bean id="neorisProductVisibilityConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="productVisibilityData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="neorisProductVisibilityPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="neorisOrderHistoryPopulator" alias="orderHistoryPopulator" />
+	<bean id="neorisOrderHistoryPopulator" class="mx.neoris.facades.populators.NeorisOrderHistoryPopulator" parent="defaultOrderHistoryPopulator">		
+	</bean>
+	
+	<bean id="neorisIncidentFacade" class="mx.neoris.facades.impl.DefaultNeorisIncidentFacade" />
+	
+	<bean id="addedIncidentEmailContext"
+		class="mx.neoris.facades.process.email.context.AddedIncidentEmailContext"
+		parent="customerEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+	
+	<bean id="neorisFavoriteProductFacade" class="mx.neoris.facades.impl.DefaultNeorisFavoriteProductFacade" />
+	
+	<bean id="neorisNoticesFacade" class="mx.neoris.facades.impl.DefaultNeorisNoticesFacade" />
+	
+	<bean id="neorisB2BCustomerDefaultSettingsFacade" class="mx.neoris.facades.impl.DefaultNeorisB2BCustomerDefaultSettingsFacade" />
+	
+	<!-- Search Batch -->
+	<bean id="neorisBatchSearchData" class="mx.neoris.facades.document.data.BatchSearchData" scope="prototype"/>
+	<bean id="neorisBatchSearchPopulator" class="mx.neoris.facades.populators.NeorisBatchSearchPopulator"/>
+
+	<bean id="neorisBatchSearchConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="neorisBatchSearchData" />
+		<property name="populators">
+			<list>
+				<ref bean="neorisBatchSearchPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="neorisBatchFacade" class="mx.neoris.facades.impl.DefaultNeorisBatchSearchFacade">
+		<property name="batchService" ref="neorisSAPBatchSearchService" />
+		<property name="batchConverter" ref="neorisBatchSearchConverter" />
+	</bean>
+	
+	<bean id="neorisAlertsFacade" class="mx.neoris.facades.impl.DefaultNeorisAlertsFacade"></bean>
+
+</beans>

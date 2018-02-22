@@ -1,0 +1,422 @@
+# Store parameters
+$baseProlamsa=prolamsa
+
+$baseProlamsaUsa=prolamsausa
+$baseProlamsaMex=prolamsamex
+$baseA4C=a4c
+$baseAxis=axis
+
+$themeProlamsaUsa=$baseProlamsaUsa
+$themeProlamsaMex=$baseProlamsaMex
+$themeA4C=$baseA4C
+$themeAxis=$baseAxis
+
+
+#
+# Insert Units
+#
+INSERT_UPDATE Unit;unitType[unique=true];code[unique=true];name[lang=en];name[lang=es];conversion;sapCode;defaultMeasurementSystem(code)
+;$baseProlamsa_bun_kg;$baseProlamsa_bun_kg;BUN (KG);PAQ;1;KG;Metric
+;$baseProlamsa_bun_lb;$baseProlamsa_bun_lb;BUN (LB);BUN (LB);1;LB;English
+;$baseProlamsa_pc_kg;$baseProlamsa_pc_kg;PC (KG);PZA;1;PC;Metric
+;$baseProlamsa_pc_lb;$baseProlamsa_pc_lb;PC (LB);PC (LB);1;PC;English
+;$baseProlamsa_kg;$baseProlamsa_kg;KG;KG;1;KG;Metric
+;$baseProlamsa_lb;$baseProlamsa_lb;LB;LB;1;LB;English
+;$baseProlamsa_ton;$baseProlamsa_ton;TON;TON;1;TON;Metric
+;$baseProlamsa_ft;$baseProlamsa_ft;FT;FT;1;FT;English
+;$baseProlamsa_mt;$baseProlamsa_mt;MT;METROS;1;MT;Metric
+
+;$baseAxis_api_ft;$baseAxis_api_ft;API - FT;API - FT;1;FT;English
+;$baseAxis_api_lb;$baseAxis_api_lb;API - LB;API - LB;1;LB;English
+
+;$baseAxis_bun_kg;$baseAxis_bun_kg;ASTM - BUN (KG);ASTM - BUN (KG);1;KG;Metric
+;$baseAxis_bun_lb;$baseAxis_bun_lb;ASTM - BUN (LB);ASTM - BUN (LB);1;LB;English
+;$baseAxis_pc_kg;$baseAxis_pc_kg;ASTM - PC (KG);ASTM - PC (KG);1;PC;Metric
+;$baseAxis_pc_lb;$baseAxis_pc_lb;ASTM - PC (LB);ASTM - PC (LB);1;PC;English
+;$baseAxis_kg;$baseAxis_kg;ASTM - KG;ASTM - KG;1;KG;Metric
+;$baseAxis_lb;$baseAxis_lb;ASTM - LB;ASTM - LB;1;LB;English 
+;$baseAxis_ton;$baseAxis_ton;ASTM - TON;ASTM - TON;1;TON;Metric
+;$baseAxis_ft;$baseAxis_ft;ASTM - FT;ASTM - FT;1;FT;English
+;$baseAxis_mt;$baseAxis_mt;ASTM - MT;ASTM - MT;1;MT;Metric
+
+
+#
+# Base catalog to store generic media (files)
+#
+INSERT_UPDATE Catalog;id[unique=true];name;
+;$baseProlamsaMediaCatalog;$baseProlamsa Media Catalog;
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);readPrincipals(uid);
+;$baseProlamsaMediaCatalog;Online;true;en;employeegroup;
+
+#
+# Insert Transportation Modes
+#
+INSERT_UPDATE TransportationMode;internalCode[unique=true];code;incotermCode;name[lang=en];name[lang=es];maxCapacity;incotermDescription[lang=es];incotermDescription[lang=en]
+#USA
+;0108-FOB;0108;FOB;Rail;Tren;80.00;Libre a Bordo;Free on board
+;0210-FOB;0210;FOB;Truck;Camión;20.00;Libre a Bordo;Free on board
+;0210-EXW;0210;EXW;Truck;Camión;20.00;Recoge Cliente;Customer Pick up
+
+#MEX and A4C
+;0108-EXW;0108;EXW;Rail;Tren;80.00;Recoge Cliente;Customer Pick up
+;0108-CPT;0108;CPT;Rail;Tren;80.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+
+;0201-CIP;0201;CIP;Truck;Camioneta;3.50;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0201-EXW;0201;EXW;Truck;Camioneta;3.50;Recoge Cliente;Customer Pick up
+;0201-CPT;0201;CPT;Truck;Camioneta;3.50;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+
+;0202-CPT;0202;CPT;Cage, 2 Axles;Jaula, 2 Ejes;30.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+;0202-CIP;0202;CIP;Cage, 2 Axles;Jaula, 2 Ejes;30.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0202-EXW;0202;EXW;Cage, 2 Axles;Jaula, 2 Ejes;30.00;Recoge Cliente;Customer Pick up
+;0202-CIN;0202;CIN;Cage, 2 Axles;Jaula, 2 Ejes;30.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+
+;0203-EXW;0203;EXW;Platform;Plataforma;30.00;Recoge Cliente;Customer Pick up
+;0203-FOB;0203;FOB;Plafform;Plataforma;30.00;Libre a Bordo;Free on Board
+;0203-CIN;0203;CIN;Platform;Plataforma;30.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+;0203-CIP;0203;CIP;Platform;Plataforma;30.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0203-CPT;0203;CPT;Platform;Plataforma;30.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+
+;0205-CPT;0205;CPT;Torthon;Torthon;10.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+;0205-CIP;0205;CIP;Torthon;Torthon;10.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0205-CIN;0205;CIN;Torthon;Torthon;10.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+;0205-EXW;0205;EXW;Torthon;Torthon;10.00;Recoge Cliente;Customer Pick up
+
+;0206-CIN;0206;CIN;Torthon;Torthon;5.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+;0206-EXW;0206;EXW;Torthon;Torthon;5.00;Recoge Cliente;Customer Pick Up
+;0206-CPT;0206;CPT;Torthon;Torthon;5.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+;0206-CIP;0206;CIP;Torthon;Torthon;5.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+
+;0211-EXW;0211;EXW;Platform;Plataforma;31.00;Recoge Cliente;Customer Pick up
+;0211-CIN;0211;CIN;Platform;Plataforma;31.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+;0211-CPT;0211;CPT;Platform;Plataforma;31.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+;0211-CIP;0211;CIP;Platform;Plataforma;31.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+
+;0212-CPT;0212;CPT;Platform;Plataforma;35.00;Envía Prolamsa/Seg Pag x Cliente;Carriage by Prolamsa/Insurance by Customer
+;0212-CIN;0212;CIN;Platform;Plataforma;35.00;Seg Pag x Prolamsa/Flete Pag x Cliente;Insurance by Prolamsa/Carriage by Customer
+;0212-CIP;0212;CIP;Platform;Plataforma;35.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0212-EXW;0212;EXW;Platform;Plataforma;35.00;Recoge Cliente;Customer Pick up
+
+;0216-CIP;0216;CIP;Torthon;Torthon;15.00;Porte Pag y Seguro/Envia Prolamsa;Carriage and insurance by Prolamsa
+;0216-EXW;0216;EXW;Torthon;Torthon;15.00;Recoge Cliente;Customer Pick Up
+
+#
+# Insert theme for all websites
+#
+INSERT_UPDATE SiteTheme;code[unique=true]
+;$themeProlamsaUsa
+;$themeProlamsaMex
+;$themeA4C
+;$themeAxis
+
+#
+# Insert Mexican Language Model
+#
+INSERT_UPDATE Language;isocode[unique=true];name[lang=en];name[lang=es];fallbackLanguages(isocode);active
+;es;Spanish;Español;;true
+
+#
+# Insert Mexican Pesos
+#
+INSERT_UPDATE Currency;isocode[unique=true];name;symbol;digits;active
+;MXN;Mexican Pesos;$;2;true
+
+#
+# Insert Mexican Zone
+#
+INSERT_UPDATE Zone;code[unique=true];countries(isocode)
+;mexico;MX;
+
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];locname[lang=es]
+;b2bapprovergroup;b2bgroup;
+;SuperAccountMangers;;
+
+#
+# Countries language
+#
+UPDATE Country;isocode[unique=true];name[lang=es]
+;US;Estados Unidos de América
+;MX;México
+;CA;Canada
+;DO;República Dominicana
+;PA;Panama
+;TH;Tailandia
+;NL;Holanda
+;SV;El Salvador
+
+#
+# Mexican States
+#
+INSERT_UPDATE Region;isocode[unique=true];name[lang=en];name[lang=es];country(isocode)[default=MX];active[default=true]
+;	MX-DF	;	 Distrito Federal	;	 Distrito Federal 
+;	MX-AGS	;	 Aguascalientes	;	 Aguascalientes 
+;	MX-BC	;	 Baja California	;	 Baja California 
+;	MX-BCS	;	 Baja California Sur	;	 Baja California Sur 
+;	MX-CMP	;	 Campeche	;	 Campeche 
+;	MX-COA	;	 Coahuila	;	 Coahuila 
+;	MX-COL	;	 Colima	;	 Colima 
+;	MX-CHS	;	 Chiapas	;	 Chiapas 
+;	MX-CHI	;	 Chihuahua	;	 Chihuahua 
+;	MX-DGO	;	 Durango	;	 Durango 
+;	MX-GTO	;	 Guanajuato	;	 Guanajuato 
+;	MX-GRO	;	 Guerrero	;	 Guerrero 
+;	MX-HGO	;	 Hidalgo	;	 Hidalgo 
+;	MX-JAL	;	 Jalisco	;	 Jalisco 
+;	MX-MEX	;	 México	;	 México 
+;	MX-MCH	;	 Michoacán	;	 Michoacán 
+;	MX-MOR	;	 Morelos	;	 Morelos 
+;	MX-NAY	;	 Nayarit	;	 Nayarit 
+;	MX-NL	;	 Nuevo León	;	 Nuevo León 
+;	MX-OAX	;	 Oaxaca	;	 Oaxaca 
+;	MX-PUE	;	 Puebla	;	 Puebla 
+;	MX-QRO	;	 Querétaro	;	 Querétaro 
+;	MX-QR	;	 Quintana Roo	;	 Quintana Roo 
+;	MX-SLP	;	 San Luis Potosí	;	 San Luis Potosí 
+;	MX-SIN	;	 Sinaloa	;	 Sinaloa 
+;	MX-SON	;	 Sonora	;	 Sonora 
+;	MX-TAB	;	 Tabasco	;	 Tabasco 
+;	MX-TMS	;	 Tamaulipas	;	 Tamaulipas 
+;	MX-TLX	;	 Tlaxcala	;	 Tlaxcala 
+;	MX-VER	;	 Veracruz	;	 Veracruz 
+;	MX-YUC	;	 Yucatán	;	 Yucatán 
+;	MX-ZAC	;	 Zacatecas	;	 Zacatecas 
+;	MX-	;	 ;	 
+
+#
+# US States in Spanish
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;US;US-AL;AL;"Alabama"
+;US;US-AK;AK;"Alaska"
+;US;US-AZ;AZ;"Arizona"
+;US;US-AR;AR;"Arkansas"
+;US;US-CA;CA;"California"
+;US;US-CO;CO;"Colorado"
+;US;US-CT;CT;"Connecticut"
+;US;US-DE;DE;"Delaware"
+;US;US-FL;FL;"Florida"
+;US;US-GA;GA;"Georgia"
+;US;US-HI;HI;"Hawaii"
+;US;US-ID;ID;"Idaho"
+;US;US-IL;IL;"Illinois"
+;US;US-IN;IN;"Indiana"
+;US;US-IA;IA;"Iowa"
+;US;US-KS;KS;"Kansas"
+;US;US-KY;KY;"Kentucky"
+;US;US-LA;LA;"Louisiana"
+;US;US-ME;ME;"Maine"
+;US;US-MD;MD;"Maryland"
+;US;US-MA;MA;"Massachusetts"
+;US;US-MI;MI;"Michigan"
+;US;US-MN;MN;"Minnesota"
+;US;US-MS;MS;"Mississippi"
+;US;US-MO;MO;"Missouri"
+;US;US-MT;MT;"Montana"
+;US;US-NE;NE;"Nebraska"
+;US;US-NV;NV;"Nevada"
+;US;US-NH;NH;"New Hampshire"
+;US;US-NJ;NJ;"New Jersey"
+;US;US-NM;NM;"New Mexico"
+;US;US-NY;NY;"New York"
+;US;US-NC;NC;"North Carolina"
+;US;US-ND;ND;"North Dakota"
+;US;US-OH;OH;"Ohio"
+;US;US-OK;OK;"Oklahoma"
+;US;US-OR;OR;"Oregon"
+;US;US-PA;PA;"Pennsylvania"
+;US;US-RI;RI;"Rhode Island"
+;US;US-SC;SC;"South Carolina"
+;US;US-SD;SD;"South Dakota"
+;US;US-TN;TN;"Tennessee"
+;US;US-TX;TX;"Texas"
+;US;US-UT;UT;"Utah"
+;US;US-VT;VT;"Vermont"
+;US;US-VA;VA;"Virginia"
+;US;US-WA;WA;"Washington"
+;US;US-WV;WV;"West Virginia"
+;US;US-WI;WI;"Wisconsin"
+;US;US-WY;WY;"Wyoming"
+;US;US-DC;DC;"District of Columbia"
+;US;US-AS;AS;"American Samoa"
+;US;US-GU;GU;"Guam"
+;US;US-MP;MP;"Northern Mariana Islands"
+;US;US-PR;PR;"Puerto Rico"
+;US;US-UM;UM;"United States Minor Outlying Islands"
+;US;US-VI;VI;"United States Virgin Islands"
+;US;US-;;
+
+#
+# Canada States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;CA;CA-AB;AB;"Alberta"
+;CA;CA-BC;BC;"Columbia Británica"
+;CA;CA-MB;MB;"Manitoba"
+;CA;CA-NL;NL;"Terranueva/Labrador"
+;CA;CA-NS;NS;"Nueva Escocia"
+;CA;CA-NT;NT;"Territorio Noreste"
+;CA;CA-NU;NU;"Nunavut"
+;CA;CA-ON;ON;"Ontario"
+;CA;CA-PE;PE;"Isl. Príncipe Eduardo"
+;CA;CA-QC;QC;"Quebec"
+;CA;CA-SK;SK;"Saskatchewan"
+;CA;CA-YT;YT;"Territorio Yukon"
+;CA;CA-;;
+
+#
+# Republica Dominicana States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;DO;DO-DO;DO;"Santo Domingo"
+;DO;DO-;;
+
+#
+# Panama States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;PA;PA-PA;PA;"Panama"
+;PA;PA-;;
+
+#
+# Tailandia States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;TH;TH-01;01;"Amnat Charoen"
+;TH;TH-;;
+
+#
+# El Salvador States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;SV;SV-01;01;"Nueva San Salvador"
+;SV;SV-05;05;"Antiguo Cuscatlan"
+;SV;SV-SV;SV;"Apopa"
+
+#
+# Holanda States
+#
+INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lang=es]
+;NL;NL-13;13;"JH Hoofddorp"
+
+#
+# Prolamsa Groups for Roles
+#
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];locname[lang=es]
+;prolamsa_no_inventory;;Prolamsa No Inventory;Prolamsa Sin Inventario
+;prolamsa_internal;;Prolamsa Internal;Prolamsa Interno
+;prolamsa_external;;Prolamsa External;Prolamsa Externo
+;Accounter;;Accounter;Contador
+;Purchaser;;Purchaser;Comprador
+;AllB2BUnit;;All B2B Unit;Todos B2BUnit
+;access_opstudio_reports;;Access OpStudio reports;Acceso a reportes OpStudio
+;access_rolling_schedule_report_grid;;Access rolling report grid;Acceso al grid del reporte rolling
+;superuser;;Superuser;Superusuario
+;addressBook;;Address Book;Libreta de direcciones
+;quality;;Quality;Calidad
+;prolamsa_facetautoselection;;Prolampsa Facet Autoselection;Prolamsa Facet Autoselection
+;material_supplier_reception;;Material Supplier Reception;Recepcion de materiales del proveedor
+;notices_admin;;Notices Administrator;Administrador de comunicados
+;incident_user;;Incident User;Usuario de Incidentes
+;axisOnlyReports;;Axis Only Reports;Axis Usuario solo Reportes
+
+#
+# Prolamsa Groups for Category Visibility
+#
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];locname[lang=es]
+;Prolamsa-Group;;Prolamsa;Prolamsa
+;TUBEST-Group-ProlamsaProductVisibility;;TUBEST;TUBEST
+;TUBMEC-Group-ProlamsaProductVisibility;;TUBMEC;TUBMEC
+;POLINES-Group-ProlamsaProductVisibility;;POLINES;POLINES
+;SPECIALSHAPES-Group-ProlamsaProductVisibility;;SPECIALSHAPES;SPECIALSHAPES
+
+;Axis-Group;;Axis;Axis
+;5CT-Group-ProlamsaProductVisibility;;5CT;5CT
+;5L-Group-ProlamsaProductVisibility;;5L;5L
+;ASTM-Group-ProlamsaProductVisibility;;ASTM;ASTM
+
+#
+# Titles
+#
+INSERT_UPDATE Title;code[unique=true];name[lang=es]
+;dr;Dr.
+;miss;Srta.
+;mr;Sr.
+;mrs;Sra.
+;ms;Srta.
+;rev;Rev.
+
+
+#
+# cmsmanager and product manager
+#
+
+$passwordEncoding=md5
+$defaultPassword=1234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+
+# copied from b2bacceleratorsampledata import/cockpits/cmscockpit/cmscockpit-users.impex
+INSERT_UPDATE Employee;UID[unique=true];$setPassword;description;name;groups(uid)[mode=append];sessionLanguage(isocode);sessionCurrency(isocode)
+;cmsmanager;;CMS manager;CMS Manager;cmsmanagergroup;en;USD
+
+# copied from b2bacceleratorsampledata import/cockpits/productcockpit/productcockpit-users.impex
+INSERT_UPDATE Employee;UID[unique=true];$setPassword;description;name;groups(uid);sessionLanguage(isocode);sessionCurrency(isocode)
+;productmanager;;Product manager;Product Manager;productmanagergroup;en;EUR
+
+# copied from b2bacceleratorsampledata import/common/user-groups.impex
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];
+;b2bapprovergroup;b2bgroup;
+;SuperAccountMangers;;
+
+#
+# Common cron jobs
+#
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;neorisSalesRepB2BUnitUpdaterJob;neorisSalesRepB2BUnitUpdaterJob
+;neorisB2BUnitMultisiteUpdaterJob;neorisB2BUnitMultisiteUpdaterJob
+;neorisB2BCustomerMultisiteUpdaterJob;neorisB2BCustomerMultisiteUpdaterJob
+;neorisOrderAttachmentsUpdaterJob;neorisOrderAttachmentsUpdaterJob
+;neorisProductFullDescriptionUpdaterJob;neorisProductFullDescriptionUpdaterJob
+;neorisProductFavoriteCodeUpdaterJob;neorisProductFavoriteCodeUpdaterJob
+;neorisSAPPublishOrdersQuotesJob;neorisSAPPublishOrdersQuotesJob
+
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;neorisSalesRepB2BUnitUpdaterCronJob;neorisSalesRepB2BUnitUpdaterJob;false;en
+;neorisB2BUnitMultisiteUpdaterCronJob;neorisB2BUnitMultisiteUpdaterJob;false;en
+;neorisB2BCustomerMultisiteUpdaterCronJob;neorisB2BCustomerMultisiteUpdaterJob;false;en
+;neorisOrderAttachmentsUpdaterCronJob;neorisOrderAttachmentsUpdaterJob;false;en
+;neorisProductFullDescriptionUpdaterJob;neorisProductFullDescriptionUpdaterJob;false;en
+;neorisProductFavoriteCodeUpdaterJob;neorisProductFavoriteCodeUpdaterJob;false;en
+;neorisSAPPublishOrdersQuotesCronJob;neorisSAPPublishOrdersQuotesJob;false;en
+
+#
+# Incident types
+#
+INSERT_UPDATE IncidentType;code[unique=true];name[lang=es];name[lang=en]
+;1;Envió Incorrecto de Material (Prolamsa);Sent Wrong Material
+;2;Mala Calidad de Producto;Poor Quality of Product
+;3;Mala Calidad de Servicio;Poor Quality of Service
+;4;Solicitud Incorrecta de Material(Cliente);Incorrect Material Request(Client)
+
+INSERT_UPDATE IncidentState;code[unique=true];name[lang=es];name[lang=en]
+;1;Validación de Reclamación;Validación de Reclamación
+;2;Abierto;Abierto
+;3;Análisis;Análisis
+;4;Dictamen Emitido;Dictamen Emitido
+;5;Rechazado;Rechazado
+
+#
+# Point of services
+#
+
+INSERT_UPDATE PointOfService;name[unique=true];displayName;locDisplayName[lang=en];locDisplayName[lang=es];type(code)
+;_1100;Escobedo;Escobedo;Escobedo;WAREHOUSE
+;_1200;Planta Monterrey;Planta Monterrey;Planta Monterrey;WAREHOUSE
+;_1300;Cedis GDL;Cedis GDL;Cedis GDL;WAREHOUSE
+;_1400;Cedis Mexico;Cedis Mexico;Cedis Mexico;WAREHOUSE
+;_1500;Cedis SLP;Cedis SLP;Cedis SLP;WAREHOUSE
+;_1600;Cedis Iztapalapa;Cedis Iztapalapa;Cedis Iztapalapa;WAREHOUSE
+;_2200;Laredo, USA;Laredo, USA;Laredo, USA;WAREHOUSE
+;_5100;Tepeji;Tepeji;Tepeji;WAREHOUSE
+;_5200;Cedis Tlalnepantla;Cedis Tlalnepantla;Cedis Tlalnepantla;WAREHOUSE
+;_6100;Bryan, USA;Bryan, USA;Bryan, USA;WAREHOUSE

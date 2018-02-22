@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="prolamsacorehmc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/prolamsacore/hmc/bin/prolamsacorehmc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

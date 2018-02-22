@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/prolamsacore/hmc/hmc.iml" filepath="$PROJECT_DIR$/prolamsacore/hmc/hmc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsa.iml" filepath="$PROJECT_DIR$/prolamsa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsacockpits.iml" filepath="$PROJECT_DIR$/prolamsacockpits.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsacore.iml" filepath="$PROJECT_DIR$/prolamsacore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsafacades.iml" filepath="$PROJECT_DIR$/prolamsafacades.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsafulfilmentprocess.iml" filepath="$PROJECT_DIR$/prolamsafulfilmentprocess.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsainitialdata.iml" filepath="$PROJECT_DIR$/prolamsainitialdata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsastorefront.iml" filepath="$PROJECT_DIR$/prolamsastorefront.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsatest.iml" filepath="$PROJECT_DIR$/prolamsatest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prolamsastorefront/web/web.iml" filepath="$PROJECT_DIR$/prolamsastorefront/web/web.iml" />
+    </modules>
+  </component>
+</project>
