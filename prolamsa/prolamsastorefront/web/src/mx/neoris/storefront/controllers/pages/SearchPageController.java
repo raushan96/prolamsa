@@ -140,6 +140,17 @@ public class SearchPageController extends AbstractSearchPageController
 			//Christian Loredo 12022015
 			//Add parameter CatlogId to search CustomerProductReference
 			String catalogId = neorisFacade.getCurrentBaseStore().getUid() + "ProductCatalog";
+			
+			//Changes for Location Based Search:
+			String currrentUserLoc = neorisFacade.getCurrentCustomer().getCurrentLocation();
+			String loc=null;
+			
+			if(StringUtils.isNotEmpty(currrentUserLoc) && currrentUserLoc.contains("-")){
+				
+				loc = currrentUserLoc.split("-")[0];
+			}
+			
+			
 
 			// call facade to get the real skus
 			final List<String> productProlamsaList = neorisFacade.getProlamsaSkuFromSku(productIdsList, neorisFacade.getRootUnit(), catalogId);
@@ -150,11 +161,11 @@ public class SearchPageController extends AbstractSearchPageController
 			
 			if (productProlamsaList.get(0).equals(""))
 			{
-				searchQueryData.setValue(XSSFilterUtil.filter(searchText) + facetAutoSelection);
+				searchQueryData.setValue(XSSFilterUtil.filter(searchText) + facetAutoSelection+":location:"+loc);
 			}
 			else
 			{
-				searchQueryData.setValue(XSSFilterUtil.filter(productProlamsaList.get(0) + facetAutoSelection));
+				searchQueryData.setValue(XSSFilterUtil.filter(productProlamsaList.get(0) + facetAutoSelection+":location:"+loc));
 			}
 
 			searchState.setQuery(searchQueryData);
