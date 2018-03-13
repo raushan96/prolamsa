@@ -161,11 +161,11 @@ public class SearchPageController extends AbstractSearchPageController
 			
 			if (productProlamsaList.get(0).equals(""))
 			{
-				searchQueryData.setValue(XSSFilterUtil.filter(searchText) + facetAutoSelection+":location:"+loc);
+				searchQueryData.setValue(XSSFilterUtil.filter(searchText) + facetAutoSelection + ControllerConstants.ProductFacetSelection.FACET_LOCATION_AUTOSELECTION_SEARCH_QUERY + loc);
 			}
 			else
 			{
-				searchQueryData.setValue(XSSFilterUtil.filter(productProlamsaList.get(0) + facetAutoSelection+":location:"+loc));
+				searchQueryData.setValue(XSSFilterUtil.filter(productProlamsaList.get(0) + facetAutoSelection+ ControllerConstants.ProductFacetSelection.FACET_LOCATION_AUTOSELECTION_SEARCH_QUERY + loc));
 			}
 
 			searchState.setQuery(searchQueryData);
