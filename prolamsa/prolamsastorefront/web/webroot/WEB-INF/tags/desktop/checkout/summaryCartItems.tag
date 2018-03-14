@@ -133,6 +133,7 @@
 			{{each(i,item) noPriceEntries}}			
 					
 				{{if  product.visibleCode != null && product.visibleCode != "" }}
+                <tr class="prolamsa_product_row">
 	            <td class="{{= item.tdclass}}"><a href={{= "<c:url value="/" />"+product.url}}>{{= product.visibleCode}}</a></td>
 		         {{else}}
 		            <td class="{{= item.tdclass}}"><a href={{= "<c:url value="/" />"+product.url}}>{{= product.baseCode}}</a></td>
@@ -145,7 +146,7 @@
 				{{/if}}
 				<td class="col_center {{= item.tdclass}}">{{= product.piecesPerBundle}}</td>	        	
 	         	<td class="col_center {{= item.tdclass}}">{{= formattedConvertedQuantity}}</td>	                
-				
+				</tr>
 			{{/each}} 
 		</tbody>
 
