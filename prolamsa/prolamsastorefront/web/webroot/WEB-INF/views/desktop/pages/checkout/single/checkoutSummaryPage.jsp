@@ -357,6 +357,11 @@
 							$('#no-price-popup').addClass('popup-class');
 							$('#no-price-popup').dialog();
 							$('#no-price-popup').focus();
+							$('#modal-price-popup').addClass('background-fade');
+							$('#content').css("opacity","0.3")
+							$('#content').css("pointer-events","none");
+							//alert("baba1");
+							
 						}
 						$('#unitTemplateWeight').replaceWith($("#total").val());
 						<c:if test="${cartData.isInternalCartOrder and baseStore.uid eq '6000' }">

@@ -151,21 +151,21 @@
 		</tbody>
 
 </script>
-
-<div id="no-price-popup" class="no-popup" style="display: none; width:562px !important;">
-	<label style="color:red;"><spring:theme code="checkout.noprice.popup.message"/></label>
-	 <table id="noPriceEntriesTable">
-	 <tr class="firstrow">
-	    <td><spring:theme code="checkout.summary.items.part_number" /></td>
-	    <td class="attribute_col"><spring:theme code="checkout.summary.items.description" /></td>
-	    <td class="attribute_col"><spring:theme code="checkout.summary.items.pcs_bundle" /></td>
-	    <td class="attribute_col"><spring:theme code="checkout.summary.items.quantity" /><br/>${qtyLabel}</td>
-	   </tr>
-	 <tbody id="noPriceEntries">
-	 </tbody>
-	 </table>
-	 <form action="/store/checkout/single/summary/no-price-delete-popup" id="noPriceDeleteButton" method="post">
-	 	<input type="submit" class="form button" value='<spring:theme code="checkout.summary.items.delete" />'></input>
+<!-- This dive will block the screen functionality -->
+	<div id="no-price-popup" class="no-popup" style="display: none; width:562px !important;">
+		<label style="color:red;"><spring:theme code="checkout.noprice.popup.message"/></label>
+		 <table id="noPriceEntriesTable">
+		 <tr class="firstrow">
+		    <td><spring:theme code="checkout.summary.items.part_number" /></td>
+		    <td class="attribute_col"><spring:theme code="checkout.summary.items.description" /></td>
+		    <td class="attribute_col"><spring:theme code="checkout.summary.items.pcs_bundle" /></td>
+		    <td class="attribute_col"><spring:theme code="checkout.summary.items.quantity" /><br/>${qtyLabel}</td>
+		   </tr>
+		 <tbody id="noPriceEntries">
+		 </tbody>
+		 </table>
+		 <form action="/store/checkout/single/summary/no-price-delete-popup" id="noPriceDeleteButton" method="post">
+		 	<input type="submit" class="form button" value='<spring:theme code="checkout.summary.items.delete" />'></input>
 	 	 </form>
 	</div>
 <!-- NEORIS_CHANGE #74 Template used to show SAP data-->
