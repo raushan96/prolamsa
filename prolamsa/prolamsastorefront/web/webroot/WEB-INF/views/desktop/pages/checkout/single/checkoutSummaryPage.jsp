@@ -358,8 +358,11 @@
 							$('#no-price-popup').dialog();
 							$('#no-price-popup').focus();
 							$('#modal-price-popup').addClass('background-fade');
-							$('#content').css("opacity","0.3")
-							$('#content').css("pointer-events","none");
+							$('#content,#header,#footer').css("opacity","0.2")
+							$('#content,#header,#footer').css("pointer-events","none");
+							$('.ui-dialog-titlebar-close').css("display","none");
+							$('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable').css("width","462px");
+							$('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable').css("left","533.5px");
 							//alert("baba1");
 							
 						}
@@ -390,7 +393,7 @@
 				},
 				complete: function ()
 				{
-					unblockUI();		
+					unblockUI();
 				}
 			});
 			
