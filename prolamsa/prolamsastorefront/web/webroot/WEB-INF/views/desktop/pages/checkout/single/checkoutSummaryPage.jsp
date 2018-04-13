@@ -16,7 +16,8 @@
 
 <spring:url value="/checkout/single/placeOrder" var="placeOrderUrl" />
 <spring:url value="/checkout/single/termsAndConditions" var="getTermsAndConditionsUrl" />
-<spring:url value="/checkout/single/orderConditions" var="getOrderConditionsUrl" />
+<spring:url value="/checkout/single/orderConditions" var="getOrderConditionsUrl" />\
+<script type="text/javascript" src="${commonResourcePath}/js/jquery-1.7.2.min.js"></script>
 
 <template:page pageTitle="${pageTitle}">
 	<script type="text/javascript">
@@ -362,8 +363,7 @@
 							$('#content,#header,#footer').css("pointer-events","none");
 							$('.ui-dialog-titlebar-close').css("display","none");
 							$('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable').css("width","462px");
-							$('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable').css("left","533.5px");
-							//alert("baba1");
+							$('.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable').css("left","533.5px");						
 							
 						}
 						$('#unitTemplateWeight').replaceWith($("#total").val());
@@ -400,6 +400,12 @@
 			updateButtons();
 
 		}
+		$(document).keydown(function(e) {
+	    	if (e.keyCode == 27) {
+	    		$('#content,#header,#footer').css("opacity","1")
+				$('#content,#header,#footer').css("pointer-events","all");
+	    	}
+		});
 		
 		function validateCalculateButton(){
 			//Se comenta ya que se valida esto mismo en la parte de arriba.
