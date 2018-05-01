@@ -438,12 +438,14 @@ public class DefaultCustomerProductReferenceService implements CustomerProductRe
 		queryString.append("AND {pl.code} = '_" + location + "' ");
 
 		final SearchResult<CustomerProductReferenceModel> result = flexibleSearchService.search(queryString.toString());
+		String productCode=null;
 
 		if (result == null || result.getCount() == 0)
 		{
 			final StringBuilder queryString2 = new StringBuilder();
-			final String productCode = code.substring(code.length() - 6);
-
+			if(null!=code && code.length() >6) {
+				productCode = code.substring(code.length() - 6);
+			}
 			queryString2.append("SELECT {p." + CustomerProductReferenceModel.PK + "}  ");
 			queryString2.append("FROM {" + CustomerProductReferenceModel._TYPECODE + " AS p JOIN " + ProductLocation._TYPECODE
 					+ " as pl  ON {p." + CustomerProductReferenceModel.LOCATION + "} = {pl.pk} } ");
